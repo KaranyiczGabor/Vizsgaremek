@@ -22,4 +22,4 @@ namespace QuizAPI.Models
 
     }
 }
-}
+

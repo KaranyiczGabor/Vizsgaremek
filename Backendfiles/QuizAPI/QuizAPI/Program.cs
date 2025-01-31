@@ -13,6 +13,8 @@ namespace QuizAPI
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            builder.Services.AddDbContext<AppDbcontext>();
+
             var settingsSection = builder.Configuration.GetSection("AuthSettings:JwtOptions");
 
             var secret = settingsSection.GetValue<string>("Secret");
@@ -38,12 +40,6 @@ namespace QuizAPI
                 };
             });
 
-            // Add services to the container.
-            builder.Services.AddDbContext<QuizdbContext>(option =>
-            {
-                var connectionstring = builder.Configuration.GetConnectionString("MySql");
-                option.UseMySQL(connectionstring);
-            });
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
