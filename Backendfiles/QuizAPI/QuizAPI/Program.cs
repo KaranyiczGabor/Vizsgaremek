@@ -4,6 +4,10 @@ using System.Text;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using QuizAPI.Models;
+using QuizAPI.Services.IService;
+using QuizAPI.Services;
+using Microsoft.AspNetCore.Identity;
+using System;
 
 namespace QuizAPI
 {
@@ -14,6 +18,10 @@ namespace QuizAPI
             var builder = WebApplication.CreateBuilder(args);
 
             builder.Services.AddDbContext<AppDbcontext>();
+            builder.Services.AddScoped<IAuthService, Auth>();
+
+            builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<AppDbcontext>()
+              .AddDefaultTokenProviders();
 
             var settingsSection = builder.Configuration.GetSection("AuthSettings:JwtOptions");
 

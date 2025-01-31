@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using QuizAPI.Models;
+using QuizAPI.Services.IService;
+using static QuizAPI.Services.Dtos.UserDto;
 
 namespace QuizAPI.Controllers
 {
@@ -9,12 +11,24 @@ namespace QuizAPI.Controllers
 
     public class UserController : ControllerBase
     {
-        private readonly QuizdbContext _quizdbContext;
+        private readonly IAuthService auth;
 
-        public UserController(QuizdbContext quizdbContext)
+        public UserController(IAuthService auth)
         {
-            _quizdbContext = quizdbContext;
+            this.auth = auth;
         }
 
+        [HttpPost("register")]
+        public async Task<ActionResult> AddNewUser(RegisterRequestDto registerRequestDto)
+        {
+            var user = await auth.Register(registerRequestDto);
+
+            if (user != null)
+            {
+                return StatusCode(201, user);
+            }
+
+            return BadRequest(new { result = "", message = "Sikertelen regisztráció." });
+        }
     }
 }

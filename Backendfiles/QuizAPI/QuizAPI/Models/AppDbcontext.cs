@@ -10,6 +10,8 @@ namespace QuizAPI.Models
         {
         }
 
+        public DbSet<ApplicationUser> applicationUsers { get; set; } = null!;   
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
