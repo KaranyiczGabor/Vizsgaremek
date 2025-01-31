@@ -30,7 +30,7 @@ namespace QuizAPI
             var issuer = settingsSection.GetValue<string>("Issuer");
             var auidience = settingsSection.GetValue<string>("Audience");
 
-            var key = Encoding.ASCII.GetBytes(secret);
+            var key = Encoding.UTF8.GetBytes(secret);
 
             builder.Services.AddAuthentication(x =>
             {

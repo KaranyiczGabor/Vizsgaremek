@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.EntityFrameworkCore;
 using QuizAPI.Models;
 using QuizAPI.Services.Dtos;
 using QuizAPI.Services.IService;
+using static QuizAPI.Services.Dtos.UserDto;
 
 namespace QuizAPI.Services
 {
@@ -10,14 +12,18 @@ namespace QuizAPI.Services
     {
         private readonly AppDbcontext _dbContext;
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly ITokenGenerator _tokenGenerator;
 
-        public Auth(AppDbcontext dbcontext, UserManager<ApplicationUser> userManager)
+        public Auth(AppDbcontext dbContext, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, ITokenGenerator tokenGenerator)
         {
-            _dbContext = dbcontext;
+            _dbContext = dbContext;
             _userManager = userManager;
+            _roleManager = roleManager;
+            _tokenGenerator = tokenGenerator;
         }
 
-        public async Task<object> Register(UserDto.RegisterRequestDto registerRequestDto)
+        public async Task<object> Register(RegisterRequestDto registerRequestDto)
         {
             var user = new ApplicationUser
             {
@@ -36,6 +42,23 @@ namespace QuizAPI.Services
             }
             return new { result = "", message = result.Errors.FirstOrDefault().Description };
 
+        }
+
+        public async Task<object> Login(LoginRequestDto loginRequestDto)
+        {
+            var user = await _dbContext.applicationUsers.FirstOrDefaultAsync(user => user.NormalizedUserName == loginRequestDto.UserName.ToUpper());
+
+            bool isValid = await _userManager.CheckPasswordAsync(user, loginRequestDto.Password);
+
+            if (isValid)
+            {
+                var roles = await _userManager.GetRolesAsync(user);
+                var jwtToken = _tokenGenerator.GenerateToken(user, roles);
+
+                return new { result = new { user.UserName, user.Email }, message = "Sikeres beléptetés.", token = jwtToken };
+            }
+
+            return new { result = "", message = "Nem regisztrált.", token = "" };
         }
     }
 }

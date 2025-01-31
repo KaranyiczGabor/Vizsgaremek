@@ -21,7 +21,7 @@ namespace QuizAPI.Services
         {
             var tokenHandler = new JwtSecurityTokenHandler();
 
-            var key = Encoding.ASCII.GetBytes(_jwtOptions.Secret);
+            var key = Encoding.UTF8.GetBytes(_jwtOptions.Secret);
 
             var claimList = new List<Claim>
             {

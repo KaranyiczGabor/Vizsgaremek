@@ -1,6 +1,22 @@
 [
   {
     "ContainingType": "QuizAPI.Controllers.UserController",
+    "Method": "LoginUser",
+    "RelativePath": "api/users/login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "loginRequestDto",
+        "Type": "QuizAPI.Services.Dtos.UserDto\u002BLoginRequestDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "QuizAPI.Controllers.UserController",
     "Method": "AddNewUser",
     "RelativePath": "api/users/register",
     "HttpMethod": "POST",

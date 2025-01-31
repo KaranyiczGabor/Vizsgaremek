@@ -30,5 +30,18 @@ namespace QuizAPI.Controllers
 
             return BadRequest(new { result = "", message = "Sikertelen regisztráció." });
         }
+
+        [HttpPost("login")]
+        public async Task<ActionResult> LoginUser(LoginRequestDto loginRequestDto)
+        {
+            var user = await auth.Login(loginRequestDto);
+            if (user != null)
+            {
+                return Ok(new {token = user});
+            }
+            return Unauthorized(new { result = "", message = "Hibas felhasznalonev/jelszo" });
+        }
+
+
     }
 }
