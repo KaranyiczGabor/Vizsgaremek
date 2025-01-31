@@ -19,6 +19,7 @@ namespace QuizAPI
 
             builder.Services.AddDbContext<AppDbcontext>();
             builder.Services.AddScoped<IAuthService, Auth>();
+            builder.Services.AddScoped<ITokenGenerator, TokenGenerator>();
 
             builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<AppDbcontext>()
               .AddDefaultTokenProviders();
