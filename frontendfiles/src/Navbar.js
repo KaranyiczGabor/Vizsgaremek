@@ -18,14 +18,14 @@ export default function Navbar() {
               <span class="line line3"></span>
             </div>  
           <div class="logo">
-            <h1>Navbar</h1>
+            <h1>ArsMciQuiz</h1>
           </div>
           <div class="menu-items">
-            <li><a href="#" > <Link to="/"> Home </Link></a></li>
-            <li><a href="#">Quiz</a></li>
-            <li><a href="#">Donate</a></li>
-            <li><a href="#">Sign Up</a></li>
-            <li><a href="#"><Link to="/SignIn"> Sign In </Link></a></li>
+            <li><Link to="/"> Home </Link></li>
+            <li>Quiz</li>
+            <li>Donate</li>
+            <li><Link to="/Login"> Login </Link></li>
+            <li><Link to="/Register"> Register </Link></li>
           </div>
         </div>
       </div>
