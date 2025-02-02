@@ -1,0 +1,57 @@
+body {
+    font-family: Arial, sans-serif;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .light-theme {
+    background-color: #ffffff;
+    color: #000000;
+  }
+  
+  .dark-theme {
+    background-color: #121212;
+    color: #e0e0e0;
+  }
+  .theme-toggle-label {
+    display: flex;
+    align-items: center;
+    color: white;
+    font-size: 18px;
+    text-decoration: none;
+  }
+  
+  .theme-toggle-checkbox {
+    position: relative;
+    width: 40px;
+    height: 20px;
+    -webkit-appearance: none;
+    background-color: #c6c6c6;
+    outline: none;
+    border-radius: 20px;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    transition: 0.5s;
+    cursor: pointer;
+    margin-right: 8px;
+  }
+  
+  .theme-toggle-checkbox:checked {
+    background-color: #4CAF50;
+  }
+  
+  .theme-toggle-checkbox::before {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    top: 0;
+    left: 0;
+    background-color: white;
+    transform: scale(1.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: 0.5s;
+  }
+  
+  .theme-toggle-checkbox:checked::before {
+    left: 20px;
+  }

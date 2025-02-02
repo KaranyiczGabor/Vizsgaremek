@@ -1,36 +1,36 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './navbarstyle.css';
 import { Link } from 'react-router-dom';
+import './Themestyle.css'
+
 
 
 export default function Navbar() {
-    
+  const [theme, setTheme] = useState('light-theme');
+
+  const toggleTheme = () => {
+    setTheme((prevTheme) => (prevTheme === 'light-theme' ? 'dark-theme' : 'light-theme'));
+  };
+
+  useEffect(() => {
+    document.body.className = theme;
+  }, [theme]);
 
   return (
-    <div className='Navbar'>
-      <nav>
-      <div class="navbar">
-        <div class="container nav-container">
-            <input class="checkbox" type="checkbox" name="" id="" />
-            <div class="hamburger-lines">
-              <span class="line line1"></span>
-              <span class="line line2"></span>
-              <span class="line line3"></span>
-            </div>  
-          <div class="logo">
-            <h1>ArsMciQuiz</h1>
-          </div>
-          <div class="menu-items">
-            <li><Link to="/"> Home </Link></li>
-            <li>Quiz</li>
-            <li>Donate</li>
-            <li><Link to="/Login"> Login </Link></li>
-            <li><Link to="/Register"> Register </Link></li>
-          </div>
-        </div>
-      </div>
-    </nav>
-
+    <nav className='navbar' >
+    <div >
+      <ul className='menu-items' >
+         <li><Link to="/"> Home </Link></li>
+         <li>Quiz</li>
+         <li>Donate</li>
+         <li><Link to="/Login"> Login </Link></li>
+         <li><Link to="/Register"> Register </Link></li>
+         <label className="theme-toggle-label">
+              Sötét Mód
+              <input type="checkbox" className="theme-toggle-checkbox" hecked={theme === 'dark-theme'} onChange={toggleTheme} />
+         </label>
+    </ul>
     </div>
+  </nav>
   )
 }

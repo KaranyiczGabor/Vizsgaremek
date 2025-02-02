@@ -7,12 +7,15 @@ import Login from './Login';
 
 
 
+
 function App() {
   return (
     <div className="App">
       
     <Navbar/>
-      <Routes>  
+    
+      <Routes> 
+      
         <Route path="/" element={<Home/>}/>
         <Route path="/Register" element={<Register/>}/>
         <Route path="/LogIn" element={<Login/>}/>
