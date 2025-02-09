@@ -24,13 +24,15 @@ namespace QuizAPI
             builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<AppDbcontext>()
               .AddDefaultTokenProviders();
 
-            var settingsSection = builder.Configuration.GetSection("AuthSettings:JwtOptions");
+            builder.Services.Configure<JwtOptions>(builder.Configuration.GetSection("AuthSettings:JwtOptions"));
 
+            var settingsSection = builder.Configuration.GetSection("AuthSettings:JwtOptions");
+            
             var secret = settingsSection.GetValue<string>("Secret");
             var issuer = settingsSection.GetValue<string>("Issuer");
             var auidience = settingsSection.GetValue<string>("Audience");
 
-            var key = Encoding.UTF8.GetBytes(secret);
+            var key = Encoding.ASCII.GetBytes(secret);
 
             builder.Services.AddAuthentication(x =>
             {

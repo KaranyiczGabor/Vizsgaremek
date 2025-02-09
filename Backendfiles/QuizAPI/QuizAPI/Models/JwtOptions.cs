@@ -1,4 +1,4 @@
-﻿namespace QuizAPI.Models
+﻿    namespace QuizAPI.Models
 {
     public class JwtOptions
     {
