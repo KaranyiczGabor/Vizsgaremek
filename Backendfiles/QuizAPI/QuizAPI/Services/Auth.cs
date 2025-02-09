@@ -18,9 +18,9 @@ namespace QuizAPI.Services
         public Auth(AppDbcontext dbContext, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, ITokenGenerator tokenGenerator)
         {
             _dbContext = dbContext;
-            _userManager = userManager;
-            _roleManager = roleManager;
-            _tokenGenerator = tokenGenerator;
+            this._userManager = userManager;
+            this._roleManager = roleManager;
+            this._tokenGenerator = tokenGenerator;
         }
 
         public async Task<object> Register(RegisterRequestDto registerRequestDto)
@@ -59,6 +59,24 @@ namespace QuizAPI.Services
             }
 
             return new { result = "", message = "Nem regisztrált.", token = "" };
+        }
+
+        public async Task<object> AssignRole(string UserName, string roleName)
+        {
+            var user = await _dbContext.applicationUsers.FirstOrDefaultAsync(user => user.NormalizedEmail == UserName.ToUpper());
+
+            if (user != null) 
+            {
+                if (!_roleManager.RoleExistsAsync(roleName).GetAwaiter().GetResult())
+                {
+                    _roleManager.CreateAsync(new IdentityRole(roleName)).GetAwaiter().GetResult();
+                }
+
+                await _userManager.AddToRoleAsync(user, roleName);
+
+                return new { result = user, message = "Sikeres hozzarendeles" };
+            }
+            return new { result = "", message = "Sikertelen hozzarendeles" };
         }
     }
 }
