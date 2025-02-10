@@ -63,7 +63,7 @@ namespace QuizAPI.Services
 
         public async Task<object> AssignRole(string UserName, string roleName)
         {
-            var user = await _dbContext.applicationUsers.FirstOrDefaultAsync(user => user.NormalizedEmail == UserName.ToUpper());
+            var user = await _dbContext.applicationUsers.FirstOrDefaultAsync(user => user.NormalizedUserName == UserName.ToUpper());
 
             if (user != null) 
             {
