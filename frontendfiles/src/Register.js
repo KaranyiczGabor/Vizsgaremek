@@ -36,7 +36,7 @@ export default function Register() {
             event.preventDefault()
             Post()
         }}>
-      <h2>Regisztráció</h2>
+      <label className='bejelentkezes'>Regisztráció</label>
       <label>
         Email:
         <input
@@ -54,6 +54,10 @@ export default function Register() {
         <input type="password" id='password'/>
       </label>
       <br />
+      <label>ÁSZF
+
+      <input type='checkbox' ></input>
+      </label>
       <button type="submit">Regisztráció</button>
     </form>
     </div>

@@ -2,8 +2,9 @@ import React from 'react'
 
 export default function Home() {
   return (
-    <div>
-      
+    <div className='Home'>
+      <h1>Üdvözlünk a [Quiz Oldal Neve]-n!</h1>
+      <p>Fedezd fel tudásodat és tágítsd látókörödet velünk! Weboldalunkon izgalmas és változatos kvízek várnak, amelyek segítenek fejleszteni és tesztelni ismereteidet különböző témákban.</p>
     </div>
   )
 }

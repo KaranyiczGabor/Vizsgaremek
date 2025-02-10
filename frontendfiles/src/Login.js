@@ -6,11 +6,11 @@ export default function Login() {
   return (
     <div className='login'>
          <form >
-      <h2>Bejelentkezés</h2>
+      <label className='bejelentkezes'>Bejelentkezés</label>
       <label>
-        Email:
+        Felhasználó név:
         <input
-          type="email" id='email'/>
+          type="text" id='email'/>
       </label>
       <br />
       <label>
