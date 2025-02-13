@@ -11,16 +11,16 @@ export default function Register() {
 
        
 
-        let datas = {
+        let regdatas = {
             Email: document.getElementById("email").value,
             UserName: document.getElementById("nickname").value,
-            Password: document.getElementById("password").value,
+            Password: document.getElementById("password").value
 
         }
 
-        fetch("", {
+        fetch("http://10.169.85.161:5248/Users/register", {
             method: "POST",
-            body: JSON.stringify(datas),
+            body: JSON.stringify(regdatas),
             headers: {
                 "Content-type": "application/json"
             }
@@ -54,10 +54,7 @@ export default function Register() {
         <input type="password" id='password'/>
       </label>
       <br />
-      <label>ÁSZF
-
-      <input type='checkbox' ></input>
-      </label>
+      
       <button type="submit">Regisztráció</button>
     </form>
     </div>

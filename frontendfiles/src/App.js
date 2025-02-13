@@ -4,6 +4,7 @@ import Navbar from './Navbar';
 import Home from './Home';
 import Register from './Register';
 import Login from './Login';
+import Quiz from './Quiz';
 
 
 
@@ -19,6 +20,7 @@ function App() {
         <Route path="/" element={<Home/>}/>
         <Route path="/Register" element={<Register/>}/>
         <Route path="/LogIn" element={<Login/>}/>
+        <Route path="/Quiz" element={<Quiz/>}/>
       </Routes>
       
       

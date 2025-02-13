@@ -21,13 +21,13 @@ export default function Navbar() {
     <div >
       <ul className='menu-items' >
          <li><Link to="/"> Home </Link></li>
-         <li>Quiz</li>
+         <li><Link to="/Quiz">Quiz</Link></li>
          <li>Donate</li>
          <li><Link to="/Login"> Login </Link></li>
          <li><Link to="/Register"> Register </Link></li>
          <label className="theme-toggle-label">
               Sötét Mód
-              <input type="checkbox" className="theme-toggle-checkbox" hecked={theme === 'dark-theme'} onChange={toggleTheme} />
+              <input type="checkbox" className="theme-toggle-checkbox" checked={theme === 'dark-theme'} onChange={toggleTheme} />
          </label>
     </ul>
     </div>
