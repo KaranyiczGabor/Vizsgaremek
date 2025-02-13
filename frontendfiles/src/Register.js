@@ -12,9 +12,9 @@ export default function Register() {
        
 
         let datas = {
-            email: document.getElementById("email").value,
-            name: document.getElementById("nickname").value,
-            password: document.getElementById("password").value,
+            Email: document.getElementById("email").value,
+            UserName: document.getElementById("nickname").value,
+            Password: document.getElementById("password").value,
 
         }
 
