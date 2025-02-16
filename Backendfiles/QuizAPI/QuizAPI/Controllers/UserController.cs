@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using QuizAPI.Models;
+using QuizAPI.Services;
 using QuizAPI.Services.IService;
 using static QuizAPI.Services.Dtos.UserDto;
 
@@ -12,10 +13,12 @@ namespace QuizAPI.Controllers
     public class UserController : ControllerBase
     {
         private readonly IAuthService auth;
+        private readonly IQuestionService _questionService;
 
-        public UserController(IAuthService auth)
+        public UserController(IAuthService auth, IQuestionService questionService)
         {
             this.auth = auth;
+            this._questionService = questionService;
         }
 
         [HttpPost("register")]
@@ -51,6 +54,17 @@ namespace QuizAPI.Controllers
             }
             return BadRequest();
         }
+        [HttpGet("getquestions")]
+        public async Task<ActionResult> GetQuestions([FromQuery] string category , [FromQuery] int difficulty)
+        {
+            var questions = await _questionService.GetQuestions(difficulty.ToString(), int.Parse(category));
 
+            if (questions == null || questions.Count == 0)
+            {
+                return NotFound(new { message = "Nincs ilyen kerdes." });
+            }
+
+            return Ok(questions);
+        }
     }
 }

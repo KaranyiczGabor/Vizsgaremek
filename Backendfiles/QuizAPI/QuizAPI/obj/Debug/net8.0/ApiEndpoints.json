@@ -22,6 +22,27 @@
   },
   {
     "ContainingType": "QuizAPI.Controllers.UserController",
+    "Method": "GetQuestions",
+    "RelativePath": "api/users/getquestions",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "category",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "difficulty",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "QuizAPI.Controllers.UserController",
     "Method": "LoginUser",
     "RelativePath": "api/users/login",
     "HttpMethod": "POST",
