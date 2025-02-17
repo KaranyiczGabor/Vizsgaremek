@@ -74,18 +74,15 @@ namespace QuizAPI
 
             var app = builder.Build();
 
-            app.Urls.Add("http://0.0.0.0:5149");
-
             app.UseCors(MyAllowSpecificOrigins);
 
-            app.UseSwagger();
-            app.UseSwaggerUI(c =>
+            if (app.Environment.IsDevelopment())
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Quiz API v1");
-                c.RoutePrefix = ""; 
-            });
+                app.UseSwagger();
+                app.UseSwaggerUI();
+            }
 
-            
+
             app.UseHttpsRedirection();
             app.UseAuthentication(); 
             app.UseAuthorization();

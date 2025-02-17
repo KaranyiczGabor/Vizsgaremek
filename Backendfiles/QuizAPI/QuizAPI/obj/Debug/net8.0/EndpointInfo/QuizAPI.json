@@ -102,14 +102,14 @@
         ],
         "parameters": [
           {
-            "name": "category",
+            "name": "Category",
             "in": "query",
             "schema": {
               "type": "string"
             }
           },
           {
-            "name": "difficulty",
+            "name": "Difficulty",
             "in": "query",
             "schema": {
               "type": "integer",
@@ -155,10 +155,6 @@
           "email": {
             "type": "string",
             "nullable": true
-          },
-          "birthDate": {
-            "type": "string",
-            "format": "date-time"
           }
         },
         "additionalProperties": false

@@ -15,7 +15,7 @@ namespace QuizAPI.Services
 
         public async Task<List<Question>> GetQuestions(string Category, int Difficulty)
         {
-            return await _context.Questions.Where(q => q.Category == Category && q.Difficulty == Difficulty).ToListAsync();
+            return await _context.Questions.Where(q=> q.Category == Category && q.Difficulty==Difficulty).ToListAsync();
         }
     }
 }

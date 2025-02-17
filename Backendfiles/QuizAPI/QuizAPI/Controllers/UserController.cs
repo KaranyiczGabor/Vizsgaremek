@@ -45,7 +45,7 @@ namespace QuizAPI.Controllers
             return Unauthorized(new { result = "", message = "Hibas felhasznalonev/jelszo" });
         }
         [HttpPost("assignrole")]
-        public async Task<ActionResult> AssignRole(string UserName, string roleName)
+        public async Task<ActionResult> AssignRole(string UserName,string roleName)
         {
             var res = await auth.AssignRole(UserName, roleName);
             if (res != null)
@@ -55,11 +55,11 @@ namespace QuizAPI.Controllers
             return BadRequest();
         }
         [HttpGet("getquestions")]
-        public async Task<ActionResult> GetQuestions([FromQuery] string category , [FromQuery] int difficulty)
+        public async Task<ActionResult> GetQuestions(string Category, int Difficulty)
         {
-            var questions = await _questionService.GetQuestions(difficulty.ToString(), int.Parse(category));
+            var questions = await _questionService.GetQuestions(Category, Difficulty);
 
-            if (questions == null || questions.Count == 0)
+            if (questions == null)
             {
                 return NotFound(new { message = "Nincs ilyen kerdes." });
             }

@@ -29,12 +29,12 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "category",
+        "Name": "Category",
         "Type": "System.String",
         "IsRequired": false
       },
       {
-        "Name": "difficulty",
+        "Name": "Difficulty",
         "Type": "System.Int32",
         "IsRequired": false
       }

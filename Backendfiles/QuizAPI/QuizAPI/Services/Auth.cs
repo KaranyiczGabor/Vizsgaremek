@@ -29,7 +29,6 @@ namespace QuizAPI.Services
             {
                 UserName = registerRequestDto.UserName,
                 Email = registerRequestDto.Email,
-                BirthDate = registerRequestDto.BirthDate,
             };
 
             var result = await _userManager.CreateAsync(user, registerRequestDto.Password);
