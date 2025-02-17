@@ -10,7 +10,7 @@ using QuizAPI.Models;
 
 namespace QuizAPI.Migrations
 {
-    [DbContext(typeof(AppDbcontext))]
+    [DbContext(typeof(AppDbContext))]
     [Migration("20250131091907_AuthDb")]
     partial class AuthDb
     {

@@ -9,7 +9,7 @@ using QuizAPI.Models;
 
 namespace QuizAPI.Migrations
 {
-    [DbContext(typeof(AppDbcontext))]
+    [DbContext(typeof(AppDbContext))]
     partial class AppDbcontextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

@@ -6,9 +6,9 @@ namespace QuizAPI.Services
 {
     public class QuestionService : IQuestionService
     {
-        private readonly QuizdbContext _context;
+        private readonly AppDbContext _context;
 
-        public QuestionService(QuizdbContext context)
+        public QuestionService(AppDbContext context)
         {
             _context = context;
         }

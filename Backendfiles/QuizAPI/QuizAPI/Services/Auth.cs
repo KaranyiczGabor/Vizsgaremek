@@ -10,12 +10,12 @@ namespace QuizAPI.Services
 {
     public class Auth : IAuthService
     {
-        private readonly AppDbcontext _dbContext;
+        private readonly AppDbContext _dbContext;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly ITokenGenerator _tokenGenerator;
 
-        public Auth(AppDbcontext dbContext, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, ITokenGenerator tokenGenerator)
+        public Auth(AppDbContext dbContext, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, ITokenGenerator tokenGenerator)
         {
             _dbContext = dbContext;
             this._userManager = userManager;
@@ -36,7 +36,7 @@ namespace QuizAPI.Services
 
             if (result.Succeeded)
             {
-                var userReturn = await _dbContext.applicationUsers.FirstOrDefaultAsync(user => user.UserName == registerRequestDto.UserName);
+                var userReturn = await _dbContext.ApplicationUsers.FirstOrDefaultAsync(user => user.UserName == registerRequestDto.UserName);
 
                 return new { result = userReturn };
             }
@@ -46,7 +46,7 @@ namespace QuizAPI.Services
 
         public async Task<object> Login(LoginRequestDto loginRequestDto)
         {
-            var user = await _dbContext.applicationUsers.FirstOrDefaultAsync(user => user.NormalizedUserName == loginRequestDto.UserName.ToUpper());
+            var user = await _dbContext.ApplicationUsers.FirstOrDefaultAsync(user => user.NormalizedUserName == loginRequestDto.UserName.ToUpper());
 
             bool isValid = await _userManager.CheckPasswordAsync(user, loginRequestDto.Password);
 
@@ -63,7 +63,7 @@ namespace QuizAPI.Services
 
         public async Task<object> AssignRole(string UserName, string roleName)
         {
-            var user = await _dbContext.applicationUsers.FirstOrDefaultAsync(user => user.NormalizedUserName == UserName.ToUpper());
+            var user = await _dbContext.ApplicationUsers.FirstOrDefaultAsync(user => user.NormalizedUserName == UserName.ToUpper());
 
             if (user != null) 
             {

@@ -1,4 +1,3 @@
-
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
@@ -7,7 +6,6 @@ using QuizAPI.Models;
 using QuizAPI.Services.IService;
 using QuizAPI.Services;
 using Microsoft.AspNetCore.Identity;
-using System;
 
 namespace QuizAPI
 {
@@ -17,34 +15,39 @@ namespace QuizAPI
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            builder.Services.AddDbContext<AppDbcontext>();
-            builder.Services.AddDbContext<QuizdbContext>();
+            // Configure DbContext with connection string
+            builder.Services.AddDbContext<AppDbContext>(options =>
+                options.UseMySQL(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+            // Dependency Injection
             builder.Services.AddScoped<IAuthService, Auth>();
             builder.Services.AddScoped<ITokenGenerator, TokenGenerator>();
             builder.Services.AddScoped<IQuestionService, QuestionService>();
 
-            builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<AppDbcontext>()
-              .AddDefaultTokenProviders();
+            // Identity
+            builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<AppDbContext>()
+                .AddDefaultTokenProviders();
 
+            // CORS Configuration
             var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
             builder.Services.AddCors(options =>
             {
-                options.AddPolicy(MyAllowSpecificOrigins,
-                    policy =>
-                    {
-                        policy.AllowAnyOrigin()  // Ez a helyes módja a teljes nyitásnak
-                              .AllowAnyHeader()
-                              .AllowAnyMethod();
-                    });
+                options.AddPolicy(MyAllowSpecificOrigins, policy =>
+                {
+                    policy.AllowAnyOrigin()
+                          .AllowAnyHeader()
+                          .AllowAnyMethod();
+                });
             });
 
+            // JWT Authentication
             builder.Services.Configure<JwtOptions>(builder.Configuration.GetSection("AuthSettings:JwtOptions"));
 
             var settingsSection = builder.Configuration.GetSection("AuthSettings:JwtOptions");
-            
             var secret = settingsSection.GetValue<string>("Secret");
             var issuer = settingsSection.GetValue<string>("Issuer");
-            var auidience = settingsSection.GetValue<string>("Audience");
+            var audience = settingsSection.GetValue<string>("Audience");
 
             var key = Encoding.ASCII.GetBytes(secret);
 
@@ -60,14 +63,12 @@ namespace QuizAPI
                     IssuerSigningKey = new SymmetricSecurityKey(key),
                     ValidateIssuer = true,
                     ValidIssuer = issuer,
-                    ValidAudience = auidience,
+                    ValidAudience = audience,
                     ValidateAudience = true
                 };
             });
 
-
             builder.Services.AddControllers();
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
@@ -77,18 +78,17 @@ namespace QuizAPI
 
             app.UseCors(MyAllowSpecificOrigins);
 
-            // Configure the HTTP request pipeline.
-            if (app.Environment.IsDevelopment())
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
             {
-                app.UseSwagger();
-                app.UseSwaggerUI();
-            }
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Quiz API v1");
+                c.RoutePrefix = ""; 
+            });
 
+            
             app.UseHttpsRedirection();
-
+            app.UseAuthentication(); 
             app.UseAuthorization();
-
-
             app.MapControllers();
 
             app.Run();
