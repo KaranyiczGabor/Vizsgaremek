@@ -26,6 +26,18 @@ namespace QuizAPI
             builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<AppDbcontext>()
               .AddDefaultTokenProviders();
 
+            var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy(MyAllowSpecificOrigins,
+                    policy =>
+                    {
+                        policy.AllowAnyOrigin()  // Ez a helyes módja a teljes nyitásnak
+                              .AllowAnyHeader()
+                              .AllowAnyMethod();
+                    });
+            });
+
             builder.Services.Configure<JwtOptions>(builder.Configuration.GetSection("AuthSettings:JwtOptions"));
 
             var settingsSection = builder.Configuration.GetSection("AuthSettings:JwtOptions");
@@ -60,6 +72,10 @@ namespace QuizAPI
             builder.Services.AddSwaggerGen();
 
             var app = builder.Build();
+
+            app.Urls.Add("http://0.0.0.0:5149");
+
+            app.UseCors(MyAllowSpecificOrigins);
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
