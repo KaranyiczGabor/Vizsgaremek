@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2025. Feb 13. 09:18
--- Kiszolgáló verziója: 10.4.28-MariaDB
--- PHP verzió: 8.2.4
+-- Létrehozás ideje: 2025. Feb 17. 12:49
+-- Kiszolgáló verziója: 10.4.32-MariaDB
+-- PHP verzió: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -88,6 +88,14 @@ CREATE TABLE `aspnetroles` (
   `ConcurrencyStamp` longtext DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
+--
+-- A tábla adatainak kiíratása `aspnetroles`
+--
+
+INSERT INTO `aspnetroles` (`Id`, `Name`, `NormalizedName`, `ConcurrencyStamp`) VALUES
+('9552b070-3f93-4921-bebd-ee5d8c8317b8', 'User', 'USER', NULL),
+('a480dbc4-6bab-4bdf-9c99-87bcd7d4b4d8', 'Admin', 'ADMIN', NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -125,6 +133,14 @@ CREATE TABLE `aspnetuserroles` (
   `RoleId` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
+--
+-- A tábla adatainak kiíratása `aspnetuserroles`
+--
+
+INSERT INTO `aspnetuserroles` (`UserId`, `RoleId`) VALUES
+('4e728bb3-329b-48cc-b1b2-3ec0b701b344', 'a480dbc4-6bab-4bdf-9c99-87bcd7d4b4d8'),
+('5fe3921d-c391-4843-8305-72ed6b9d86c7', 'a480dbc4-6bab-4bdf-9c99-87bcd7d4b4d8');
+
 -- --------------------------------------------------------
 
 --
@@ -156,7 +172,8 @@ CREATE TABLE `aspnetusers` (
 --
 
 INSERT INTO `aspnetusers` (`Id`, `FullName`, `BirthDate`, `UserName`, `NormalizedUserName`, `Email`, `NormalizedEmail`, `EmailConfirmed`, `PasswordHash`, `SecurityStamp`, `ConcurrencyStamp`, `PhoneNumber`, `PhoneNumberConfirmed`, `TwoFactorEnabled`, `LockoutEnd`, `LockoutEnabled`, `AccessFailedCount`) VALUES
-('a6d0a0dd-7b6d-4208-bfbb-4c78cbbbd4da', NULL, '2025-02-09 11:10:30.398000', 'asdasd', 'ASDASD', 'string@gmail.com', 'STRING@GMAIL.COM', 0, 'AQAAAAIAAYagAAAAEENI1uwTtLT/NPdBosqfCzCXkr5Xbut4Qg7yniohkPBj4fMEBHQJ5QyRtiq0ryJy9A==', 'DAWAGRJQHUU5XGPA5EKAH633BQ3CCUZ3', '98c3db6c-ff99-43cf-8856-e31d37020b6a', NULL, 0, 0, NULL, 1, 0);
+('4e728bb3-329b-48cc-b1b2-3ec0b701b344', NULL, '0001-01-01 00:00:00.000000', 'famarko05', 'FAMARKO05', 'asd@gmail.com', 'ASD@GMAIL.COM', 0, 'AQAAAAIAAYagAAAAEG0EyNAPE2qdZTEPWiBlbw0EZWuEFicZKGvSKYNp7jys+CIXUqHKgySRZQECXUuIAg==', '5ES2HWGMIEAJME73UIBTOYA62TSZE3CH', '83228e98-297d-49a0-b1e1-e29e036b9c31', NULL, 0, 0, NULL, 1, 0),
+('5fe3921d-c391-4843-8305-72ed6b9d86c7', NULL, '0001-01-01 00:00:00.000000', 'admin', 'ADMIN', 'admin@gmail.com', 'ADMIN@GMAIL.COM', 0, 'AQAAAAIAAYagAAAAEJsg21RGklN2wePzME+IZ7nz3wXktvvHawsZl1YOR+PlMqqqymmkAG0UnNh1IQng/w==', '6NRFGQDNDYLCMEQWOMNR3YFE45TCJZJG', '4a418373-f10d-44d5-857b-16a589aedfce', NULL, 0, 0, NULL, 1, 0);
 
 -- --------------------------------------------------------
 
