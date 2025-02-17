@@ -22,6 +22,22 @@
   },
   {
     "ContainingType": "QuizAPI.Controllers.UserController",
+    "Method": "CheckAnswer",
+    "RelativePath": "api/users/checkanswer",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "QuestionId",
+        "Type": "System.Guid",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "QuizAPI.Controllers.UserController",
     "Method": "GetQuestions",
     "RelativePath": "api/users/getquestions",
     "HttpMethod": "GET",

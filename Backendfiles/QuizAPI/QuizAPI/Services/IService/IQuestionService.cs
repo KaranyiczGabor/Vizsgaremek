@@ -1,9 +1,11 @@
 ﻿using QuizAPI.Models;
+using QuizAPI.Services.Dtos;
 
 namespace QuizAPI.Services.IService
 {
     public interface IQuestionService
     {
-        Task<List<Question>> GetQuestions(string Category, int Difficulty);
+        Task<List<QuestionsDto.QuestionDto>> GetQuestions(string Category, int Difficulty);
+        Task<List<QuestionsDto.AnswerDto>> GetAnswers(Guid questionId);
     }
 }

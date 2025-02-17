@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using QuizAPI.Models;
 using QuizAPI.Services;
 using QuizAPI.Services.IService;
+using static QuizAPI.Services.Dtos.QuestionsDto;
 using static QuizAPI.Services.Dtos.UserDto;
 
 namespace QuizAPI.Controllers
@@ -45,7 +47,6 @@ namespace QuizAPI.Controllers
             }
             return Unauthorized(new { result = "", message = "Hibas felhasznalonev/jelszo" });
         }
-        [Authorize("Admin")]
         [HttpPost("assignrole")]
         public async Task<ActionResult> AssignRole(string UserName,string roleName)
         {
@@ -68,5 +69,18 @@ namespace QuizAPI.Controllers
 
             return Ok(questions);
         }
+        [HttpGet("checkanswer")]
+        public async Task<ActionResult> CheckAnswer(Guid QuestionId)
+        {
+            var answer = await _questionService.GetAnswers(QuestionId);
+
+            if (answer == null)
+            {
+                return NotFound(new { message = "Answer not found." });
+            }
+
+            return Ok(answer);
+        }
+
     }
 }
