@@ -9,7 +9,7 @@ export default function Quiz() {
         Get()
     }, [])
     function Get() {
-        axios.get("")
+        axios.get("http://192.168.121.193:5248/api/users/checkanswers")
         .then(function (response) {
             console.log(response);
             setdata(response.data)

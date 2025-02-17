@@ -12,21 +12,23 @@ export default function Register() {
        
 
         let regdatas = {
-            Email: document.getElementById("email").value,
-            UserName: document.getElementById("nickname").value,
-            Password: document.getElementById("password").value
+            email: document.getElementById("email").value,
+            userName: document.getElementById("nickname").value,
+            password: document.getElementById("password").value
 
         }
+        console.log(regdatas);
 
-        fetch("http://10.169.85.161:5248/Users/register", {
+        fetch("http://192.168.121.193:5248/api/users/register", {
             method: "POST",
             body: JSON.stringify(regdatas),
             headers: {
-                "Content-type": "application/json"
+                "Content-Type": "application/json"
             }
         }
     )
-    .then(function() {
+    .then(function(res) {
+      console.log(res.message);
         navigate("/")
     })
     }

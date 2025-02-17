@@ -16,16 +16,17 @@ export default function Login() {
             Password: document.getElementById("password").value
 
         }
-
-        fetch("http://10.169.85.161:5248/Users/register", {
+        console.log(regdatas);
+        fetch("http://192.168.121.193:5248/api/users/login", {
             method: "POST",
             body: JSON.stringify(regdatas),
             headers: {
-                "Content-type": "application/json"
+                "Content-Type": "application/json"
             }
         }
     )
-    .then(function() {
+    .then(function(res) {
+      console.log(res);
         navigate("/")
     })
   }
