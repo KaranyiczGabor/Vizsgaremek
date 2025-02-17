@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using QuizAPI.Models;
 using QuizAPI.Services;
@@ -44,6 +45,7 @@ namespace QuizAPI.Controllers
             }
             return Unauthorized(new { result = "", message = "Hibas felhasznalonev/jelszo" });
         }
+        [Authorize("Admin")]
         [HttpPost("assignrole")]
         public async Task<ActionResult> AssignRole(string UserName,string roleName)
         {

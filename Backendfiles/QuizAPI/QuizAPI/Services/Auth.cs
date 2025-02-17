@@ -36,7 +36,12 @@ namespace QuizAPI.Services
             if (result.Succeeded)
             {
                 var userReturn = await _dbContext.ApplicationUsers.FirstOrDefaultAsync(user => user.UserName == registerRequestDto.UserName);
-
+                var roleName = "User";
+                if (!_roleManager.RoleExistsAsync(roleName).GetAwaiter().GetResult())
+                {
+                    _roleManager.CreateAsync(new IdentityRole(roleName)).GetAwaiter().GetResult();
+                }
+                await _userManager.AddToRoleAsync(user, roleName);
                 return new { result = userReturn };
             }
             return new { result = "", message = result.Errors.FirstOrDefault().Description };
