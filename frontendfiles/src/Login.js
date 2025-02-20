@@ -20,19 +20,25 @@ export default function Login({ setIsLoggedIn }) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, password }),
       });
-
+    
       if (!response.ok) {
-        throw new Error("Invalid credentials");
+        const errorText = await response.text();
+        throw new Error(`Error ${response.status}: ${errorText}`);
       }
-
+    
       const data = await response.json();
-      localStorage.setItem("token", data.token); // Token mentése
-      setIsLoggedIn(true); // Állapot frissítése
-      navigate("/home"); // Átirányítás
+      console.log("Parsed Data:", data);
+    
+      localStorage.setItem("token", data.token?.token);
+    
+      <Login setIsLoggedIn={setIsLoggedIn} />
+      navigate("/");
+      window.location.reload();
     } catch (err) {
+      console.error("Login Error:", err);
       setError("Login failed. Check your credentials.");
     }
-  };
+  };    
 
   return (
     <div className="login-container">
