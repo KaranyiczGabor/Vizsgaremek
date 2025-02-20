@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using QuizAPI.Models;
 using QuizAPI.Services;
+using QuizAPI.Services.Dtos;
 using QuizAPI.Services.IService;
 using static QuizAPI.Services.Dtos.QuestionsDto;
 using static QuizAPI.Services.Dtos.UserDto;
@@ -80,6 +81,19 @@ namespace QuizAPI.Controllers
             }
 
             return Ok(answer);
+        }
+
+        [HttpPost("refresh-token")]
+        public async Task<IActionResult> RefreshToken(RefreshTokenDto refreshTokenDto)
+        {
+            var result = await auth.RefreshToken(refreshTokenDto.RefreshToken);
+
+            if (result == null || result.message == "Invalid or expired refresh token.")
+            {
+                return Unauthorized(new { message = "Invalid refresh token." });
+            }
+
+            return Ok(new { result });
         }
 
     }

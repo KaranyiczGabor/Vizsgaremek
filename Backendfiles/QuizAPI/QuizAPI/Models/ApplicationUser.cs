@@ -6,5 +6,7 @@ namespace QuizAPI.Models
     {
         public string? FullName {  get; set; }
         public DateTime BirthDate { get; set; }
+        public string? RefreshToken { get; set; }
+        public DateTime RefreshTokenExpiry { get; set; }
     }
 }
