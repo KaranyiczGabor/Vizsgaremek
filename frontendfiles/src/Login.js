@@ -12,7 +12,7 @@ export default function Login({ setIsLoggedIn }) {
     
   const handleLogin = async (e) => {
     e.preventDefault();
-    setError(""); // Hibajelzés törlése
+    setError("");
 
     try {
       const response = await fetch("http://192.168.121.70:5248/api/users/login", {
