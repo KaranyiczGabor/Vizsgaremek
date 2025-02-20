@@ -1,0 +1,24 @@
+.container {
+    max-width: 900px;
+    margin: auto;
+  }
+  
+  .intro p {
+    font-size: 18px;
+    color: #555;
+  }
+  
+  .categories .badge {
+    font-size: 18px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .categories .badge:hover {
+    transform: scale(1.1);
+  }
+  
+  .review-card {
+    max-width: 300px;
+  }
+  

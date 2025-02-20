@@ -37,7 +37,7 @@ export default function Navbar() {
           ) : (
             <>
               <li><button onClick={handleLogout}>Logout</button></li>
-              <li><Link to="/profile"><i className="bi bi-gear"></i></Link></li>
+              <li><Link to="/profile"><i class="bi bi-person-circle"></i></Link></li>
             </>
           )}
         </ul>
