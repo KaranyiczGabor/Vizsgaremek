@@ -1,58 +1,58 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './Login.css'
 import { useNavigate } from 'react-router-dom'
 
 
-export default function Login() {
+export default function Login({ setIsLoggedIn }) {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   let navigate = useNavigate()
 
     
-    function Post() {
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    setError(""); // Hibajelzés törlése
 
-       
+    try {
+      const response = await fetch("http://192.168.121.70:5248/api/users/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password }),
+      });
 
-        let regdatas = {
-            UserName: document.getElementById("name").value,
-            Password: document.getElementById("password").value
+      if (!response.ok) {
+        throw new Error("Invalid credentials");
+      }
 
-        }
-        console.log(regdatas);
-        fetch("http://192.168.121.193:5248/api/users/login", {
-            method: "POST",
-            body: JSON.stringify(regdatas),
-            headers: {
-                "Content-Type": "application/json"
-            }
-        }
-    )
-    .then(function(res) {
-      console.log(res);
-        navigate("/")
-    })
-  }
+      const data = await response.json();
+      localStorage.setItem("token", data.token); // Token mentése
+      setIsLoggedIn(true); // Állapot frissítése
+      navigate("/home"); // Átirányítás
+    } catch (err) {
+      setError("Login failed. Check your credentials.");
+    }
+  };
+
   return (
-    <div className='login'>
-     
-         <form   onSubmit={function(event) {
-            event.preventDefault()
-            Post()
-        }}>
-        
-      <label className='bejelentkezes'>Bejelentkezés</label>
-      <label>
-        Felhasználó név:
-        <input
-          type="text" id='name'/>
-      </label>
-      <br />
-      <label>
-        Jelszó:
-        <input
-          type="password" id='password'/>
-      </label>
-      <br />
-      <button type="submit">Bejelentkezés</button>
+    <div className="login-container">
+    <h2>Login</h2>
+    {error && <p className="error">{error}</p>}
+    <form onSubmit={handleLogin}>
+      <input
+        type="text"
+        placeholder="Username"
+        value={username}
+        onChange={(e) => setUsername(e.target.value)}
+      />
+      <input
+        type="password"
+        placeholder="Password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+      />
+      <button type="submit">Log in</button>
     </form>
-    </div>
+  </div>
   )
 }

@@ -20,7 +20,7 @@ export default function Sidebar({ isOpen, onClose }) {
                     </button>
                 </div>
                 <ul className="sidebar-menu">
-                    <li><Link to="/home"> Home </Link></li>
+                    <li><Link to="/"> Home </Link></li>
                     <li><Link to="/quiz">Quiz</Link></li>
                     <li>Donate</li>
                 </ul>

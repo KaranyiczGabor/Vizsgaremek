@@ -1,11 +1,21 @@
 import { Link } from 'react-router-dom';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Menu } from "lucide-react";
 import Sidebar from "./Sidebar";
 import "./Navbar.css";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem("token"));
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    setIsLoggedIn(false);
+  };
+
+  useEffect(() => {
+    setIsLoggedIn(!!localStorage.getItem("token"));
+  }, []);
 
   return (
     <>
@@ -18,8 +28,18 @@ export default function Navbar() {
         </div>
 
         <ul className="menu-items">
-          <li><Link to="/register" className="register">Register</Link></li>
-          <li><Link to="/login" className="login">Log in</Link></li>
+
+        {!isLoggedIn ? (
+            <>
+              <li><Link to="/register" className='register'>Register</Link></li>
+              <li><Link to="/login" className='login'>Log in</Link></li>
+            </>
+          ) : (
+            <>
+              <li><button onClick={handleLogout}>Logout</button></li>
+              <li><Link to="/profile"><i className="bi bi-gear"></i></Link></li>
+            </>
+          )}
         </ul>
       </nav>
 
