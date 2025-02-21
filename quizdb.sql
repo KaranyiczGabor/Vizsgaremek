@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2025. Feb 17. 12:49
--- Kiszolgáló verziója: 10.4.32-MariaDB
--- PHP verzió: 8.2.12
+-- Létrehozás ideje: 2025. Feb 21. 09:58
+-- Kiszolgáló verziója: 10.4.20-MariaDB
+-- PHP verzió: 7.3.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -30,9 +30,9 @@ USE `quizdb`;
 --
 
 CREATE TABLE `answers` (
-  `id` char(36) NOT NULL,
-  `question_id` char(36) NOT NULL,
-  `answer_text` varchar(60) NOT NULL,
+  `id` char(36) COLLATE utf8_hungarian_ci NOT NULL,
+  `question_id` char(36) COLLATE utf8_hungarian_ci NOT NULL,
+  `answer_text` varchar(255) COLLATE utf8_hungarian_ci NOT NULL,
   `correct` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
@@ -70,9 +70,9 @@ INSERT INTO `answers` (`id`, `question_id`, `answer_text`, `correct`) VALUES
 
 CREATE TABLE `aspnetroleclaims` (
   `Id` int(11) NOT NULL,
-  `RoleId` varchar(255) NOT NULL,
-  `ClaimType` longtext DEFAULT NULL,
-  `ClaimValue` longtext DEFAULT NULL
+  `RoleId` varchar(255) COLLATE utf8_hungarian_ci NOT NULL,
+  `ClaimType` longtext COLLATE utf8_hungarian_ci DEFAULT NULL,
+  `ClaimValue` longtext COLLATE utf8_hungarian_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 -- --------------------------------------------------------
@@ -82,10 +82,10 @@ CREATE TABLE `aspnetroleclaims` (
 --
 
 CREATE TABLE `aspnetroles` (
-  `Id` varchar(255) NOT NULL,
-  `Name` varchar(256) DEFAULT NULL,
-  `NormalizedName` varchar(256) DEFAULT NULL,
-  `ConcurrencyStamp` longtext DEFAULT NULL
+  `Id` varchar(255) COLLATE utf8_hungarian_ci NOT NULL,
+  `Name` varchar(256) COLLATE utf8_hungarian_ci DEFAULT NULL,
+  `NormalizedName` varchar(256) COLLATE utf8_hungarian_ci DEFAULT NULL,
+  `ConcurrencyStamp` longtext COLLATE utf8_hungarian_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 --
@@ -104,9 +104,9 @@ INSERT INTO `aspnetroles` (`Id`, `Name`, `NormalizedName`, `ConcurrencyStamp`) V
 
 CREATE TABLE `aspnetuserclaims` (
   `Id` int(11) NOT NULL,
-  `UserId` varchar(255) NOT NULL,
-  `ClaimType` longtext DEFAULT NULL,
-  `ClaimValue` longtext DEFAULT NULL
+  `UserId` varchar(255) COLLATE utf8_hungarian_ci NOT NULL,
+  `ClaimType` longtext COLLATE utf8_hungarian_ci DEFAULT NULL,
+  `ClaimValue` longtext COLLATE utf8_hungarian_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 -- --------------------------------------------------------
@@ -116,10 +116,10 @@ CREATE TABLE `aspnetuserclaims` (
 --
 
 CREATE TABLE `aspnetuserlogins` (
-  `LoginProvider` varchar(255) NOT NULL,
-  `ProviderKey` varchar(255) NOT NULL,
-  `ProviderDisplayName` longtext DEFAULT NULL,
-  `UserId` varchar(255) NOT NULL
+  `LoginProvider` varchar(255) COLLATE utf8_hungarian_ci NOT NULL,
+  `ProviderKey` varchar(255) COLLATE utf8_hungarian_ci NOT NULL,
+  `ProviderDisplayName` longtext COLLATE utf8_hungarian_ci DEFAULT NULL,
+  `UserId` varchar(255) COLLATE utf8_hungarian_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 -- --------------------------------------------------------
@@ -129,8 +129,8 @@ CREATE TABLE `aspnetuserlogins` (
 --
 
 CREATE TABLE `aspnetuserroles` (
-  `UserId` varchar(255) NOT NULL,
-  `RoleId` varchar(255) NOT NULL
+  `UserId` varchar(255) COLLATE utf8_hungarian_ci NOT NULL,
+  `RoleId` varchar(255) COLLATE utf8_hungarian_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 --
@@ -148,18 +148,18 @@ INSERT INTO `aspnetuserroles` (`UserId`, `RoleId`) VALUES
 --
 
 CREATE TABLE `aspnetusers` (
-  `Id` varchar(255) NOT NULL,
-  `FullName` longtext DEFAULT NULL,
+  `Id` char(36) COLLATE utf8_hungarian_ci NOT NULL,
+  `FullName` longtext COLLATE utf8_hungarian_ci DEFAULT NULL,
   `BirthDate` datetime(6) NOT NULL,
-  `UserName` varchar(256) DEFAULT NULL,
-  `NormalizedUserName` varchar(256) DEFAULT NULL,
-  `Email` varchar(256) DEFAULT NULL,
-  `NormalizedEmail` varchar(256) DEFAULT NULL,
+  `UserName` varchar(256) COLLATE utf8_hungarian_ci DEFAULT NULL,
+  `NormalizedUserName` varchar(256) COLLATE utf8_hungarian_ci DEFAULT NULL,
+  `Email` varchar(256) COLLATE utf8_hungarian_ci DEFAULT NULL,
+  `NormalizedEmail` varchar(256) COLLATE utf8_hungarian_ci DEFAULT NULL,
   `EmailConfirmed` tinyint(1) NOT NULL,
-  `PasswordHash` longtext DEFAULT NULL,
-  `SecurityStamp` longtext DEFAULT NULL,
-  `ConcurrencyStamp` longtext DEFAULT NULL,
-  `PhoneNumber` longtext DEFAULT NULL,
+  `PasswordHash` longtext COLLATE utf8_hungarian_ci DEFAULT NULL,
+  `SecurityStamp` longtext COLLATE utf8_hungarian_ci DEFAULT NULL,
+  `ConcurrencyStamp` longtext COLLATE utf8_hungarian_ci DEFAULT NULL,
+  `PhoneNumber` longtext COLLATE utf8_hungarian_ci DEFAULT NULL,
   `PhoneNumberConfirmed` tinyint(1) NOT NULL,
   `TwoFactorEnabled` tinyint(1) NOT NULL,
   `LockoutEnd` datetime DEFAULT NULL,
@@ -182,10 +182,10 @@ INSERT INTO `aspnetusers` (`Id`, `FullName`, `BirthDate`, `UserName`, `Normalize
 --
 
 CREATE TABLE `aspnetusertokens` (
-  `UserId` varchar(255) NOT NULL,
-  `LoginProvider` varchar(255) NOT NULL,
-  `Name` varchar(255) NOT NULL,
-  `Value` longtext DEFAULT NULL
+  `UserId` varchar(255) COLLATE utf8_hungarian_ci NOT NULL,
+  `LoginProvider` varchar(255) COLLATE utf8_hungarian_ci NOT NULL,
+  `Name` varchar(255) COLLATE utf8_hungarian_ci NOT NULL,
+  `Value` longtext COLLATE utf8_hungarian_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 -- --------------------------------------------------------
@@ -195,11 +195,34 @@ CREATE TABLE `aspnetusertokens` (
 --
 
 CREATE TABLE `attempts` (
-  `id` char(36) NOT NULL,
-  `uid` char(36) NOT NULL,
+  `id` char(36) COLLATE utf8_hungarian_ci NOT NULL,
+  `user_id` char(36) COLLATE utf8_hungarian_ci NOT NULL,
   `score` int(11) NOT NULL,
+  `time_taken` int(11) NOT NULL DEFAULT 0,
   `time` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `categories`
+--
+
+CREATE TABLE `categories` (
+  `id` int(11) NOT NULL,
+  `name` varchar(50) COLLATE utf8_hungarian_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
+
+--
+-- A tábla adatainak kiíratása `categories`
+--
+
+INSERT INTO `categories` (`id`, `name`) VALUES
+(2, 'Földrajz'),
+(5, 'Irodalom'),
+(3, 'Matematika'),
+(4, 'Sport'),
+(1, 'Történelem');
 
 -- --------------------------------------------------------
 
@@ -208,43 +231,44 @@ CREATE TABLE `attempts` (
 --
 
 CREATE TABLE `questions` (
-  `id` char(36) NOT NULL,
-  `question` varchar(100) NOT NULL,
-  `category` varchar(50) NOT NULL,
-  `difficulty` int(32) NOT NULL
+  `id` char(36) COLLATE utf8_hungarian_ci NOT NULL,
+  `question` varchar(255) COLLATE utf8_hungarian_ci NOT NULL,
+  `category_id` int(11) NOT NULL,
+  `difficulty` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 --
 -- A tábla adatainak kiíratása `questions`
 --
 
-INSERT INTO `questions` (`id`, `question`, `category`, `difficulty`) VALUES
-('e8d0cef4-e9e2-11ef-b055-706655625e18', 'Ki volt Magyarország első királya?', 'Történelem', 1),
-('e8d0d127-e9e2-11ef-b055-706655625e18', 'Melyik a legnagyobb kontinens?', 'Földrajz', 1),
-('e8d0d1ba-e9e2-11ef-b055-706655625e18', 'Mennyi 5 + 3?', 'Matematika', 1),
-('e8d0d1e4-e9e2-11ef-b055-706655625e18', 'Melyik sportágban használják a \"szerva\" kifejezést?', 'Sport', 1),
-('e8d0d20d-e9e2-11ef-b055-706655625e18', 'Ki írta a „Pál utcai fiúk” című regényt?', 'Irodalom', 1),
-('e8d0d22f-e9e2-11ef-b055-706655625e18', 'Melyik évben volt az 1848-49-es forradalom és szabadságharc?', 'Történelem', 2),
-('e8d0d24e-e9e2-11ef-b055-706655625e18', 'Melyik ország fővárosa Lima?', 'Földrajz', 2),
-('e8d0d26a-e9e2-11ef-b055-706655625e18', 'Melyik szám prímszám?', 'Matematika', 2),
-('e8d0d28a-e9e2-11ef-b055-706655625e18', 'Ki nyerte a legtöbb Forma-1 világbajnoki címet?', 'Sport', 2),
-('e8d0d2ab-e9e2-11ef-b055-706655625e18', 'Ki írta az „Ember tragédiája” című művet?', 'Irodalom', 2),
-('e8d0d2c9-e9e2-11ef-b055-706655625e18', 'Mikor volt a mohácsi csata?', 'Történelem', 3),
-('e8d0d2e4-e9e2-11ef-b055-706655625e18', 'Melyik a legmélyebb óceáni árok?', 'Földrajz', 3),
-('e8d0d303-e9e2-11ef-b055-706655625e18', 'Melyik szám négyzete 289?', 'Matematika', 3),
-('e8d0d31b-e9e2-11ef-b055-706655625e18', 'Melyik évben alapították az olimpiai játékokat?', 'Sport', 3),
-('e8d0d33a-e9e2-11ef-b055-706655625e18', 'Ki volt a híres reneszánsz költő, aki a „Divina Commedia”-t írta?', 'Irodalom', 3);
+INSERT INTO `questions` (`id`, `question`, `category_id`, `difficulty`) VALUES
+('e8d0cef4-e9e2-11ef-b055-706655625e18', 'Ki volt Magyarország első királya?', 1, 1),
+('e8d0d127-e9e2-11ef-b055-706655625e18', 'Melyik a legnagyobb kontinens?', 1, 1),
+('e8d0d1ba-e9e2-11ef-b055-706655625e18', 'Mennyi 5 + 3?', 1, 1),
+('e8d0d1e4-e9e2-11ef-b055-706655625e18', 'Melyik sportágban használják a \"szerva\" kifejezést?', 1, 1),
+('e8d0d20d-e9e2-11ef-b055-706655625e18', 'Ki írta a „Pál utcai fiúk” című regényt?', 1, 1),
+('e8d0d22f-e9e2-11ef-b055-706655625e18', 'Melyik évben volt az 1848-49-es forradalom és szabadságharc?', 1, 2),
+('e8d0d24e-e9e2-11ef-b055-706655625e18', 'Melyik ország fővárosa Lima?', 1, 2),
+('e8d0d26a-e9e2-11ef-b055-706655625e18', 'Melyik szám prímszám?', 1, 2),
+('e8d0d28a-e9e2-11ef-b055-706655625e18', 'Ki nyerte a legtöbb Forma-1 világbajnoki címet?', 1, 2),
+('e8d0d2ab-e9e2-11ef-b055-706655625e18', 'Ki írta az „Ember tragédiája” című művet?', 1, 2),
+('e8d0d2c9-e9e2-11ef-b055-706655625e18', 'Mikor volt a mohácsi csata?', 1, 3),
+('e8d0d2e4-e9e2-11ef-b055-706655625e18', 'Melyik a legmélyebb óceáni árok?', 1, 3),
+('e8d0d303-e9e2-11ef-b055-706655625e18', 'Melyik szám négyzete 289?', 1, 3),
+('e8d0d31b-e9e2-11ef-b055-706655625e18', 'Melyik évben alapították az olimpiai játékokat?', 1, 3),
+('e8d0d33a-e9e2-11ef-b055-706655625e18', 'Ki volt a híres reneszánsz költő, aki a „Divina Commedia”-t írta?', 1, 3);
 
 -- --------------------------------------------------------
 
 --
--- Tábla szerkezet ehhez a táblához `user`
+-- Tábla szerkezet ehhez a táblához `user_answers`
 --
 
-CREATE TABLE `user` (
-  `id` char(36) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `name` varchar(50) NOT NULL
+CREATE TABLE `user_answers` (
+  `id` char(36) COLLATE utf8_hungarian_ci NOT NULL,
+  `attempt_id` char(36) COLLATE utf8_hungarian_ci NOT NULL,
+  `question_id` char(36) COLLATE utf8_hungarian_ci NOT NULL,
+  `answer_id` char(36) COLLATE utf8_hungarian_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 -- --------------------------------------------------------
@@ -254,8 +278,8 @@ CREATE TABLE `user` (
 --
 
 CREATE TABLE `__efmigrationshistory` (
-  `MigrationId` varchar(150) NOT NULL,
-  `ProductVersion` varchar(32) NOT NULL
+  `MigrationId` varchar(150) COLLATE utf8_hungarian_ci NOT NULL,
+  `ProductVersion` varchar(32) COLLATE utf8_hungarian_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 --
@@ -274,7 +298,10 @@ INSERT INTO `__efmigrationshistory` (`MigrationId`, `ProductVersion`) VALUES
 --
 ALTER TABLE `answers`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `question_id` (`question_id`);
+  ADD UNIQUE KEY `unique_answers` (`question_id`,`answer_text`),
+  ADD KEY `question_id` (`question_id`),
+  ADD KEY `idx_answers_question_id` (`question_id`),
+  ADD KEY `idx_answers_question` (`question_id`);
 
 --
 -- A tábla indexei `aspnetroleclaims`
@@ -330,19 +357,32 @@ ALTER TABLE `aspnetusertokens`
 --
 ALTER TABLE `attempts`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `uid` (`uid`);
+  ADD KEY `uid` (`user_id`),
+  ADD KEY `idx_attempts_uid` (`user_id`),
+  ADD KEY `idx_attempts_user` (`user_id`);
+
+--
+-- A tábla indexei `categories`
+--
+ALTER TABLE `categories`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `name` (`name`);
 
 --
 -- A tábla indexei `questions`
 --
 ALTER TABLE `questions`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idx_questions_category` (`category_id`);
 
 --
--- A tábla indexei `user`
+-- A tábla indexei `user_answers`
 --
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`id`);
+ALTER TABLE `user_answers`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `attempt_id` (`attempt_id`),
+  ADD KEY `question_id` (`question_id`),
+  ADD KEY `answer_id` (`answer_id`);
 
 --
 -- A tábla indexei `__efmigrationshistory`
@@ -367,6 +407,12 @@ ALTER TABLE `aspnetuserclaims`
   MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT a táblához `categories`
+--
+ALTER TABLE `categories`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- Megkötések a kiírt táblákhoz
 --
 
@@ -383,35 +429,30 @@ ALTER TABLE `aspnetroleclaims`
   ADD CONSTRAINT `FK_AspNetRoleClaims_AspNetRoles_RoleId` FOREIGN KEY (`RoleId`) REFERENCES `aspnetroles` (`Id`) ON DELETE CASCADE;
 
 --
--- Megkötések a táblához `aspnetuserclaims`
---
-ALTER TABLE `aspnetuserclaims`
-  ADD CONSTRAINT `FK_AspNetUserClaims_AspNetUsers_UserId` FOREIGN KEY (`UserId`) REFERENCES `aspnetusers` (`Id`) ON DELETE CASCADE;
-
---
--- Megkötések a táblához `aspnetuserlogins`
---
-ALTER TABLE `aspnetuserlogins`
-  ADD CONSTRAINT `FK_AspNetUserLogins_AspNetUsers_UserId` FOREIGN KEY (`UserId`) REFERENCES `aspnetusers` (`Id`) ON DELETE CASCADE;
-
---
 -- Megkötések a táblához `aspnetuserroles`
 --
 ALTER TABLE `aspnetuserroles`
-  ADD CONSTRAINT `FK_AspNetUserRoles_AspNetRoles_RoleId` FOREIGN KEY (`RoleId`) REFERENCES `aspnetroles` (`Id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `FK_AspNetUserRoles_AspNetUsers_UserId` FOREIGN KEY (`UserId`) REFERENCES `aspnetusers` (`Id`) ON DELETE CASCADE;
-
---
--- Megkötések a táblához `aspnetusertokens`
---
-ALTER TABLE `aspnetusertokens`
-  ADD CONSTRAINT `FK_AspNetUserTokens_AspNetUsers_UserId` FOREIGN KEY (`UserId`) REFERENCES `aspnetusers` (`Id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `FK_AspNetUserRoles_AspNetRoles_RoleId` FOREIGN KEY (`RoleId`) REFERENCES `aspnetroles` (`Id`) ON DELETE CASCADE;
 
 --
 -- Megkötések a táblához `attempts`
 --
 ALTER TABLE `attempts`
-  ADD CONSTRAINT `attempts_ibfk_1` FOREIGN KEY (`uid`) REFERENCES `user` (`id`);
+  ADD CONSTRAINT `fk_attempts_user` FOREIGN KEY (`user_id`) REFERENCES `aspnetusers` (`Id`) ON DELETE CASCADE;
+
+--
+-- Megkötések a táblához `questions`
+--
+ALTER TABLE `questions`
+  ADD CONSTRAINT `fk_questions_category` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE;
+
+--
+-- Megkötések a táblához `user_answers`
+--
+ALTER TABLE `user_answers`
+  ADD CONSTRAINT `user_answers_ibfk_1` FOREIGN KEY (`attempt_id`) REFERENCES `attempts` (`id`),
+  ADD CONSTRAINT `user_answers_ibfk_2` FOREIGN KEY (`question_id`) REFERENCES `questions` (`id`),
+  ADD CONSTRAINT `user_answers_ibfk_3` FOREIGN KEY (`answer_id`) REFERENCES `answers` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
