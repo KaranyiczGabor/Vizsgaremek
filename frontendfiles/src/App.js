@@ -6,6 +6,7 @@ import Register from './Register';
 import Login from './Login';
 import Quiz from './Quiz';
 import Profile from './Profile';
+import Footer from './Footer';
 
 
 
@@ -21,9 +22,10 @@ function App() {
         <Route path="/" element={<Home/>}/>
         <Route path="/register" element={<Register/>}/>
         <Route path="/login" element={<Login/>}/>
-        <Route path="/quiz" element={<Quiz/>}/>
+        <Route path="/quiz/:category" element={<Quiz/>}/>
         <Route path="/profile" element={<Profile/>}/>
       </Routes>
+      <Footer/>
       
       
     </div>
