@@ -29,7 +29,7 @@ export default function Register() {
     )
     .then(function(res) {
       console.log(res.message);
-        navigate("/")
+        navigate("/login")
     })
     }
   return (
