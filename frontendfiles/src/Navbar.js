@@ -24,7 +24,8 @@ export default function Navbar() {
           <button className="menu-button" onClick={() => setIsOpen(true)}>
             <Menu className="icon" />
           </button>
-          <h1 className="site-title">IQInfinity</h1>
+          <img src="/logo.png" alt="IQInfinity Logo" className="site-logo"/>
+          <h1><Link to="/" className="site-title">IQInfinity</Link></h1>
         </div>
 
         <ul className="menu-items">
