@@ -29,9 +29,9 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "QuestionId",
-        "Type": "System.Guid",
-        "IsRequired": false
+        "Name": "userAnswers",
+        "Type": "System.Collections.Generic.List\u00601[[QuizAPI.Services.Dtos.QuestionsDto\u002BUserAnswerDto, QuizAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []

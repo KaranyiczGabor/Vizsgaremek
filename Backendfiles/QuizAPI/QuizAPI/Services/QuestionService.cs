@@ -2,6 +2,7 @@
 using QuizAPI.Models;
 using QuizAPI.Services.Dtos;
 using QuizAPI.Services.IService;
+using System.Runtime.CompilerServices;
 using static QuizAPI.Services.Dtos.QuestionsDto;
 
 namespace QuizAPI.Services
@@ -37,15 +38,23 @@ namespace QuizAPI.Services
 
             return result;
         }
-
-        public async Task<List<AnswerDto>> GetAnswers(Guid questionId)
+        public async Task<int> CheckAnswers(List<UserAnswerDto> userAnswers)
         {
-            var answers = await _context.Answers
-                .Where(a => a.QuestionId == questionId)
-                .Select(a => new AnswerDto(a.Id, a.AnswerText, a.QuestionId ,a.Correct))
-                .ToListAsync();
+            int score = 0;
 
-            return answers;
+            foreach (var userAnswer in userAnswers)
+            {
+                var correctAnswer = await _context.Answers
+                    .Where(a => a.QuestionId == userAnswer.QuestionId && a.Correct)
+                    .FirstOrDefaultAsync();
+
+                if (correctAnswer != null && correctAnswer.AnswerText == userAnswer.AnswerText)
+                {
+                    score++;
+                }
+            }
+
+            return score;
         }
     }
 }

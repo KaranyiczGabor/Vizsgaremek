@@ -71,30 +71,15 @@ namespace QuizAPI.Controllers
             return Ok(questions);
         }
         [HttpGet("checkanswer")]
-        public async Task<ActionResult> CheckAnswer(Guid QuestionId)
+        public async Task<ActionResult> CheckAnswer(List<UserAnswerDto> userAnswers)
         {
-            var answer = await _questionService.GetAnswers(QuestionId);
-
-            if (answer == null)
+            if (userAnswers == null || userAnswers.Count == 0)
             {
-                return NotFound(new { message = "Answer not found." });
+                return BadRequest("Nincs kijelőlve válasz.");
             }
 
-            return Ok(answer);
+            int score = await _questionService.CheckAnswers(userAnswers);
+            return Ok(new { Score = score });
         }
-
-        [HttpPost("refresh-token")]
-        public async Task<IActionResult> RefreshToken(RefreshTokenDto refreshTokenDto)
-        {
-            var result = await auth.RefreshToken(refreshTokenDto.RefreshToken);
-
-            if (result == null || result.message == "Invalid or expired refresh token.")
-            {
-                return Unauthorized(new { message = "Invalid refresh token." });
-            }
-
-            return Ok(new { result });
-        }
-
     }
 }
