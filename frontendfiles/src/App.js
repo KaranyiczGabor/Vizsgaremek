@@ -18,11 +18,11 @@ function App() {
     <Navbar/>
     
       <Routes> 
-      
+
         <Route path="/" element={<Home/>}/>
         <Route path="/register" element={<Register/>}/>
         <Route path="/login" element={<Login/>}/>
-        <Route path="/quiz/:category" element={<Quiz/>}/>
+        <Route path="/quiz" element={<Quiz/>}/>
         <Route path="/profile" element={<Profile/>}/>
       </Routes>
       <Footer/>

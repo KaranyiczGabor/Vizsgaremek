@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './Home.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 export default function Home() {
-  
+  const navigate = useNavigate();
+  const categories = ["Sport", "Történelem", "Tudomány", "Szórakozás", "Művészet", "Technológia"];
+
   return (
     <div className="container mt-4">
     
@@ -19,12 +21,16 @@ export default function Home() {
     <div className="categories text-center mt-5">
       <h2>Kvízkategóriák</h2>
       <div className="d-flex flex-wrap justify-content-center gap-3">
-        <Link to="/quiz/tudomany" className="badge bg-success p-3">Tudomány</Link>
-        <Link to="/quiz/tortenelem" className="badge bg-info p-3">Történelem</Link>
-        <Link to="/quiz/sport" className="badge bg-danger p-3">Sport</Link>
-        <Link to="/quiz/muveszet" className="badge bg-primary p-3">Művészet</Link>
-        <Link to="/quiz/technologia" className="badge bg-secondary p-3">Technológia</Link>
-      </div>
+          {categories.map((category, index) => (
+            <button
+              key={index}
+              className="btn btn-primary p-3"
+              onClick={() => navigate(`/quiz/${category}`)}
+            >
+              {category}
+            </button>
+          ))}
+          </div>
     </div>
 
   
