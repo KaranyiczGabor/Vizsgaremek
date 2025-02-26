@@ -38,7 +38,7 @@ namespace QuizAPI.Services
 
             return result;
         }
-        public async Task<int> CheckAnswers(List<UserAnswerDto> userAnswers)
+        public async Task<int> CheckAnswers(Guid userId, List<UserAnswerDto> userAnswers)
         {
             int score = 0;
 
@@ -54,6 +54,16 @@ namespace QuizAPI.Services
                 }
             }
 
+            var attempt = new Attempt
+            {
+                Id = Guid.NewGuid(),
+                Uid = userId,
+                Score = score,
+                Time = DateTime.UtcNow
+            };
+
+            _context.Attempts.Add(attempt);
+            await _context.SaveChangesAsync();
             return score;
         }
     }

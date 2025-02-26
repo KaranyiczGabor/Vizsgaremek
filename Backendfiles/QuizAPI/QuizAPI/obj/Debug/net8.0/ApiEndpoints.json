@@ -22,9 +22,9 @@
   },
   {
     "ContainingType": "QuizAPI.Controllers.UserController",
-    "Method": "CheckAnswer",
+    "Method": "CheckAnswers",
     "RelativePath": "api/users/checkanswer",
-    "HttpMethod": "GET",
+    "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [

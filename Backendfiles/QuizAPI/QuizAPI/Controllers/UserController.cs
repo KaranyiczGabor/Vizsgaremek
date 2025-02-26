@@ -6,6 +6,7 @@ using QuizAPI.Models;
 using QuizAPI.Services;
 using QuizAPI.Services.Dtos;
 using QuizAPI.Services.IService;
+using System.Security.Claims;
 using static QuizAPI.Services.Dtos.QuestionsDto;
 using static QuizAPI.Services.Dtos.UserDto;
 
@@ -70,16 +71,18 @@ namespace QuizAPI.Controllers
 
             return Ok(questions);
         }
-        [HttpGet("checkanswer")]
-        public async Task<ActionResult> CheckAnswer(List<UserAnswerDto> userAnswers)
-        {
-            if (userAnswers == null || userAnswers.Count == 0)
-            {
-                return BadRequest("Nincs kijelőlve válasz.");
-            }
 
-            int score = await _questionService.CheckAnswers(userAnswers);
-            return Ok(new { Score = score });
+        [HttpPost("checkanswer")]
+        public async Task<IActionResult> CheckAnswers([FromBody] List<UserAnswerDto> userAnswers)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); 
+
+            var userGuid = Guid.Parse(userId);
+
+            var score = await _questionService.CheckAnswers(userGuid, userAnswers);
+
+            return Ok(new { score });
         }
+
     }
 }

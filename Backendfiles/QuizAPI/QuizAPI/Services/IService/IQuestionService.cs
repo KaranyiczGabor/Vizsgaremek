@@ -6,7 +6,7 @@ namespace QuizAPI.Services.IService
     public interface IQuestionService
     {
         Task<List<QuestionsDto.QuestionDto>> GetQuestions(string Category, int Difficulty);
-        Task<int> CheckAnswers(List<QuestionsDto.UserAnswerDto> userAnswers);
+        Task<int> CheckAnswers(Guid userId, List<QuestionsDto.UserAnswerDto> userAnswers);
 
     }
 }
