@@ -38,7 +38,7 @@ namespace QuizAPI.Services
 
             return result;
         }
-        public async Task<int> CheckAnswers(Guid userId, List<UserAnswerDto> userAnswers)
+        public async Task<int> CheckAnswers(string userId, List<UserAnswerDto> userAnswers)
         {
             int score = 0;
 

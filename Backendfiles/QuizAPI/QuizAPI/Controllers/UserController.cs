@@ -79,7 +79,7 @@ namespace QuizAPI.Controllers
 
             var userGuid = Guid.Parse(userId);
 
-            var score = await _questionService.CheckAnswers(userGuid, userAnswers);
+            var score = await _questionService.CheckAnswers(userId, userAnswers);
 
             return Ok(new { score });
         }

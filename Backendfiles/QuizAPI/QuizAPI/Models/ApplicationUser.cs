@@ -6,5 +6,7 @@ namespace QuizAPI.Models
     {
         public string? FullName {  get; set; }
         public DateTime BirthDate { get; set; }
+
+        public virtual ICollection<Attempt> Attempts { get; set; } = new List<Attempt>();
     }
 }

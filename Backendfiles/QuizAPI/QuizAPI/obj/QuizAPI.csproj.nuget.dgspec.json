@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Tanulo\\source\\Vizsgareme\\Backendfiles\\QuizAPI\\QuizAPI\\QuizAPI.csproj": {}
+    "C:\\Users\\Tanulo\\source\\Vizsgaremek\\Backendfiles\\QuizAPI\\QuizAPI\\QuizAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Tanulo\\source\\Vizsgareme\\Backendfiles\\QuizAPI\\QuizAPI\\QuizAPI.csproj": {
+    "C:\\Users\\Tanulo\\source\\Vizsgaremek\\Backendfiles\\QuizAPI\\QuizAPI\\QuizAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Tanulo\\source\\Vizsgareme\\Backendfiles\\QuizAPI\\QuizAPI\\QuizAPI.csproj",
+        "projectUniqueName": "C:\\Users\\Tanulo\\source\\Vizsgaremek\\Backendfiles\\QuizAPI\\QuizAPI\\QuizAPI.csproj",
         "projectName": "QuizAPI",
-        "projectPath": "C:\\Users\\Tanulo\\source\\Vizsgareme\\Backendfiles\\QuizAPI\\QuizAPI\\QuizAPI.csproj",
+        "projectPath": "C:\\Users\\Tanulo\\source\\Vizsgaremek\\Backendfiles\\QuizAPI\\QuizAPI\\QuizAPI.csproj",
         "packagesPath": "C:\\Users\\Tanulo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Tanulo\\source\\Vizsgareme\\Backendfiles\\QuizAPI\\QuizAPI\\obj\\",
+        "outputPath": "C:\\Users\\Tanulo\\source\\Vizsgaremek\\Backendfiles\\QuizAPI\\QuizAPI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -26,7 +26,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -43,7 +42,7 @@
         "restoreAuditProperties": {
           "enableAudit": "true",
           "auditLevel": "low",
-          "auditMode": "direct"
+          "auditMode": "all"
         },
         "SdkAnalysisLevel": "9.0.100"
       },
@@ -101,7 +100,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
