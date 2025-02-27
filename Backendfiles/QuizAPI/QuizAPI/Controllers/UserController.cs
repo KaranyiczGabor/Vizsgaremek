@@ -83,6 +83,5 @@ namespace QuizAPI.Controllers
 
             return Ok(new { score });
         }
-
     }
 }

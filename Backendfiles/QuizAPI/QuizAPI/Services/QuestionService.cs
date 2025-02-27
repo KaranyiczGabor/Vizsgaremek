@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using QuizAPI.Models;
 using QuizAPI.Services.Dtos;
 using QuizAPI.Services.IService;
@@ -38,7 +39,7 @@ namespace QuizAPI.Services
 
             return result;
         }
-        public async Task<int> CheckAnswers(string userId, List<UserAnswerDto> userAnswers)
+        public async Task<int> CheckAnswers(string Uid, List<UserAnswerDto> userAnswers)
         {
             int score = 0;
 
@@ -57,7 +58,7 @@ namespace QuizAPI.Services
             var attempt = new Attempt
             {
                 Id = Guid.NewGuid(),
-                Uid = userId,
+                Uid = Uid,
                 Score = score,
                 Time = DateTime.UtcNow
             };
@@ -66,5 +67,6 @@ namespace QuizAPI.Services
             await _context.SaveChangesAsync();
             return score;
         }
+
     }
 }
