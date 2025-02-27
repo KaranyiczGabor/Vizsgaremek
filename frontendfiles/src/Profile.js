@@ -24,7 +24,7 @@ export default function Profile() {
                         </span>
                     </div>
                     <div className="d-flex mt-2">
-                        <button className="btn btn-dark">Edit Profile</button>
+                        <button className="btn1 btn-dark">Edit Profile</button>
                     </div>
 
                     <div className="px-2 rounded mt-4 date">

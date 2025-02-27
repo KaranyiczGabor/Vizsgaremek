@@ -3,7 +3,7 @@ import './Home.css';
 import { Link, useNavigate } from 'react-router-dom';
 export default function Home() {
   const navigate = useNavigate();
-  const categories = ["Sport", "Történelem", "Tudomány", "Szórakozás", "Művészet", "Technológia"];
+  const categories = ["Sport", "Történelem", "Földrajz", "Matematika", "Irodalom"];
 
   return (
     <div className="container mt-4">
@@ -25,7 +25,7 @@ export default function Home() {
             <button
               key={index}
               className="btn btn-primary p-3"
-              onClick={() => navigate(`/quiz/${category}`)}
+              onClick={() => navigate(`/quiz?${category}`)}
             >
               {category}
             </button>

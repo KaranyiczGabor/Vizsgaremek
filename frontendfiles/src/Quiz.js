@@ -10,7 +10,7 @@ export default function Quiz() {
     const [showResult, setShowResult] = useState(false);
     const [loading, setLoading] = useState(false);
 
-    const API_BASE_URL = "http://192.168.121.240:5248/api/users";
+    const API_BASE_URL = "http://192.168.121.70:5248/api/users";
 
     // 🔹 `useEffect` akkor fut le, ha mindkét állapot (`selectedCategory` és `selectedDifficulty`) beállításra kerül
     useEffect(() => {
