@@ -1,44 +1,62 @@
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { Menu } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import Sidebar from "./Sidebar";
 import "./Navbar.css";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem("token"));
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    setIsLoggedIn(!!localStorage.getItem("token"));
+  }, []);
 
   const handleLogout = () => {
     localStorage.removeItem("token");
     setIsLoggedIn(false);
   };
 
-  useEffect(() => {
-    setIsLoggedIn(!!localStorage.getItem("token"));
-  }, []);
-
   return (
     <>
       <nav className="navbar">
         <div className="navbar-left">
-          <button className="menu-button" onClick={() => setIsOpen(true)}>
-            <Menu className="icon" />
+          <button
+            className={`menu-button ${isOpen ? "open" : ""}`}
+            onClick={() => setIsOpen(!isOpen)}
+            aria-label="Toggle Menu"
+          >
+            <span className="menu-icon-wrapper">
+              {isOpen ? <X className="icon" /> : <Menu className="icon" />}
+            </span>
           </button>
-          <img src="/logo.png" alt="IQInfinity Logo" className="site-logo"/>
-          <h1><Link to="/" className="site-title">IQInfinity</Link></h1>
+
+          <img src="/logo.png" alt="IQInfinity Logo" className="site-logo" />
+          <h1>
+            <Link to="/" className="site-title">IQInfinity</Link>
+          </h1>
         </div>
 
-        <ul className="menu-items">
-
-        {!isLoggedIn ? (
+        <ul className={`menu-items ${isOpen ? "open" : ""}`}>
+          {!isLoggedIn ? (
             <>
-              <li><Link to="/register" className='register'>Register</Link></li>
-              <li><Link to="/login" className='login'>Log in</Link></li>
+              <li>
+                <Link to="/register" className="register">Register</Link>
+              </li>
+              <li>
+                <Link to="/login" className="login">Log in</Link>
+              </li>
             </>
           ) : (
             <>
-              <li><button onClick={handleLogout}>Logout</button></li>
-              <li><Link to="/profile"><i class="bi bi-person-circle"></i></Link></li>
+              <li>
+                <button onClick={handleLogout} className="logout">Logout</button>
+              </li>
+              <li>
+                <Link to="/profile" className="profile-icon">
+                  <i className="bi bi-person-circle"></i>
+                </Link>
+              </li>
             </>
           )}
         </ul>

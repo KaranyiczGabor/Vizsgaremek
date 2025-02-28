@@ -1,69 +1,84 @@
+/* Sidebar Overlay (dark background when sidebar is open) */
+.sidebar-overlay {
+  position: fixed;
+  top: 60px;
+  left: 0;
+  width: 100%;
+  height: calc(100% - 60px);
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 900;
+}
+
+/* Sidebar Container */
 .sidebar {
-    position: fixed;
-    top: 0;
-    left: -300px;
-    width: 280px;
-    height: 100%;
-    background: white;
-    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
-    padding: 1rem;
-    z-index: 100;
-    display: flex;
-    flex-direction: column;
-    transition: left 0.3s ease-in-out;
-  }
-  
-  .sidebar.open {
-    left: 0; 
-  }
-  
-  .sidebar-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1rem;
-  }
-  
-  .sidebar-header h2 {
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: #333;
-  }
-  
-  .close-button {
-    background: none;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .sidebar-menu {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .sidebar-menu li {
-    margin-bottom: 1rem;
-  }
-  
-  .sidebar-menu a {
-    text-decoration: none;
-    color: #333;
-    font-size: 1rem;
-    transition: color 0.3s ease;
-  }
-  
-  .sidebar-menu a:hover {
-    color: #007aff;
-  }
-  
-  .sidebar-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.3);
-    z-index: 99;
-  }
-  
+  position: fixed;
+  top: 60px;
+  left: 0;
+  width: 250px;
+  height: calc(100% - 60px);
+  background: #1e1e1e;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  padding-top: 20px;
+  z-index: 1000;
+  box-shadow: 3px 0 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Sidebar Menu */
+.sidebar-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+/* Sidebar Menu Items */
+.sidebar-menu li {
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  font-weight: 500;
+  transition: background 0.3s ease-in-out;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Sidebar Menu Links */
+.sidebar-menu li a {
+  text-decoration: none;
+  color: white;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  transition: color 0.3s ease-in-out;
+}
+
+/* Hover Effects */
+.sidebar-menu li:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-menu li a:hover {
+  color: #00bcd4;
+}
+
+/* Active Link */
+.sidebar-menu li a.active {
+  color: #00bcd4;
+  font-weight: bold;
+}
+
+/* Donate Button */
+.sidebar-menu li:last-child {
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  color: #ffcc00;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+
+.sidebar-menu li:last-child:hover {
+  background: rgba(255, 204, 0, 0.2);
+}
