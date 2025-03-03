@@ -6,6 +6,7 @@ using QuizAPI.Models;
 using QuizAPI.Services.IService;
 using QuizAPI.Services;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.OpenApi.Models;
 
 namespace QuizAPI
 {
@@ -16,7 +17,7 @@ namespace QuizAPI
             var builder = WebApplication.CreateBuilder(args);
 
             // Configure DbContext with connection string
-            builder.Services.AddDbContext<AppDbContext>(options =>
+            builder.Services.AddDbContext<QuizdbContext>(options =>
                 options.UseMySQL(builder.Configuration.GetConnectionString("DefaultConnection")));
 
             // Dependency Injection
@@ -25,8 +26,8 @@ namespace QuizAPI
             builder.Services.AddScoped<IQuestionService, QuestionService>();
 
             // Identity
-            builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<AppDbContext>()
+            builder.Services.AddIdentity<Aspnetuser, IdentityRole>()
+                .AddEntityFrameworkStores<QuizdbContext>()
                 .AddDefaultTokenProviders();
 
             // CORS Configuration
@@ -68,9 +69,39 @@ namespace QuizAPI
                 };
             });
 
+            // Swagger Configuration
+            builder.Services.AddSwaggerGen(options =>
+            {
+                // Add the security definition for JWT Bearer token
+                options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
+                {
+                    Description = "Standard Authorization header using the Bearer scheme. Example: \"bearer {token}\"",
+                    In = ParameterLocation.Header,
+                    Name = "Authorization",
+                    Type = SecuritySchemeType.Http,
+                    Scheme = "bearer",
+                    BearerFormat = "JWT",
+                });
+
+                // Apply the security requirement globally for all endpoints
+                options.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "oauth2"
+                            }
+                        },
+                        new string[] {}
+                    }
+                });
+            });
+
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
 
             var app = builder.Build();
 
@@ -79,12 +110,14 @@ namespace QuizAPI
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
-                app.UseSwaggerUI();
+                app.UseSwaggerUI(options =>
+                {
+                    // Swagger UI will show the Authorization button for Bearer Token
+                });
             }
 
-
             app.UseHttpsRedirection();
-            app.UseAuthentication(); 
+            app.UseAuthentication();
             app.UseAuthorization();
             app.MapControllers();
 

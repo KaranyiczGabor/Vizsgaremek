@@ -18,7 +18,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/ApplicationUser"
+                    "$ref": "#/components/schemas/Aspnetuser"
                   }
                 }
               },
@@ -26,7 +26,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/ApplicationUser"
+                    "$ref": "#/components/schemas/Aspnetuser"
                   }
                 }
               },
@@ -34,7 +34,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/ApplicationUser"
+                    "$ref": "#/components/schemas/Aspnetuser"
                   }
                 }
               }
@@ -63,17 +63,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/ApplicationUser"
+                  "$ref": "#/components/schemas/Aspnetuser"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ApplicationUser"
+                  "$ref": "#/components/schemas/Aspnetuser"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ApplicationUser"
+                  "$ref": "#/components/schemas/Aspnetuser"
                 }
               }
             }
@@ -322,12 +322,86 @@
         },
         "additionalProperties": false
       },
-      "ApplicationUser": {
+      "Aspnetrole": {
         "type": "object",
         "properties": {
           "id": {
             "type": "string",
             "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "normalizedName": {
+            "type": "string",
+            "nullable": true
+          },
+          "concurrencyStamp": {
+            "type": "string",
+            "nullable": true
+          },
+          "aspnetroleclaims": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Aspnetroleclaim"
+            },
+            "nullable": true
+          },
+          "users": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Aspnetuser"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Aspnetroleclaim": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "roleId": {
+            "type": "string",
+            "nullable": true
+          },
+          "claimType": {
+            "type": "string",
+            "nullable": true
+          },
+          "claimValue": {
+            "type": "string",
+            "nullable": true
+          },
+          "role": {
+            "$ref": "#/components/schemas/Aspnetrole"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Aspnetuser": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "lockoutEnd": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "fullName": {
+            "type": "string",
+            "nullable": true
+          },
+          "birthDate": {
+            "type": "string",
+            "format": "date-time"
           },
           "userName": {
             "type": "string",
@@ -370,11 +444,6 @@
           "twoFactorEnabled": {
             "type": "boolean"
           },
-          "lockoutEnd": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
           "lockoutEnabled": {
             "type": "boolean"
           },
@@ -382,45 +451,108 @@
             "type": "integer",
             "format": "int32"
           },
-          "fullName": {
-            "type": "string",
-            "nullable": true
-          },
-          "birthDate": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "attempts": {
+          "aspnetuserclaims": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Attempt"
+              "$ref": "#/components/schemas/Aspnetuserclaim"
+            },
+            "nullable": true
+          },
+          "aspnetuserlogins": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Aspnetuserlogin"
+            },
+            "nullable": true
+          },
+          "aspnetusertokens": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Aspnetusertoken"
+            },
+            "nullable": true
+          },
+          "roles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Aspnetrole"
             },
             "nullable": true
           }
         },
         "additionalProperties": false
       },
-      "Attempt": {
+      "Aspnetuserclaim": {
         "type": "object",
         "properties": {
           "id": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "uid": {
-            "type": "string",
-            "nullable": true
-          },
-          "score": {
             "type": "integer",
             "format": "int32"
           },
-          "time": {
+          "userId": {
             "type": "string",
-            "format": "date-time"
+            "nullable": true
           },
-          "uidNavigation": {
-            "$ref": "#/components/schemas/ApplicationUser"
+          "claimType": {
+            "type": "string",
+            "nullable": true
+          },
+          "claimValue": {
+            "type": "string",
+            "nullable": true
+          },
+          "user": {
+            "$ref": "#/components/schemas/Aspnetuser"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Aspnetuserlogin": {
+        "type": "object",
+        "properties": {
+          "loginProvider": {
+            "type": "string",
+            "nullable": true
+          },
+          "providerKey": {
+            "type": "string",
+            "nullable": true
+          },
+          "providerDisplayName": {
+            "type": "string",
+            "nullable": true
+          },
+          "userId": {
+            "type": "string",
+            "nullable": true
+          },
+          "user": {
+            "$ref": "#/components/schemas/Aspnetuser"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Aspnetusertoken": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string",
+            "nullable": true
+          },
+          "loginProvider": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "value": {
+            "type": "string",
+            "nullable": true
+          },
+          "user": {
+            "$ref": "#/components/schemas/Aspnetuser"
           }
         },
         "additionalProperties": false
@@ -464,10 +596,6 @@
             "type": "string",
             "format": "uuid"
           },
-          "id": {
-            "type": "string",
-            "format": "uuid"
-          },
           "answerText": {
             "type": "string",
             "nullable": true
@@ -475,6 +603,19 @@
         },
         "additionalProperties": false
       }
+    },
+    "securitySchemes": {
+      "oauth2": {
+        "type": "http",
+        "description": "Standard Authorization header using the Bearer scheme. Example: \"bearer {token}\"",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
     }
-  }
+  },
+  "security": [
+    {
+      "oauth2": [ ]
+    }
+  ]
 }

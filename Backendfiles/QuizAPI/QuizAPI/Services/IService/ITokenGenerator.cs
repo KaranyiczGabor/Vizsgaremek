@@ -4,6 +4,6 @@ namespace QuizAPI.Services.IService
 {
     public interface ITokenGenerator
     {
-        string GenerateToken(ApplicationUser applicationUser, IEnumerable<string> role);
+        string GenerateToken(Aspnetuser applicationUser, IEnumerable<string> role);
     }
 }

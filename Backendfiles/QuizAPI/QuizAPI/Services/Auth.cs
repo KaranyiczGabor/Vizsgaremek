@@ -1,86 +1,84 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.EntityFrameworkCore;
 using QuizAPI.Models;
-using QuizAPI.Services.Dtos;
 using QuizAPI.Services.IService;
 using static QuizAPI.Services.Dtos.UserDto;
 
-namespace QuizAPI.Services
+public class Auth : IAuthService
 {
-    public class Auth : IAuthService
+    private readonly QuizdbContext _dbContext;
+    private readonly UserManager<Aspnetuser> _userManager;
+    private readonly RoleManager<IdentityRole> _roleManager;
+    private readonly ITokenGenerator _tokenGenerator;
+
+    public Auth(QuizdbContext dbContext, UserManager<Aspnetuser> userManager, RoleManager<IdentityRole> roleManager, ITokenGenerator tokenGenerator)
     {
-        private readonly AppDbContext _dbContext;
-        private readonly UserManager<ApplicationUser> _userManager;
-        private readonly RoleManager<IdentityRole> _roleManager;
-        private readonly ITokenGenerator _tokenGenerator;
+        _dbContext = dbContext;
+        _userManager = userManager;
+        _roleManager = roleManager;
+        _tokenGenerator = tokenGenerator;
+    }
 
-        public Auth(AppDbContext dbContext, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, ITokenGenerator tokenGenerator)
+    public async Task<object> Register(RegisterRequestDto registerRequestDto)
+    {
+        var user = new Aspnetuser
         {
-            _dbContext = dbContext;
-            this._userManager = userManager;
-            this._roleManager = roleManager;
-            this._tokenGenerator = tokenGenerator;
-        }
+            UserName = registerRequestDto.UserName,
+            Email = registerRequestDto.Email,
+        };
 
-        public async Task<object> Register(RegisterRequestDto registerRequestDto)
+        var result = await _userManager.CreateAsync(user, registerRequestDto.Password);
+
+        if (result.Succeeded)
         {
-            var user = new ApplicationUser
+            var userReturn = await _dbContext.Aspnetusers.FirstOrDefaultAsync(user => user.UserName == registerRequestDto.UserName);
+            var roleName = "User";
+
+            if (!await _roleManager.RoleExistsAsync(roleName))
             {
-                UserName = registerRequestDto.UserName,
-                Email = registerRequestDto.Email,
-            };
-
-            var result = await _userManager.CreateAsync(user, registerRequestDto.Password);
-
-            if (result.Succeeded)
-            {
-                var userReturn = await _dbContext.ApplicationUsers.FirstOrDefaultAsync(user => user.UserName == registerRequestDto.UserName);
-                var roleName = "User";
-                if (!_roleManager.RoleExistsAsync(roleName).GetAwaiter().GetResult())
-                {
-                    _roleManager.CreateAsync(new IdentityRole(roleName)).GetAwaiter().GetResult();
-                }
-                await _userManager.AddToRoleAsync(user, roleName);
-                return new { result = userReturn };
-            }
-            return new { result = "", message = result.Errors.FirstOrDefault().Description };
-
-        }
-
-        public async Task<object> Login(LoginRequestDto loginRequestDto)
-        {
-            var user = await _dbContext.ApplicationUsers.FirstOrDefaultAsync(user => user.NormalizedUserName == loginRequestDto.UserName.ToUpper());
-
-            bool isValid = await _userManager.CheckPasswordAsync(user, loginRequestDto.Password);
-
-            if (isValid)
-            {
-                var roles = await _userManager.GetRolesAsync(user);
-                var jwtToken = _tokenGenerator.GenerateToken(user, roles);
-
-                return new { result = new { user.UserName, user.Email }, message = "Sikeres beléptetés.", token = jwtToken };
+                await _roleManager.CreateAsync(new IdentityRole(roleName));
             }
 
-            return new { result = "", message = "Nem regisztrált.", token = "" };
+            await _userManager.AddToRoleAsync(user, roleName);
+            return new { result = userReturn };
         }
 
-        public async Task<object> AssignRole(string UserName, string roleName)
+        return new { result = "", message = string.Join(", ", result.Errors.Select(e => e.Description)) };
+    }
+
+    public async Task<object> Login(LoginRequestDto loginRequestDto)
+    {
+        var user = await _userManager.FindByNameAsync(loginRequestDto.UserName.ToUpper());
+
+        bool isValid = await _userManager.CheckPasswordAsync(user, loginRequestDto.Password);
+
+        if (isValid)
         {
-            var user = await _dbContext.ApplicationUsers.FirstOrDefaultAsync(user => user.NormalizedUserName == UserName.ToUpper());
+            var roles = await _userManager.GetRolesAsync(user);
+            var jwtToken = _tokenGenerator.GenerateToken(user, roles);
 
-            if (user != null) 
-            {
-                if (!_roleManager.RoleExistsAsync(roleName).GetAwaiter().GetResult())
-                {
-                    _roleManager.CreateAsync(new IdentityRole(roleName)).GetAwaiter().GetResult();
-                }
-
-                await _userManager.AddToRoleAsync(user, roleName);
-
-                return new { result = user, message = "Sikeres hozzarendeles" };
-            }
-            return new { result = "", message = "Sikertelen hozzarendeles" };
+            return new { result = new { user.UserName, user.Email, user.Id }, message = "Sikeres beléptetés.", token = jwtToken };
         }
+        
+        return new { result = "", message = "Nem regisztrált.", token = "" };
+    }
+
+    public async Task<object> AssignRole(string UserName, string roleName)
+    {
+        var user = await _userManager.FindByNameAsync(UserName);
+
+        if (user != null)
+        {
+            if (!await _roleManager.RoleExistsAsync(roleName))
+            {
+                await _roleManager.CreateAsync(new IdentityRole(roleName));
+            }
+
+            await _userManager.AddToRoleAsync(user, roleName);
+
+            return new { result = user, message = "Sikeres hozzarendeles" };
+        }
+
+        return new { result = "", message = "Sikertelen hozzarendeles" };
     }
 }

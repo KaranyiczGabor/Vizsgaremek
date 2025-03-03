@@ -7,10 +7,8 @@
         public record UserAnswerDto
         {
             public Guid QuestionId { get; set; }
-            public Guid Id { get; set; }
             public string AnswerText { get; set; }
                 
         };
-
     }
 }

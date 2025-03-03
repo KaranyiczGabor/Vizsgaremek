@@ -14,26 +14,28 @@ namespace QuizAPI.Controllers
     [Authorize(Roles = "Admin")]
     public class AdminController : ControllerBase
     {
-        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly UserManager<Aspnetuser> _userManager;
 
-        public AdminController(UserManager<ApplicationUser> userManager)
+        public AdminController(UserManager<Aspnetuser> userManager)
         {
             _userManager = userManager;
         }
 
         [HttpGet("GetUsers")]
-        public async Task<ActionResult<IEnumerable<ApplicationUser>>> GetUsers()
+        public async Task<ActionResult<IEnumerable<Aspnetuser>>> GetUsers()
         {
             var users = await _userManager.Users.ToListAsync();
+
             if (users != null)
             {
                 return Ok(users);
             }
+
             return BadRequest();
         }
 
         [HttpGet("GetUsersbyId")]
-        public async Task<ActionResult<ApplicationUser>> GetUsersbyId(string Id)
+        public async Task<ActionResult<Aspnetuser>> GetUsersbyId(string Id)
         {
             var user = await _userManager.FindByIdAsync(Id);
             if (user == null)

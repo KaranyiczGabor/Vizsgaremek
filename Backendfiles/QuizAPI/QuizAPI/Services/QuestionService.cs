@@ -10,9 +10,9 @@ namespace QuizAPI.Services
 {
     public class QuestionService : IQuestionService
     {
-        private readonly AppDbContext _context;
+        private readonly QuizdbContext _context;
 
-        public QuestionService(AppDbContext context)
+        public QuestionService(QuizdbContext context)
         {
             _context = context;
         }
@@ -39,6 +39,7 @@ namespace QuizAPI.Services
 
             return result;
         }
+
         public async Task<int> CheckAnswers(string Uid, List<UserAnswerDto> userAnswers)
         {
             int score = 0;
@@ -58,13 +59,14 @@ namespace QuizAPI.Services
             var attempt = new Attempt
             {
                 Id = Guid.NewGuid(),
-                Uid = Uid,
+                Uid = Guid.Parse(Uid),
                 Score = score,
-                Time = DateTime.UtcNow
+                Time = DateTime.Now
             };
 
             _context.Attempts.Add(attempt);
             await _context.SaveChangesAsync();
+
             return score;
         }
 

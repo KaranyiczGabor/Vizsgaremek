@@ -17,7 +17,7 @@ namespace QuizAPI.Services
             _jwtOptions = jwtOptions.Value;
         }
 
-        public string GenerateToken(ApplicationUser applicationUser, IEnumerable<string> role)
+        public string GenerateToken(Aspnetuser applicationUser, IEnumerable<string> role)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
 

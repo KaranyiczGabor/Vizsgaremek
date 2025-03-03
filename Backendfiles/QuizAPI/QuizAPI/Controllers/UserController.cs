@@ -6,6 +6,7 @@ using QuizAPI.Models;
 using QuizAPI.Services;
 using QuizAPI.Services.Dtos;
 using QuizAPI.Services.IService;
+using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using static QuizAPI.Services.Dtos.QuestionsDto;
 using static QuizAPI.Services.Dtos.UserDto;
@@ -45,12 +46,12 @@ namespace QuizAPI.Controllers
             var user = await auth.Login(loginRequestDto);
             if (user != null)
             {
-                return Ok(new {token = user});
+                return Ok(new { token = user });
             }
             return Unauthorized(new { result = "", message = "Hibas felhasznalonev/jelszo" });
         }
         [HttpPost("assignrole")]
-        public async Task<ActionResult> AssignRole(string UserName,string roleName)
+        public async Task<ActionResult> AssignRole(string UserName, string roleName)
         {
             var res = await auth.AssignRole(UserName, roleName);
             if (res != null)
@@ -75,9 +76,12 @@ namespace QuizAPI.Controllers
         [HttpPost("checkanswer")]
         public async Task<IActionResult> CheckAnswers([FromBody] List<UserAnswerDto> userAnswers)
         {
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); 
+            var token = Request.Headers["Authorization"].ToString().Replace("Bearer", "").Trim();
 
-            var userGuid = Guid.Parse(userId);
+            var handler = new JwtSecurityTokenHandler();
+
+            var jwtToken = handler.ReadJwtToken(token);
+            var userId = jwtToken.Claims.FirstOrDefault(x => x.Type == "sub")?.Value;
 
             var score = await _questionService.CheckAnswers(userId, userAnswers);
 
