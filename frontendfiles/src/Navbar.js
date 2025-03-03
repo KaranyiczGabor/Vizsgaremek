@@ -19,7 +19,7 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="navbar">
+      <nav className="nbar">
         <div className="navbar-left">
           <button
             className={`menu-button ${isOpen ? "open" : ""}`}

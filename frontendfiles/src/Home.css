@@ -1,6 +1,7 @@
 .container {
     max-width: 900px;
     margin: auto;
+    padding-top: 100px;
   }
   
   .intro p {
