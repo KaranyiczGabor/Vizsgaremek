@@ -15,7 +15,7 @@ export default function Login({ setIsLoggedIn }) {
     setError("");
 
     try {
-      const response = await fetch("http://192.168.121.70:5248/api/users/login", {
+      const response = await fetch("http://192.168.121.193:5248/api/users/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, password }),
@@ -30,6 +30,7 @@ export default function Login({ setIsLoggedIn }) {
       console.log("Parsed Data:", data);
     
       localStorage.setItem("token", data.token?.token);
+      localStorage.setItem("userId", data.token?.result.id);
     
       <Login setIsLoggedIn={setIsLoggedIn} />
       navigate("/");
