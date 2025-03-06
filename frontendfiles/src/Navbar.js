@@ -50,9 +50,7 @@ export default function Navbar() {
             </>
           ) : (
             <>
-              <li>
-                <button onClick={handleLogout} className="logout">Logout</button>
-              </li>
+              
               <li>
                 <Link to="/profile" className="profile-icon">
                   <i className="bi bi-person-circle"></i>

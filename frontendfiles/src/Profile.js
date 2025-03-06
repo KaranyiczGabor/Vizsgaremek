@@ -1,7 +1,22 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './Profile.css';
+import { useNavigate } from 'react-router-dom';
 
 export default function Profile() {
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    let navigate = useNavigate()
+    
+      useEffect(() => {
+        setIsLoggedIn(!!localStorage.getItem("token"));
+      }, []);
+    
+      const handleLogout = () => {
+        localStorage.removeItem("token");
+        localStorage.removeItem("userId");
+        setIsLoggedIn(false);
+        navigate("/");
+        window.location.reload();
+      };
 
     return (
         <div className="container mt-4 mb-4 p-3 d-flex justify-content-center">
@@ -24,7 +39,8 @@ export default function Profile() {
                         </span>
                     </div>
                     <div className="d-flex mt-2">
-                        <button className="btn1 btn-dark">Edit Profile</button>
+                        <button onClick={handleLogout} className="logout">Logout</button>
+       
                     </div>
 
                     <div className="px-2 rounded mt-4 date">
