@@ -17,7 +17,7 @@ namespace QuizAPI.Services
             _jwtOptions = jwtOptions.Value;
         }
 
-        public string GenerateToken(Aspnetuser applicationUser, IEnumerable<string> role)
+        public string GenerateToken(ApplicationUser applicationUser, IEnumerable<string> role)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
 
@@ -25,9 +25,8 @@ namespace QuizAPI.Services
 
             var claimList = new List<Claim>
             {
-                new Claim(JwtRegisteredClaimNames.Birthdate, applicationUser.BirthDate.ToString()),
                 new Claim(JwtRegisteredClaimNames.Name, applicationUser.UserName.ToString()),
-                new Claim(JwtRegisteredClaimNames.Sub, applicationUser.Id.ToString()),
+                new Claim(JwtRegisteredClaimNames.Sub, applicationUser.Id.ToString())
             };
 
             claimList.AddRange(role.Select(role => new Claim(ClaimTypes.Role, role)));

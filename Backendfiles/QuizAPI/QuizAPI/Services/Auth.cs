@@ -7,11 +7,11 @@ using static QuizAPI.Services.Dtos.UserDto;
 public class Auth : IAuthService
 {
     private readonly QuizdbContext _dbContext;
-    private readonly UserManager<Aspnetuser> _userManager;
+    private readonly UserManager<ApplicationUser> _userManager;
     private readonly RoleManager<IdentityRole> _roleManager;
     private readonly ITokenGenerator _tokenGenerator;
 
-    public Auth(QuizdbContext dbContext, UserManager<Aspnetuser> userManager, RoleManager<IdentityRole> roleManager, ITokenGenerator tokenGenerator)
+    public Auth(QuizdbContext dbContext, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, ITokenGenerator tokenGenerator)
     {
         _dbContext = dbContext;
         _userManager = userManager;
@@ -21,7 +21,7 @@ public class Auth : IAuthService
 
     public async Task<object> Register(RegisterRequestDto registerRequestDto)
     {
-        var user = new Aspnetuser
+        var user = new ApplicationUser
         {
             UserName = registerRequestDto.UserName,
             Email = registerRequestDto.Email,
@@ -31,7 +31,7 @@ public class Auth : IAuthService
 
         if (result.Succeeded)
         {
-            var userReturn = await _dbContext.Aspnetusers.FirstOrDefaultAsync(user => user.UserName == registerRequestDto.UserName);
+            var userReturn = await _dbContext.applicationUser.FirstOrDefaultAsync(user => user.UserName == registerRequestDto.UserName);
             var roleName = "User";
 
             if (!await _roleManager.RoleExistsAsync(roleName))

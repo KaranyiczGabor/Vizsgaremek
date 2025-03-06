@@ -26,7 +26,7 @@ namespace QuizAPI
             builder.Services.AddScoped<IQuestionService, QuestionService>();
 
             // Identity
-            builder.Services.AddIdentity<Aspnetuser, IdentityRole>()
+            builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<QuizdbContext>()
                 .AddDefaultTokenProviders();
 
