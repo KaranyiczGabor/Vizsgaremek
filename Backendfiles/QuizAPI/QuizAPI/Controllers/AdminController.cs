@@ -15,12 +15,23 @@ namespace QuizAPI.Controllers
     public class AdminController : ControllerBase
     {
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IAuthService auth;
 
         public AdminController(UserManager<ApplicationUser> userManager)
         {
             _userManager = userManager;
         }
 
+        [HttpPost("assignrole")]
+        public async Task<ActionResult> AssignRole(string UserName, string roleName)
+        {
+            var res = await auth.AssignRole(UserName, roleName);
+            if (res != null)
+            {
+                return Ok(res);
+            }
+            return BadRequest();
+        }
         [HttpGet("GetUsers")]
         public async Task<ActionResult<IEnumerable<ApplicationUser>>> GetUsers()
         {

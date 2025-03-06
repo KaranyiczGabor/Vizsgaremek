@@ -38,6 +38,27 @@
   },
   {
     "ContainingType": "QuizAPI.Controllers.AdminController",
+    "Method": "AssignRole",
+    "RelativePath": "api/admin/assignrole",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "UserName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "roleName",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "QuizAPI.Controllers.AdminController",
     "Method": "GetUsers",
     "RelativePath": "api/admin/GetUsers",
     "HttpMethod": "GET",
@@ -81,27 +102,6 @@
         "StatusCode": 200
       }
     ]
-  },
-  {
-    "ContainingType": "QuizAPI.Controllers.UserController",
-    "Method": "AssignRole",
-    "RelativePath": "api/users/assignrole",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "UserName",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "roleName",
-        "Type": "System.String",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": []
   },
   {
     "ContainingType": "QuizAPI.Controllers.UserController",
