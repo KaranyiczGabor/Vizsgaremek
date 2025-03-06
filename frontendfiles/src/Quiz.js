@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function Quiz() {
     const navigate = useNavigate();
-    const API_BASE_URL = "http://192.168.121.193:5248/api/users";
+    const API_BASE_URL = "http://192.168.121.70:5248/api/users";
 
     const [categories] = useState(["Történelem", "Földrajz", "Matematika", "Sport", "Irodalom"]); 
     const [selectedCategory, setSelectedCategory] = useState(null);
@@ -25,11 +25,12 @@ export default function Quiz() {
 
     // Add debug effect for userAnswers
     useEffect(() => {
-        console.log("userAnswers updated:", userAnswers);
-        if(userAnswers.length === 1) {
-            finishQuiz()
-        }
-    }, [userAnswers]);
+    console.log("userAnswers updated:", userAnswers);
+    // Only finish the quiz when all questions have been answered
+    if (userAnswers.length === questions.length && questions.length > 0) {
+        finishQuiz()
+    }
+}, [userAnswers, questions]);
 
     // Check login status and network status
     useEffect(() => {

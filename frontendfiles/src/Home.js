@@ -24,7 +24,7 @@ export default function Home() {
           {categories.map((category, index) => (
             <button
               key={index}
-              className="btn btn-primary p-3"
+              className="btn btn-secondary"
               onClick={() => navigate(`/quiz?${category}`)}
             >
               {category}
