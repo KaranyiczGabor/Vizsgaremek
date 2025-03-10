@@ -32,9 +32,9 @@ namespace QuizAPI.Controllers
             var res = await _auth.AssignRole(UserName, roleName);
             if (res != null)
             {
-                return Ok(res);
+                return Ok(new { result = res, message = "Sikeres role hozzarendeles." });
             }
-            return BadRequest();
+            return BadRequest(new { result = res, message = "Sikertelen role hozzarendeles." });
         }
 
         [HttpGet("GetUsers")]
@@ -135,10 +135,35 @@ namespace QuizAPI.Controllers
 
             if (questions != null)
             {
-                return Ok(questions);
+                return Ok(new {result = questions, message="Sikeres torles."});
+            }
+
+            return BadRequest(new { result = questions, message = "Sikertelen torles." });
+        }
+        [HttpGet("GetAnswers")]
+        public async Task<ActionResult> GetAnswersAdmin()
+        {
+            var ans = await _questions.GetAnswersAdmin();
+
+            if (ans != null)
+            {
+                return Ok(ans);
             }
 
             return BadRequest();
+        }
+
+        [HttpPut("EditAnswer")]
+        public async Task<ActionResult> EditAnswer(Guid id, QuestionsDto.AnswerDto model)
+        {
+            var question = await _questions.EditAnswer(id, model);
+
+            if (question != null)
+            {
+                return Ok(new { result = question, message = "Sikeresen megvaltoztattad a kerdest." });
+            }
+
+            return BadRequest(new { result = "", message = "Nem sikerult megvaltoztatni a kerdest." });
         }
     }
 }

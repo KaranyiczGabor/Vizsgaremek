@@ -97,6 +97,7 @@ namespace QuizAPI.Services
             return question;
         }
 
+
         public async Task<Question> DeleteQuestion(Guid id)
         {
             var question = await _context.Questions
@@ -114,6 +115,28 @@ namespace QuizAPI.Services
                 return question;
             }
             return null;
+        }
+        public async Task<List<Answer>> GetAnswersAdmin()
+        {
+            var answers = await _context.Answers.ToListAsync();
+
+            return answers;
+        }
+
+        public async Task<Answer> EditAnswer(Guid id, [FromBody] AnswerDto model)
+        {
+            var answer = await _context.Answers.SingleOrDefaultAsync(x => x.Id == id);
+
+            if (answer == null)
+            {
+                return null;
+            }
+
+            if (!string.IsNullOrEmpty(model.AnswerText))
+            {
+                answer.AnswerText = model.AnswerText;
+            }
+            return answer;
         }
     }
 }
