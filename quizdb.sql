@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2025. Feb 27. 08:45
+-- Létrehozás ideje: 2025. Már 06. 11:01
 -- Kiszolgáló verziója: 10.4.32-MariaDB
 -- PHP verzió: 8.0.30
 
@@ -201,6 +201,16 @@ CREATE TABLE `attempts` (
   `time` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
+--
+-- A tábla adatainak kiíratása `attempts`
+--
+
+INSERT INTO `attempts` (`id`, `uid`, `score`, `time`) VALUES
+('1c22d453-b2ca-4c34-9ad1-3f97a5ad774a', '5fe3921d-c391-4843-8305-72ed6b9d86c7', 1, '2025-03-06 10:59:17'),
+('2526f4c8-29b8-4f9f-9d27-41186a48c4af', '5fe3921d-c391-4843-8305-72ed6b9d86c7', 1, '2025-03-06 10:59:40'),
+('ef898eab-f1d4-4ead-a4b1-6dd848017400', '5fe3921d-c391-4843-8305-72ed6b9d86c7', 1, '2025-03-06 10:58:53'),
+('fc5712fc-4546-402c-96c2-a38585c7c07f', '5fe3921d-c391-4843-8305-72ed6b9d86c7', 1, '2025-03-06 10:56:24');
+
 -- --------------------------------------------------------
 
 --
@@ -234,18 +244,6 @@ INSERT INTO `questions` (`id`, `question`, `category`, `difficulty`) VALUES
 ('e8d0d303-e9e2-11ef-b055-706655625e18', 'Melyik szám négyzete 289?', 'Matematika', 3),
 ('e8d0d31b-e9e2-11ef-b055-706655625e18', 'Melyik évben alapították az olimpiai játékokat?', 'Sport', 3),
 ('e8d0d33a-e9e2-11ef-b055-706655625e18', 'Ki volt a híres reneszánsz költő, aki a „Divina Commedia”-t írta?', 'Irodalom', 3);
-
--- --------------------------------------------------------
-
---
--- Tábla szerkezet ehhez a táblához `user`
---
-
-CREATE TABLE `user` (
-  `id` char(36) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `name` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 -- --------------------------------------------------------
 
@@ -336,12 +334,6 @@ ALTER TABLE `attempts`
 -- A tábla indexei `questions`
 --
 ALTER TABLE `questions`
-  ADD PRIMARY KEY (`id`);
-
---
--- A tábla indexei `user`
---
-ALTER TABLE `user`
   ADD PRIMARY KEY (`id`);
 
 --
