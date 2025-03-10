@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2025. Már 06. 11:01
+-- Létrehozás ideje: 2025. Már 06. 11:28
 -- Kiszolgáló verziója: 10.4.32-MariaDB
 -- PHP verzió: 8.0.30
 
@@ -60,7 +60,27 @@ INSERT INTO `answers` (`id`, `question_id`, `answer_text`, `correct`) VALUES
 ('fd710cfc-e9e2-11ef-b055-706655625e18', 'e8d0d20d-e9e2-11ef-b055-706655625e18', 'Jókai Mór', 0),
 ('fd710db3-e9e2-11ef-b055-706655625e18', 'e8d0d20d-e9e2-11ef-b055-706655625e18', 'Gárdonyi Géza', 0),
 ('fd710e5d-e9e2-11ef-b055-706655625e18', 'e8d0d20d-e9e2-11ef-b055-706655625e18', 'Molnár Ferenc', 1),
-('fd710f08-e9e2-11ef-b055-706655625e18', 'e8d0d20d-e9e2-11ef-b055-706655625e18', 'Mikszáth Kálmán', 0);
+('fd710f08-e9e2-11ef-b055-706655625e18', 'e8d0d20d-e9e2-11ef-b055-706655625e18', 'Mikszáth Kálmán', 0),
+('fd7217c3-e9e2-11ef-b055-706655625e18', 'e8d0f701-e9e2-11ef-b055-706655625e18', 'Róma', 1),
+('fd7218d7-e9e2-11ef-b055-706655625e18', 'e8d0f701-e9e2-11ef-b055-706655625e18', 'Milánó', 0),
+('fd7219e9-e9e2-11ef-b055-706655625e18', 'e8d0f701-e9e2-11ef-b055-706655625e18', 'Velence', 0),
+('fd721b1b-e9e2-11ef-b055-706655625e18', 'e8d0f701-e9e2-11ef-b055-706655625e18', 'Firenzé', 0),
+('fd721c3d-e9e2-11ef-b055-706655625e18', 'e8d0f811-e9e2-11ef-b055-706655625e18', 'Kék bálna', 1),
+('fd721d4f-e9e2-11ef-b055-706655625e18', 'e8d0f811-e9e2-11ef-b055-706655625e18', 'Afrikai elefánt', 0),
+('fd721e61-e9e2-11ef-b055-706655625e18', 'e8d0f811-e9e2-11ef-b055-706655625e18', 'Zebra', 0),
+('fd721f73-e9e2-11ef-b055-706655625e18', 'e8d0f811-e9e2-11ef-b055-706655625e18', 'Gorilla', 0),
+('fd722084-e9e2-11ef-b055-706655625e18', 'e8d0f922-e9e2-11ef-b055-706655625e18', 'J.K. Rowling', 1),
+('fd7221b7-e9e2-11ef-b055-706655625e18', 'e8d0f922-e9e2-11ef-b055-706655625e18', 'George R.R. Martin', 0),
+('fd7222d9-e9e2-11ef-b055-706655625e18', 'e8d0f922-e9e2-11ef-b055-706655625e18', 'J.R.R. Tolkien', 0),
+('fd7223fb-e9e2-11ef-b055-706655625e18', 'e8d0f922-e9e2-11ef-b055-706655625e18', 'Stephen King', 0),
+('fd72250d-e9e2-11ef-b055-706655625e18', 'e8d0faaa-e9e2-11ef-b055-706655625e18', 'Jupiter', 1),
+('fd72262f-e9e2-11ef-b055-706655625e18', 'e8d0faaa-e9e2-11ef-b055-706655625e18', 'Mars', 0),
+('fd72274e-e9e2-11ef-b055-706655625e18', 'e8d0faaa-e9e2-11ef-b055-706655625e18', 'Szaturnusz', 0),
+('fd722870-e9e2-11ef-b055-706655625e18', 'e8d0faaa-e9e2-11ef-b055-706655625e18', 'Neptunusz', 0),
+('fd72297b-e9e2-11ef-b055-706655625e18', 'e8d0fbbf-e9e2-11ef-b055-706655625e18', 'E = mc²', 1),
+('fd722a9d-e9e2-11ef-b055-706655625e18', 'e8d0fbbf-e9e2-11ef-b055-706655625e18', 'a = v/t', 0),
+('fd722bbc-e9e2-11ef-b055-706655625e18', 'e8d0fbbf-e9e2-11ef-b055-706655625e18', 'F = ma', 0),
+('fd722d0f-e9e2-11ef-b055-706655625e18', 'e8d0fbbf-e9e2-11ef-b055-706655625e18', 'V = IR', 0);
 
 -- --------------------------------------------------------
 
@@ -206,8 +226,18 @@ CREATE TABLE `attempts` (
 --
 
 INSERT INTO `attempts` (`id`, `uid`, `score`, `time`) VALUES
+('173371f5-905d-485e-9587-be2e1a5d2ad9', '5fe3921d-c391-4843-8305-72ed6b9d86c7', 1, '2025-03-06 11:28:10'),
 ('1c22d453-b2ca-4c34-9ad1-3f97a5ad774a', '5fe3921d-c391-4843-8305-72ed6b9d86c7', 1, '2025-03-06 10:59:17'),
+('1cd8a2cd-33ab-4cc6-bec8-abc097ef109f', '5fe3921d-c391-4843-8305-72ed6b9d86c7', 2, '2025-03-06 11:28:02'),
 ('2526f4c8-29b8-4f9f-9d27-41186a48c4af', '5fe3921d-c391-4843-8305-72ed6b9d86c7', 1, '2025-03-06 10:59:40'),
+('276dd1f0-0e1d-496f-a5e1-d6c57a292f4f', '5fe3921d-c391-4843-8305-72ed6b9d86c7', 1, '2025-03-06 11:27:13'),
+('2fe6c21d-cf3c-422c-af21-e0536e9c722c', '5fe3921d-c391-4843-8305-72ed6b9d86c7', 1, '2025-03-06 11:27:20'),
+('31207733-666f-4ec8-a435-0712c62f961c', '5fe3921d-c391-4843-8305-72ed6b9d86c7', 0, '2025-03-06 11:11:06'),
+('50fbf887-8498-4f53-80fc-f4fd8e1e4b09', '5fe3921d-c391-4843-8305-72ed6b9d86c7', 1, '2025-03-06 11:23:46'),
+('7a18bb41-9b57-4e14-91b0-280ce6a2f173', '5fe3921d-c391-4843-8305-72ed6b9d86c7', 1, '2025-03-06 11:11:00'),
+('bc8f3ed7-b55d-4d3f-83d1-57d6cf2c891a', '5fe3921d-c391-4843-8305-72ed6b9d86c7', 1, '2025-03-06 11:23:00'),
+('c11df2da-c478-4102-bf5c-acd13b40fc24', '5fe3921d-c391-4843-8305-72ed6b9d86c7', 2, '2025-03-06 11:27:48'),
+('cfccae3a-77ce-4676-a39b-32c585b93488', '5fe3921d-c391-4843-8305-72ed6b9d86c7', 1, '2025-03-06 11:23:22'),
 ('ef898eab-f1d4-4ead-a4b1-6dd848017400', '5fe3921d-c391-4843-8305-72ed6b9d86c7', 1, '2025-03-06 10:58:53'),
 ('fc5712fc-4546-402c-96c2-a38585c7c07f', '5fe3921d-c391-4843-8305-72ed6b9d86c7', 1, '2025-03-06 10:56:24');
 
@@ -243,7 +273,12 @@ INSERT INTO `questions` (`id`, `question`, `category`, `difficulty`) VALUES
 ('e8d0d2e4-e9e2-11ef-b055-706655625e18', 'Melyik a legmélyebb óceáni árok?', 'Földrajz', 3),
 ('e8d0d303-e9e2-11ef-b055-706655625e18', 'Melyik szám négyzete 289?', 'Matematika', 3),
 ('e8d0d31b-e9e2-11ef-b055-706655625e18', 'Melyik évben alapították az olimpiai játékokat?', 'Sport', 3),
-('e8d0d33a-e9e2-11ef-b055-706655625e18', 'Ki volt a híres reneszánsz költő, aki a „Divina Commedia”-t írta?', 'Irodalom', 3);
+('e8d0d33a-e9e2-11ef-b055-706655625e18', 'Ki volt a híres reneszánsz költő, aki a „Divina Commedia”-t írta?', 'Irodalom', 3),
+('e8d0f701-e9e2-11ef-b055-706655625e18', 'Mi a fővárosa Olaszországnak?', 'Földrajz', 1),
+('e8d0f811-e9e2-11ef-b055-706655625e18', 'Mi a legnagyobb állat a földön?', 'Természet', 1),
+('e8d0f922-e9e2-11ef-b055-706655625e18', 'Ki írta a \"Harry Potter\" könyvsorozatot?', 'Irodalom', 1),
+('e8d0faaa-e9e2-11ef-b055-706655625e18', 'Melyik bolygó a legnagyobb a Naprendszerben?', 'Tudomány', 1),
+('e8d0fbbf-e9e2-11ef-b055-706655625e18', 'Mi volt Albert Einstein híres képlete?', 'Tudomány', 2);
 
 -- --------------------------------------------------------
 
