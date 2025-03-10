@@ -52,8 +52,8 @@ export default function Navbar() {
             <>
               
               <li>
-                <Link to="/profile" className="profile-icon">
-                  <i className="bi bi-person-circle"></i>
+                <Link to="/profile" className="profile-icon" >
+                  <i className="bi bi-person-circle h2 mt-4 " ></i>
                 </Link>
               </li>
             </>

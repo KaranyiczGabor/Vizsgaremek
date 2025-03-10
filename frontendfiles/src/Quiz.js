@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function Quiz() {
     const navigate = useNavigate();
-    const API_BASE_URL = "http://192.168.121.70:5248/api/users";
+    const API_BASE_URL = "http://192.168.125.193:5248/api/users";
 
     const [categories] = useState(["Történelem", "Földrajz", "Matematika", "Sport", "Irodalom"]); 
     const [selectedCategory, setSelectedCategory] = useState(null);
@@ -174,8 +174,8 @@ export default function Quiz() {
     };
 
     return (
-        <div className="quiz-container text-center mt-5">
-            <h2>IQInfinity Kvíz</h2>
+        <div className="quiz-container text-center mt-5" >
+            <h2 style={{padding:"15px"}}>IQInfinity Kvíz</h2>
 
             {!isLoggedIn && (
                 <div className="alert alert-warning">
