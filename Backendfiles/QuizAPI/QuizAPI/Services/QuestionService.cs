@@ -70,5 +70,50 @@ namespace QuizAPI.Services
             return score;
         }
 
+
+        public async Task<List<Question>> GetQuestionsAdmin()
+        {
+            var questions = await _context.Questions.ToListAsync();
+
+            return questions;
+        }
+
+        public async Task<Question> EditQuestion(Guid id, [FromBody] QuestionDto model)
+        {
+            var question = await _context.Questions.SingleOrDefaultAsync(x => x.Id == id);
+            if (question == null)
+            {
+                return null;
+            }
+
+            if (!string.IsNullOrEmpty(model.Question1))
+            {
+                question.Question1 = model.Question1;
+            }
+
+            _context.Questions.Update(question);
+            _context.SaveChanges();
+
+            return question;
+        }
+
+        public async Task<Question> DeleteQuestion(Guid id)
+        {
+            var question = await _context.Questions
+                .Include(a => a.Answers)
+                .SingleOrDefaultAsync(x =>x.Id == id);
+
+            if (question != null)
+            {
+                _context.Answers.RemoveRange(question.Answers);
+                
+                _context.Questions.Remove(question);
+                
+                await _context.SaveChangesAsync();
+                
+                return question;
+            }
+            return null;
+        }
     }
 }

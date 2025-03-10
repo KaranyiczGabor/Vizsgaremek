@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using QuizAPI.Models;
+using QuizAPI.Services;
 using QuizAPI.Services.Dtos;
 using QuizAPI.Services.IService;
 
@@ -15,23 +16,27 @@ namespace QuizAPI.Controllers
     public class AdminController : ControllerBase
     {
         private readonly UserManager<ApplicationUser> _userManager;
-        private readonly IAuthService auth;
+        private readonly IAuthService _auth;
+        private readonly IQuestionService _questions;
 
-        public AdminController(UserManager<ApplicationUser> userManager)
+        public AdminController(UserManager<ApplicationUser> userManager, IAuthService auth, IQuestionService questions)
         {
             _userManager = userManager;
+            _auth = auth;
+            _questions = questions;
         }
 
         [HttpPost("assignrole")]
         public async Task<ActionResult> AssignRole(string UserName, string roleName)
         {
-            var res = await auth.AssignRole(UserName, roleName);
+            var res = await _auth.AssignRole(UserName, roleName);
             if (res != null)
             {
                 return Ok(res);
             }
             return BadRequest();
         }
+
         [HttpGet("GetUsers")]
         public async Task<ActionResult<IEnumerable<ApplicationUser>>> GetUsers()
         {
@@ -55,7 +60,7 @@ namespace QuizAPI.Controllers
             }
             return Ok(user);
         }
-        [HttpPut("{id}")]
+        [HttpPut("UpdateUser")]
         public async Task<ActionResult> UpdateUser(string id, [FromBody] AdminDto model)
         {
             var user = await _userManager.FindByIdAsync(id);
@@ -78,7 +83,7 @@ namespace QuizAPI.Controllers
             return Ok(new { Message = "A felhasznalo sikeresen frissitve." });
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("DeleteUser")]
         public async Task<ActionResult> DeleteUser(string id)
         {
             var user = await _userManager.FindByIdAsync(id);
@@ -96,6 +101,44 @@ namespace QuizAPI.Controllers
             }
 
             return Ok(new { Message = "A felhasznalo torolve lett!" });
+        }
+
+
+        [HttpGet("getAllQuestions")]
+        public async Task<ActionResult> GetAllQuestions()
+        {
+            var questions = await _questions.GetQuestionsAdmin();
+
+            if (questions != null)
+            {
+                return Ok(questions);
+            }
+
+            return BadRequest();
+        }
+
+        [HttpPut("EditQuestion")]
+        public async Task<ActionResult> EditQuestion(Guid id, QuestionsDto.QuestionDto model)
+        {
+            var question = await _questions.EditQuestion(id, model);
+            if (question != null)
+            {
+                return Ok(new { result = question, message = "Sikeresen megvaltoztattad a kerdest." });
+            }
+            return BadRequest(new { result = "", message="Nem sikerult megvaltoztatni a kerdest."});
+        }
+
+        [HttpDelete("DeleteQuestionWithAnswer")]
+        public async Task<ActionResult> DeleteQuestionWithAnswer(Guid id)
+        {
+            var questions = await _questions.DeleteQuestion(id);
+
+            if (questions != null)
+            {
+                return Ok(questions);
+            }
+
+            return BadRequest();
         }
     }
 }
