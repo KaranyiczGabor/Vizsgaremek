@@ -71,11 +71,24 @@ namespace QuizAPI.Services
         }
 
 
-        public async Task<List<Question>> GetQuestionsAdmin()
+        public async Task<List<QuestionDto>> GetQuestionsAdmin(string Category, int Difficulty)
         {
-            var questions = await _context.Questions.ToListAsync();
+            var questions = await _context.Questions
+            .Where(q => q.Category.ToLower() == Category.ToLower() && q.Difficulty == Difficulty)
+            .Include(q => q.Answers)
+            .ToListAsync();
 
-            return questions;
+            var result = questions.Select(q =>
+                new QuestionDto(
+                    q.Id,
+                    q.Question1,
+                    q.Category,
+                    q.Difficulty,
+                    q.Answers.Select(a => new AnswerDto(a.Id, a.AnswerText, a.QuestionId, a.Correct)).ToList()
+                )
+            ).ToList();
+
+            return result; 
         }
 
         public async Task<Question> EditQuestion(Guid id, [FromBody] QuestionDto model)

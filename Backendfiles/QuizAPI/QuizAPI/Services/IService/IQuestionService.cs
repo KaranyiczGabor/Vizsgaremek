@@ -9,7 +9,7 @@ namespace QuizAPI.Services.IService
 
         Task<int> CheckAnswers(string userId, List<QuestionsDto.UserAnswerDto> userAnswers);
 
-        Task<List<Question>> GetQuestionsAdmin();
+        Task<List<QuestionsDto.QuestionDto>> GetQuestionsAdmin(string Category, int Difficulty);
 
         Task<Question> DeleteQuestion(Guid id);
 

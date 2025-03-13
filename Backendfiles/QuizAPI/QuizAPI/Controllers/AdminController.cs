@@ -105,9 +105,9 @@ namespace QuizAPI.Controllers
 
 
         [HttpGet("getAllQuestions")]
-        public async Task<ActionResult> GetAllQuestions()
+        public async Task<ActionResult> GetAllQuestions(string Category, int Difficulty)
         {
-            var questions = await _questions.GetQuestionsAdmin();
+            var questions = await _questions.GetQuestions(Category, Difficulty);
 
             if (questions != null)
             {
