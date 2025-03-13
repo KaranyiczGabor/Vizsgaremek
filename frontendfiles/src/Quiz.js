@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function Quiz() {
     const navigate = useNavigate();
-    const API_BASE_URL = "http://192.168.125.193:5248/api/users";
+    const API_BASE_URL = "http://192.168.125.70:5248/api/users";
 
     const [categories] = useState(["Történelem", "Földrajz", "Matematika", "Sport", "Irodalom"]); 
     const [selectedCategory, setSelectedCategory] = useState(null);

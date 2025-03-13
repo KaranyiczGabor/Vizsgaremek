@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react'
 import './Profile.css';
 import { Link, useNavigate } from 'react-router-dom';
 
+
 export default function Profile() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [isAdmin, setIsAdmin] = useState(false);
     const [loading, setLoading] = useState(true);
+    
     let navigate = useNavigate()
 
     useEffect(() => {
@@ -44,7 +46,6 @@ export default function Profile() {
         window.location.reload();
     };
     
-
     
     return (
         <div className="container mt-4 mb-4 p-3 d-flex justify-content-center">
@@ -52,11 +53,13 @@ export default function Profile() {
                 <div className="d-flex flex-column justify-content-center align-items-center">
                     
                         <img src="https://i.imgur.com/wvxPV9S.png" height="100" width="100" alt="Profile" />
+                        
                     
                     <span className="name mt-3">asd</span>
                     <span className="idd">asd</span>
                     <div className="d-flex flex-row justify-content-center align-items-center gap-2">
                         <span className="idd1">asd</span>
+                        
                         <span>
                             <i className="fa fa-copy"></i>
                         </span>
