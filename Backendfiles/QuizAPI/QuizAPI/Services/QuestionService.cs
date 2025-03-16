@@ -33,7 +33,7 @@ namespace QuizAPI.Services
                     q.Question1,
                     q.Category,
                     q.Difficulty,
-                    q.Answers.Select(a => new AnswerDto(a.Id, a.AnswerText, a.QuestionId, a.Correct)).ToList()
+                    q.Answers.Select(a => new AnswerDto(a.Id, a.AnswerText, a.QuestionId, a.Correct)).OrderBy(a => Guid.NewGuid()).ToList()
                 )
             ).ToList();
 
