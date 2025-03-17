@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './AdminUser.css';
 
-
+const API_BASE_URL = "http://192.168.125.193:5248/api/admin";
 const AdminUser = () => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -24,7 +24,7 @@ const AdminUser = () => {
       const decodedPayload = JSON.parse(atob(payload));
       
       if (decodedPayload.role !== "Admin") {
-        navigate('/'); // Redirect non-admins
+        navigate('/');
         return;
       }
     } catch (error) {
@@ -40,7 +40,7 @@ const AdminUser = () => {
     setLoading(true);
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://192.168.125.70:5248/api/admin/GetUsers', {
+      const response = await fetch(`${API_BASE_URL}/GetUsers`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -64,7 +64,7 @@ const AdminUser = () => {
   const getUserById = async (userId) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://192.168.125.70:5248/api/admin/GetUsersbyId?Id=${userId}`, {
+      const response = await fetch(`${API_BASE_URL}/GetUsersbyId?Id=${userId}`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -101,7 +101,7 @@ const AdminUser = () => {
     
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://192.168.125.70:5248/api/admin/DeleteUser/${userId}`, {
+      const response = await fetch(`${API_BASE_URL}/DeleteUser?id=${userId}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`
@@ -126,9 +126,8 @@ const AdminUser = () => {
   };
 
   const filteredUsers = users.filter(user => 
-    user.username?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    user.email?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    user.name?.toLowerCase().includes(searchTerm.toLowerCase())
+    user.userName?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    user.email?.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   if (loading) {
@@ -229,7 +228,7 @@ const AdminUser = () => {
                   <div className="card-body">
                     <div className="text-center mb-4">
                       <img 
-                        src={selectedUser.avatar || "https://i.imgur.com/wvxPV9S.png"} 
+                        src={"https://i.imgur.com/wvxPV9S.png"} 
                         alt="Avatar" 
                         className="rounded-circle"
                         style={{ width: '100px', height: '100px', objectFit: 'cover' }}
@@ -246,7 +245,7 @@ const AdminUser = () => {
                         <tbody>
                           <tr>
                             <td><strong>Felhasználónév:</strong></td>
-                            <td>{selectedUser.username}</td>
+                            <td>{selectedUser.userName}</td>
                           </tr>
                           <tr>
                             <td><strong>Email:</strong></td>
@@ -284,7 +283,7 @@ const AdminUser = () => {
                           className="btn btn-outline-danger"
                           onClick={() => handleUserDelete(selectedUser.id)}
                         >
-                          <i className="fa fa-trash me-1"></i> Törlés
+                          <i className="fa fa-trash me-1"></i> Kitiltás
                         </button>
                       </div>
                     </div>
