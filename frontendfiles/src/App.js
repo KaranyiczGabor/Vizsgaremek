@@ -6,7 +6,6 @@ import Register from './Register';
 import Login from './Login';
 import Quiz from './Quiz';
 import Profile from './Profile';
-import Footer from './Footer';
 import Adminquestion from './Adminquestion';
 import Adminuser from './Adminuser';
 
@@ -29,7 +28,7 @@ function App() {
         <Route path="/admin/Question" element={<Adminquestion/>}/>
         <Route path="/admin/User" element={<Adminuser/>}/>
       </Routes>
-      <Footer/>
+       
       
       
     </div>
