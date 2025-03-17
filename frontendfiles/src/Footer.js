@@ -4,9 +4,9 @@ import './Footer.css';
 
 export default function Footer() {
     return (
-        <div>
+        
             <footer className="footer bg-dark text-light py-2 mt-1">
-                <div className="container text-center">
+                <div className=" text-center">
                     <p className="mb-2">&copy; {new Date().getFullYear()} IQInfinity. Minden jog fenntartva.</p>
                     <div className="social-icons d-flex justify-content-center gap-3">
                         <a href="#" className="text-light"><i className="fa fa-twitter"></i></a>
@@ -21,6 +21,6 @@ export default function Footer() {
                     </div>
                 </div>
             </footer>
-        </div>
+        
     )
 }

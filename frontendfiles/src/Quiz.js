@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import Footer from "./Footer";
 
 export default function Quiz() {
     const navigate = useNavigate();
-    const API_BASE_URL = "http://192.168.125.70:5248/api/users";
+    const API_BASE_URL = "http://192.168.125.193:5248/api/users";
 
     const [categories] = useState(["Történelem", "Földrajz", "Matematika", "Sport", "Irodalom"]); 
     const [selectedCategory, setSelectedCategory] = useState(null);
@@ -117,7 +118,7 @@ export default function Quiz() {
             if (currentQuestion + 1 < questions.length) {
                 setCurrentQuestion(prev => prev + 1);
             }
-        }, 1500); // Shortened from 5000ms to 1500ms
+        }, 1500); 
     };
 
     const finishQuiz = () => {
@@ -174,11 +175,12 @@ export default function Quiz() {
     };
 
     return (
+        <div >
         <div className="quiz-container text-center mt-5" >
-            <h2 style={{padding:"15px"}}>IQInfinity Kvíz</h2>
+            <h2 style={{paddingTop:"10px"}}>IQInfinity Kvíz</h2>
 
             {!isLoggedIn && (
-                <div className="alert alert-warning">
+                <div className="alert alert-warning" >
                     <i className="bi bi-exclamation-triangle"></i> Be kell jelentkezni a pontszám mentéséhez.
                     <button className="btn btn-sm btn-outline-primary ms-2" onClick={() => navigate("/login")}>
                         Bejelentkezés
@@ -189,20 +191,20 @@ export default function Quiz() {
             {offline && <div className="alert alert-danger"><i className="bi bi-wifi-off"></i> Offline mód: az eredmény nem menthető.</div>}
 
             {!selectedCategory ? (
-                <div>
+                <div className="container mt-4">
                     <h4>Válassz egy kategóriát:</h4>
                     {categories.map((category, index) => (
-                        <button key={index} className="btn btn-primary m-2" onClick={() => setSelectedCategory(category)}>
+                        <button key={index} className="btn btn-primary d-flex flex-wrap justify-content-center gap-3 m-2"   onClick={() => setSelectedCategory(category)}>
                             {category}
                         </button>
                     ))}
                 </div>
             ) : !selectedDifficulty ? (
-                <div>
+                <div className="container mt-4 ">
                     <h4>Kategória: <b>{selectedCategory}</b></h4>
                     <h5>Válassz egy nehézségi szintet:</h5>
                     {[1, 2, 3].map(difficulty => (
-                        <button key={difficulty} className="btn btn-secondary m-2" onClick={() => setSelectedDifficulty(difficulty)}>
+                        <button key={difficulty} className="btn btn-secondary m-2"  onClick={() => setSelectedDifficulty(difficulty)}>
                             {difficulty === 1 ? "Könnyű" : difficulty === 2 ? "Közepes" : "Nehéz"}
                         </button>
                     ))}
@@ -221,8 +223,8 @@ export default function Quiz() {
                 </div>
             ) : showResult ? (
                 <div>
-                    <h3>✅ Eredményed: {score} / {questions.length}</h3>
-                    <p>Helyes válaszok: {answerTracking.filter(a => a.isCorrect).length}</p>
+                    <h3>✅ Eredményed:{score} pont</h3>
+                    <p>Helyes válaszok: {answerTracking.filter(a => a.isCorrect).length} / {questions.length}</p>
                     <p>Hibás válaszok: {answerTracking.filter(a => !a.isCorrect).length}</p>
                     
                     {isLoggedIn && savingScore && (
@@ -294,6 +296,10 @@ export default function Quiz() {
                     </div>
                 </div>
             )}
+            </div>
+            <div>
+            <Footer/>
+            </div>
         </div>
     );
 }
