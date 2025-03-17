@@ -106,11 +106,36 @@ namespace QuizAPI.Controllers
             return Ok(new { Message = "A felhasznalo torolve lett!" });
         }
 
-
         [HttpGet("getAllQuestionsWAnswers")]
         public async Task<ActionResult> GetAllQuestionsWAnswers()
         {
             var questions = await _context.Questions
+                .Include(q => q.Answers)
+                .ToListAsync();
+
+            var result = questions.Select(q =>
+                new QuestionDto(
+                    q.Id,
+                    q.Question1,
+                    q.Category,
+                    q.Difficulty,
+                    q.Answers.Select(a => new AnswerDto(a.Id, a.AnswerText, a.QuestionId, a.Correct)).OrderBy(a => Guid.NewGuid()).ToList()
+                )
+            ).ToList();
+
+            if (result != null)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest();
+        }
+
+        [HttpGet("getAllQuestionsWAnswersById")]
+        public async Task<ActionResult> GetAllQuestionsWAnswersById(Guid id)
+        {
+            var questions = await _context.Questions
+                .Where(q=> q.Id == id)
                 .Include(q => q.Answers)
                 .ToListAsync();
 
