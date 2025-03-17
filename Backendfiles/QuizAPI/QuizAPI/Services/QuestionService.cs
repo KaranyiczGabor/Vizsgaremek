@@ -50,9 +50,22 @@ namespace QuizAPI.Services
                     .Where(a => a.QuestionId == userAnswer.QuestionId && a.Correct)
                     .FirstOrDefaultAsync();
 
+                var questionDifficulty = await _context.Questions.Where(q => q.Id == userAnswer.QuestionId).FirstOrDefaultAsync();
+
                 if (correctAnswer != null && correctAnswer.AnswerText == userAnswer.AnswerText)
                 {
-                    score++;
+                    if (questionDifficulty.Difficulty == 1)
+                    {
+                        score++;
+                    }
+                    else if (questionDifficulty.Difficulty == 2)
+                    {
+                        score += 2;
+                    }
+                    else if (questionDifficulty.Difficulty == 3)
+                    {
+                        score += 3;
+                    }
                 }
             }
 
