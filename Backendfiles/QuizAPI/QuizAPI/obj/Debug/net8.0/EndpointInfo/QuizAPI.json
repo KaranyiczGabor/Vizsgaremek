@@ -170,27 +170,10 @@
         }
       }
     },
-    "/api/admin/getAllQuestions": {
+    "/api/admin/getAllQuestionsWAnswers": {
       "get": {
         "tags": [
           "Admin"
-        ],
-        "parameters": [
-          {
-            "name": "Category",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "Difficulty",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
         ],
         "responses": {
           "200": {
@@ -254,18 +237,6 @@
               "format": "uuid"
             }
           }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/admin/GetAnswers": {
-      "get": {
-        "tags": [
-          "Admin"
         ],
         "responses": {
           "200": {

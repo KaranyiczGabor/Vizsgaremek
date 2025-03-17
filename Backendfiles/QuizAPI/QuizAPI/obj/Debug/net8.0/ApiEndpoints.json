@@ -96,29 +96,8 @@
   },
   {
     "ContainingType": "QuizAPI.Controllers.AdminController",
-    "Method": "GetAllQuestions",
-    "RelativePath": "api/admin/getAllQuestions",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "Category",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Difficulty",
-        "Type": "System.Int32",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "QuizAPI.Controllers.AdminController",
-    "Method": "GetAnswersAdmin",
-    "RelativePath": "api/admin/GetAnswers",
+    "Method": "GetAllQuestionsWAnswers",
+    "RelativePath": "api/admin/getAllQuestionsWAnswers",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,

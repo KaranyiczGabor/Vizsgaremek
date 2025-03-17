@@ -7,6 +7,7 @@ using QuizAPI.Models;
 using QuizAPI.Services;
 using QuizAPI.Services.Dtos;
 using QuizAPI.Services.IService;
+using static QuizAPI.Services.Dtos.QuestionsDto;
 
 namespace QuizAPI.Controllers
 {
@@ -18,12 +19,14 @@ namespace QuizAPI.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IAuthService _auth;
         private readonly IQuestionService _questions;
+        private readonly QuizdbContext _context;
 
-        public AdminController(UserManager<ApplicationUser> userManager, IAuthService auth, IQuestionService questions)
+        public AdminController(UserManager<ApplicationUser> userManager, IAuthService auth, IQuestionService questions, QuizdbContext context)
         {
             _userManager = userManager;
             _auth = auth;
             _questions = questions;
+            _context = context;
         }
 
         [HttpPost("assignrole")]
@@ -104,14 +107,26 @@ namespace QuizAPI.Controllers
         }
 
 
-        [HttpGet("getAllQuestions")]
-        public async Task<ActionResult> GetAllQuestions(string Category, int Difficulty)
+        [HttpGet("getAllQuestionsWAnswers")]
+        public async Task<ActionResult> GetAllQuestionsWAnswers()
         {
-            var questions = await _questions.GetQuestions(Category, Difficulty);
+            var questions = await _context.Questions
+                .Include(q => q.Answers)
+                .ToListAsync();
 
-            if (questions != null)
+            var result = questions.Select(q =>
+                new QuestionDto(
+                    q.Id,
+                    q.Question1,
+                    q.Category,
+                    q.Difficulty,
+                    q.Answers.Select(a => new AnswerDto(a.Id, a.AnswerText, a.QuestionId, a.Correct)).OrderBy(a => Guid.NewGuid()).ToList()
+                )
+            ).ToList();
+
+            if (result != null)
             {
-                return Ok(questions);
+                return Ok(result);
             }
 
             return BadRequest();
@@ -140,19 +155,6 @@ namespace QuizAPI.Controllers
 
             return BadRequest(new { result = questions, message = "Sikertelen torles." });
         }
-        [HttpGet("GetAnswers")]
-        public async Task<ActionResult> GetAnswersAdmin()
-        {
-            var ans = await _questions.GetAnswersAdmin();
-
-            if (ans != null)
-            {
-                return Ok(ans);
-            }
-
-            return BadRequest();
-        }
-
         [HttpPut("EditAnswer")]
         public async Task<ActionResult> EditAnswer(Guid id, QuestionsDto.AnswerDto model)
         {
