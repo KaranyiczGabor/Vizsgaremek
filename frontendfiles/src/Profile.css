@@ -6,7 +6,7 @@ body {
 }
 
 .cards {
-    width: 350px;
+    width: 300px;
     background-color: #efefef;
     border: none;
     cursor: pointer;

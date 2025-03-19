@@ -33,6 +33,7 @@ export default function Profile() {
         
         setLoading(false);
     }, []);
+    
 
 
 
@@ -49,7 +50,7 @@ export default function Profile() {
     
     return (
         <div className="container mt-4 mb-4 p-3 d-flex justify-content-center">
-            <div className="card p-4" >
+            <div className="cards p-4" >
                 <div className="d-flex flex-column justify-content-center align-items-center">
                     
                         <img src="https://i.imgur.com/wvxPV9S.png" height="100" width="100" alt="Profile" />
