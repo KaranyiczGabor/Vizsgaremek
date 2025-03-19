@@ -83,7 +83,7 @@ namespace QuizAPI.Controllers
         [HttpPost("Leaderboard")]
         public async Task<IActionResult> Leaderboard()
         {
-            var leaderboard = _leaderboardService.Leaderboard();
+            var leaderboard = await _leaderboardService.Leaderboard();
 
             if (leaderboard != null)
             {

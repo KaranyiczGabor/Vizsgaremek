@@ -17,16 +17,19 @@ namespace QuizAPI.Services
         public async Task<List<LeaderboardDto>> Leaderboard()
         {
             var leaderboard = await _context.Attempts
-                 .Join(_context.Users,
-                  attempt => attempt.Uid.ToString(),  // Convert Uid (Guid) to string
-                  user => user.Id,                    // Match with IdentityUser.Id (string)
-                  (attempt, user) => new LeaderboardDto
-                  {
-                      UserName = user.UserName,
-                      Score = attempt.Score
-                  })
-            .OrderByDescending(l => l.Score)  // Sort by score
-            .ToListAsync();
+                .GroupBy(attempt => attempt.Uid) 
+                .Select(group => new LeaderboardDto
+                {
+                    UserName = _context.Users
+                        .Where(user => user.Id == group.Key.ToString())
+                        .Select(user => user.UserName)
+                        .FirstOrDefault(),
+                    Score = group.Sum(attempt => attempt.Score) 
+                })
+                .OrderByDescending(l => l.Score) 
+                .Take(10) 
+                .ToListAsync();
+
             return leaderboard;
         }
     }

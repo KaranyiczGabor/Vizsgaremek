@@ -7,6 +7,7 @@ using QuizAPI.Services.IService;
 using QuizAPI.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.OpenApi.Models;
+using System.Text.Json.Serialization;
 
 namespace QuizAPI
 {
@@ -102,11 +103,6 @@ namespace QuizAPI
             });
 
             builder.Services.AddControllers();
-            //.AddJsonOptions(options =>
-            //{
-            //    options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
-            //    options.JsonSerializerOptions.WriteIndented = true;
-            //});
 
             builder.Services.AddEndpointsApiExplorer();
 
