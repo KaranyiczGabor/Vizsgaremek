@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 
 export default function Adminquestion() {
-  const API_BASE_URL = "http://192.168.125.193:5248/api/admin";
+  const API_BASE_URL = "http://192.168.125.240:5248/api/admin";
   const [questions, setQuestions] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -76,21 +76,28 @@ export default function Adminquestion() {
           'Authorization': `Bearer ${token}`
         }
       });
-
+  
       if (!response.ok) {
         throw new Error('Kérdés adatainak betöltése sikertelen');
       }
-
+  
       const questionData = await response.json();
-      setSelectedQuestion(questionData);
+      
+      // Check if the response is an array and extract the first item
+      if (Array.isArray(questionData) && questionData.length > 0) {
+        setSelectedQuestion(questionData[0]);
+      } else {
+        setSelectedQuestion(questionData);
+      }
     } catch (err) {
       console.error('Error fetching question details:', err);
       setError('Hiba a kérdés adatainak betöltésekor');
     }
   };
-
   const handleQuestionSelect = (questionId) => {
     getQuestionById(questionId);
+    
+    
   };
 
   const handleSearchChange = (e) => {
@@ -167,7 +174,7 @@ export default function Adminquestion() {
   const putquestionbyid = async (questionId) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`${API_BASE_URL}/EditQuestion?id=${questionId}`, {
+      const response = await fetch(`${API_BASE_URL}/EditQuestion?id=${editFormData.id}`, {
         method: 'PUT',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -188,6 +195,7 @@ export default function Adminquestion() {
       // Update selected question if viewing it
       if (selectedQuestion && selectedQuestion.id === editFormData.id) {
         setSelectedQuestion({...selectedQuestion, ...editFormData});
+        console.log(selectedQuestion);
       }
       
       setIsEditing(false);
@@ -198,7 +206,7 @@ export default function Adminquestion() {
     }
   }
   
-  console.log(editFormData);
+  
   const handleQuestionDelete = async (questionId) => {
     if (!window.confirm('Biztosan törölni szeretné ezt a kérdést?')) {
       return;
@@ -281,7 +289,7 @@ export default function Adminquestion() {
               <input
                 type="text"
                 className="form-control"
-                placeholder="Keresés kérdés vagy válasz alapján..."
+                placeholder="Keresés kérdés, válasz vagy kategória alapján..."
                 value={searchTerm}
                 onChange={handleSearchChange}
               />
@@ -305,7 +313,7 @@ export default function Adminquestion() {
                 <div>
                   <button 
                     className="btn btn-sm btn-outline-primary me-2"
-                    onClick={() => handleEditClick(selectedQuestion)}
+                    onClick={() => handleEditClick(selectedQuestion) }
                   >
                     Szerkesztés
                   </button>
@@ -320,7 +328,7 @@ export default function Adminquestion() {
               <div className="card-body">
                 <div className="row mb-3">
                   <div className="col-md-3 fw-bold">Azonosító:</div>
-                  <div className="col-md-9">{selectedQuestion.id}</div>
+                  <div className="col-md-9">{selectedQuestion.id }</div>
                 </div>
                 <div className="row mb-3">
                   <div className="col-md-3 fw-bold">Kérdés:</div>
@@ -346,11 +354,13 @@ export default function Adminquestion() {
                       </thead>
                       <tbody>
                         {selectedQuestion.answers && selectedQuestion.answers.map((answer, index) => (
+                          
                           <tr key={answer.answerId} className={answer.correct ? "table-success" : ""}>
                             <td>{answer.answerText}</td>
                             <td>{answer.correct ? "✓" : "✗"}</td>
                           </tr>
                         ))}
+                        
                       </tbody>
                     </table>
                   </div>
@@ -382,7 +392,7 @@ export default function Adminquestion() {
                 </button>
               </div>
               <div className="card-body">
-                <div onsubmit={putquestionbyid}>
+                <div onSubmit={putquestionbyid}>
                   <input type="hidden" name="id" value={editFormData.id} />
                   
                   <div className="mb-3">
@@ -518,10 +528,12 @@ export default function Adminquestion() {
                           <td>
                             <button 
                               className="btn btn-sm btn-outline-primary me-2"
-                              onClick={() => handleQuestionSelect(question.id)}
+                              onClick={() => handleQuestionSelect(question.id) }
                             >
+                             
                               Részletek
                             </button>
+                            
                             <button 
                               className="btn btn-sm btn-outline-success me-2"
                               onClick={() => {
