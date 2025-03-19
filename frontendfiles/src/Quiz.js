@@ -4,7 +4,7 @@ import Footer from "./Footer";
 
 export default function Quiz() {
     const navigate = useNavigate();
-    const API_BASE_URL = "http://192.168.125.193:5248/api/users";
+    const API_BASE_URL = "http://192.168.125.240:5248/api/users";
 
     const [categories] = useState(["Történelem", "Földrajz", "Matematika", "Sport", "Irodalom"]); 
     const [selectedCategory, setSelectedCategory] = useState(null);
@@ -118,7 +118,7 @@ export default function Quiz() {
             if (currentQuestion + 1 < questions.length) {
                 setCurrentQuestion(prev => prev + 1);
             }
-        }, 1500); 
+        }, 100); 
     };
 
     const finishQuiz = () => {
