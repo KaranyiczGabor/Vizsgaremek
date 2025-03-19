@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './AdminUser.css';
 
-const API_BASE_URL = "http://192.168.125.193:5248/api/admin";
+const API_BASE_URL = "http://192.168.125.240:5248/api/admin";
 const AdminUser = () => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -256,15 +256,15 @@ const AdminUser = () => {
                             <td><small className="text-muted">{selectedUser.id}</small></td>
                           </tr>
                           <tr>
-                            <td><strong>Regisztráció:</strong></td>
+                            <td><strong>Kitöltött kvízek:</strong></td>
                             <td>
-                              {selectedUser.createdAt ? new Date(selectedUser.createdAt).toLocaleDateString() : 'N/A'}
+                              {selectedUser.quizAmount  || 'N/A'}
                             </td>
                           </tr>
                           <tr>
-                            <td><strong>Utolsó belépés:</strong></td>
+                            <td><strong>Összes Pontszám:</strong></td>
                             <td>
-                              {selectedUser.lastLogin ? new Date(selectedUser.lastLogin).toLocaleString() : 'N/A'}
+                              {selectedUser.totalPoints|| 'N/A'}
                             </td>
                           </tr>
                         </tbody>
