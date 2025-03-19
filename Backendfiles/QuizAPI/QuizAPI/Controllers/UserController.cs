@@ -18,19 +18,21 @@ namespace QuizAPI.Controllers
 
     public class UserController : ControllerBase
     {
-        private readonly IAuthService auth;
+        private readonly IAuthService _auth;
         private readonly IQuestionService _questionService;
+        private readonly ILeaderboardService _leaderboardService;
 
-        public UserController(IAuthService auth, IQuestionService questionService)
+        public UserController(IAuthService auth, IQuestionService questionService,ILeaderboardService leaderboardService)
         {
-            this.auth = auth;
-            this._questionService = questionService;
+            _auth = auth;
+            _questionService = questionService;
+            _leaderboardService = leaderboardService;
         }
 
         [HttpPost("register")]
         public async Task<ActionResult> AddNewUser(RegisterRequestDto registerRequestDto)
         {
-            var user = await auth.Register(registerRequestDto);
+            var user = await _auth.Register(registerRequestDto);
 
             if (user != null)
             {
@@ -43,7 +45,7 @@ namespace QuizAPI.Controllers
         [HttpPost("login")]
         public async Task<ActionResult> LoginUser(LoginRequestDto loginRequestDto)
         {
-            var user = await auth.Login(loginRequestDto);
+            var user = await _auth.Login(loginRequestDto);
             if (user != null)
             {
                 return Ok(new { token = user });
@@ -77,6 +79,18 @@ namespace QuizAPI.Controllers
             var score = await _questionService.CheckAnswers(userId, userAnswers);
 
             return Ok(new { score });
+        }
+        [HttpPost("Leaderboard")]
+        public async Task<IActionResult> Leaderboard()
+        {
+            var leaderboard = _leaderboardService.Leaderboard();
+
+            if (leaderboard != null)
+            {
+                return Ok(leaderboard);
+            }
+
+            return BadRequest();
         }
     }
 }

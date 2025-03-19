@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace QuizAPI.Models;
 
@@ -14,6 +15,6 @@ public partial class Question
     public string Category { get; set; } = null!;
     [Column("difficulty")]
     public int Difficulty { get; set; }
-
+    [JsonIgnore]
     public virtual ICollection<Answer> Answers { get; set; } = new List<Answer>();
 }

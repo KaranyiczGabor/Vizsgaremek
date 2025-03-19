@@ -226,6 +226,16 @@
   },
   {
     "ContainingType": "QuizAPI.Controllers.UserController",
+    "Method": "Leaderboard",
+    "RelativePath": "api/users/Leaderboard",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "QuizAPI.Controllers.UserController",
     "Method": "LoginUser",
     "RelativePath": "api/users/login",
     "HttpMethod": "POST",

@@ -438,6 +438,18 @@
           }
         }
       }
+    },
+    "/api/users/Leaderboard": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
     }
   },
   "components": {

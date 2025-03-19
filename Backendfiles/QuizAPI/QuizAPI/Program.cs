@@ -24,6 +24,7 @@ namespace QuizAPI
             builder.Services.AddScoped<IAuthService, Auth>();
             builder.Services.AddScoped<ITokenGenerator, TokenGenerator>();
             builder.Services.AddScoped<IQuestionService, QuestionService>();
+            builder.Services.AddScoped<ILeaderboardService, LeaderboardService>();
 
             // Identity
             builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
@@ -100,12 +101,12 @@ namespace QuizAPI
                 });
             });
 
-            builder.Services.AddControllers()
-            .AddJsonOptions(options =>
-            {
-                options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
-                options.JsonSerializerOptions.WriteIndented = true;
-            });
+            builder.Services.AddControllers();
+            //.AddJsonOptions(options =>
+            //{
+            //    options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
+            //    options.JsonSerializerOptions.WriteIndented = true;
+            //});
 
             builder.Services.AddEndpointsApiExplorer();
 
