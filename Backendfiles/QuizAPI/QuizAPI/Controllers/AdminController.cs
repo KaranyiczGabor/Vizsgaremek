@@ -171,14 +171,22 @@ namespace QuizAPI.Controllers
         [HttpDelete("DeleteQuestionWithAnswer")]
         public async Task<ActionResult> DeleteQuestionWithAnswer(Guid id)
         {
-            var questions = await _questions.DeleteQuestion(id);
-
-            if (questions != null)
+            try
             {
-                return Ok(new {result = questions, message="Sikeres torles."});
-            }
+                var questions = await _questions.DeleteQuestion(id);
 
-            return BadRequest(new { result = questions, message = "Sikertelen torles." });
+                if (questions != null)
+                {
+                    return Ok(new { result = questions, message = "Sikeres torles." });
+                }
+
+                return BadRequest(new { result = questions, message = "Sikertelen torles." });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error deleting question: {ex.Message}");
+                return StatusCode(500, new { message = "An error occurred while deleting the question.", error = ex.Message });
+            }
         }
         [HttpPut("EditAnswer")]
         public async Task<ActionResult> EditAnswer(Guid id, QuestionsDto.AnswerDto model)
