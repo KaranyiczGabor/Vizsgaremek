@@ -1,25 +1,30 @@
 .footer {
-    
-    width:100%;
-    bottom: 0;
-    text-align: center;
-    padding-top: 50px;
-  }
-  
-  .footer a {
-    transition: 0.3s;
-    text-decoration: none;
-  }
-  
-  .footer a:hover {
-    color: #ffcc00;
-  }
-  
-  .social-icons a {
-    font-size: 20px;
-    transition: 0.3s;
-  }
-  
-  .social-icons a:hover {
-    transform: scale(1.2);
-  }
+  width: 100%;
+  text-align: center;
+  padding: 1rem 0;
+  margin-top: auto; /* Add margin-top: auto */
+}
+
+.footer a {
+  transition: 0.3s;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  color: #ffcc00;
+}
+
+.social-icons a {
+  font-size: 20px;
+  transition: 0.3s;
+}
+
+.social-icons a:hover {
+  transform: scale(1.2);
+}
+
+
+.quiz-wrapper {
+  position: relative;
+  max-height: 100%;
+}

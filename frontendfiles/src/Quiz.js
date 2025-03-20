@@ -4,7 +4,7 @@ import Footer from "./Footer";
 
 export default function Quiz() {
     const navigate = useNavigate();
-    const API_BASE_URL = "http://192.168.125.240:5248/api/users";
+    const API_BASE_URL = "http://192.168.125.70:5248/api/users";
 
     const [categories] = useState(["Történelem", "Földrajz", "Matematika", "Sport", "Irodalom"]); 
     const [selectedCategory, setSelectedCategory] = useState(null);
@@ -175,9 +175,10 @@ export default function Quiz() {
     };
 
     return (
-        <div >
-        <div className="quiz-container text-center mt-5" >
-            <h2 style={{paddingTop:"10px"}}>IQInfinity Kvíz</h2>
+        <div className="quiz-wrapper d-flex flex-column vh-100">
+        <div className="container flex-grow-1" >
+        <div className="quiz-container  text-center mt-5" >
+            <h2 >IQInfinity Kvíz</h2>
 
             {!isLoggedIn && (
                 <div className="alert alert-warning" >
@@ -282,7 +283,7 @@ export default function Quiz() {
                         </div>
                     )}
                     
-                    <div className="options">
+                    <div className="options" >
                         {questions[currentQuestion]?.answers?.map((answer, index) => (
                             <button 
                                 key={index} 
@@ -297,9 +298,10 @@ export default function Quiz() {
                 </div>
             )}
             </div>
-            <div>
+        </div>
             <Footer/>
-            </div>
+            
+            
         </div>
     );
 }
