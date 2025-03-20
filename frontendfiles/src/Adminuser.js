@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './AdminUser.css';
 
-const API_BASE_URL = "http://192.168.125.240:5248/api/admin";
+const API_BASE_URL = "http://192.168.125.70:5248/api/admin";
 const AdminUser = () => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -243,7 +243,7 @@ const AdminUser = () => {
                       <h6 className="text-muted mb-2">Fiók információk</h6>
                       <table className="table">
                         <tbody>
-                          <tr>
+                          <tr className='asd'>
                             <td><strong>Felhasználónév:</strong></td>
                             <td>{selectedUser.userName}</td>
                           </tr>
