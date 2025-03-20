@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 
 export default function Adminquestion() {
-  const API_BASE_URL = "http://192.168.125.240:5248/api/admin";
   const [questions, setQuestions] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -47,7 +46,7 @@ export default function Adminquestion() {
     setLoading(true);
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`${API_BASE_URL}/getAllQuestionsWAnswers`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/admin/getAllQuestionsWAnswers`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -71,7 +70,7 @@ export default function Adminquestion() {
   const getQuestionById = async (questionId) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`${API_BASE_URL}/getAllQuestionsWAnswersById?id=${questionId}`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/admin/getAllQuestionsWAnswersById?id=${questionId}`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -174,7 +173,7 @@ export default function Adminquestion() {
   const putquestionbyid = async (questionId) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`${API_BASE_URL}/EditQuestion?id=${editFormData.id}`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/admin/EditQuestion?id=${editFormData.id}`, {
         method: 'PUT',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -214,7 +213,7 @@ export default function Adminquestion() {
     
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`${API_BASE_URL}/DeleteQuestionWithAnswer?id=${questionId}`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/admin/DeleteQuestionWithAnswer?id=${questionId}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`

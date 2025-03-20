@@ -8,7 +8,7 @@ export default function Profiledata() {
         Get()
     }, [])
     function Get() {
-        axios.get("http://192.168.121.193:5248/api/users/")
+        axios.get(`${process.env.REACT_APP_API_URL}/users`)
             .then(function (response) {
                 console.log(response);
                 setdata(response.data)

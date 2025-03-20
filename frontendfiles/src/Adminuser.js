@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './AdminUser.css';
 
-const API_BASE_URL = "http://192.168.125.70:5248/api/admin";
+
 const AdminUser = () => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -40,7 +40,7 @@ const AdminUser = () => {
     setLoading(true);
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`${API_BASE_URL}/GetUsers`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/admin/GetUsers`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -64,7 +64,7 @@ const AdminUser = () => {
   const getUserById = async (userId) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`${API_BASE_URL}/GetUsersbyId?Id=${userId}`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/admin/GetUsersbyId?Id=${userId}`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -101,7 +101,7 @@ const AdminUser = () => {
     
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`${API_BASE_URL}/DeleteUser?id=${userId}`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/admin/DeleteUser?id=${userId}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`

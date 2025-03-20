@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
 export default function Leaderboard() {
+   
     const [leaders, setLeaders] = useState([]);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -12,7 +13,7 @@ export default function Leaderboard() {
     
     function fetchLeaderboard() {
         // Use GET method as shown in the updated API example
-        fetch("http://192.168.125.70:5248/api/users/Leaderboard", {  
+        fetch(`${process.env.REACT_APP_API_URL}/users/Leaderboard`, {  
         })
         .then(response => {
             if (!response.ok) {

@@ -4,7 +4,7 @@ import Footer from "./Footer";
 
 export default function Quiz() {
     const navigate = useNavigate();
-    const API_BASE_URL = "http://192.168.125.70:5248/api/users";
+    
 
     const [categories] = useState(["Történelem", "Földrajz", "Matematika", "Sport", "Irodalom"]); 
     const [selectedCategory, setSelectedCategory] = useState(null);
@@ -55,7 +55,7 @@ export default function Quiz() {
 
     const fetchQuestions = () => {
         setLoading(true);
-        fetch(`${API_BASE_URL}/getquestions?Category=${encodeURIComponent(selectedCategory)}&Difficulty=${encodeURIComponent(selectedDifficulty)}`)
+        fetch(`${process.env.REACT_APP_API_URL}/users/getquestions?Category=${encodeURIComponent(selectedCategory)}&Difficulty=${encodeURIComponent(selectedDifficulty)}`)
             .then(response => response.json())
             .then(data => {
                 console.log("📢 API válasz:", data);
@@ -142,7 +142,7 @@ export default function Quiz() {
         
         console.log("Sending answers to server:", userAnswers);
         
-        fetch(`${API_BASE_URL}/checkanswer`, {
+        fetch(`${process.env.REACT_APP_API_URL}/users/checkanswer`, {
             method: "POST",
             headers: { 
                 "Content-Type": "application/json",

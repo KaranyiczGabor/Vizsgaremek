@@ -19,7 +19,7 @@ export default function Register() {
         }
         console.log(regdatas);
 
-        fetch("http://192.168.125.240:5248/api/users/register", {
+        fetch(`${process.env.REACT_APP_API_URL}/users/register`, {
             method: "POST",
             body: JSON.stringify(regdatas),
             headers: {
