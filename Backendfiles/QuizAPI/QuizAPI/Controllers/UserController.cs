@@ -80,7 +80,7 @@ namespace QuizAPI.Controllers
 
             return Ok(new { score });
         }
-        [HttpPost("Leaderboard")]
+        [HttpGet("Leaderboard")]
         public async Task<IActionResult> Leaderboard()
         {
             var leaderboard = await _leaderboardService.Leaderboard();

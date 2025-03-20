@@ -228,7 +228,7 @@
     "ContainingType": "QuizAPI.Controllers.UserController",
     "Method": "Leaderboard",
     "RelativePath": "api/users/Leaderboard",
-    "HttpMethod": "POST",
+    "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
