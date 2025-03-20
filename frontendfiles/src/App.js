@@ -8,6 +8,7 @@ import Quiz from './Quiz';
 import Profile from './Profile';
 import Adminquestion from './Adminquestion';
 import Adminuser from './Adminuser';
+import Leaderboard from './Leaderboard';
 
 
 
@@ -27,6 +28,7 @@ function App() {
         <Route path="/profile" element={<Profile/>}/>
         <Route path="/admin/Question" element={<Adminquestion/>}/>
         <Route path="/admin/User" element={<Adminuser/>}/>
+        <Route path="/leaderboard" element={<Leaderboard/>}/>
       </Routes>
        
       

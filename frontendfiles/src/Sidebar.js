@@ -21,6 +21,9 @@ export default function Sidebar({ isOpen, onClose }) {
           <li>
             <Link to="/quiz" onClick={onClose}>Quiz</Link>
           </li>
+          <li>
+            <Link to="/leaderboard" onClick={onClose}>Leaderboard</Link>
+          </li>
           <li>Donate</li>
         </ul>
       </motion.div>
