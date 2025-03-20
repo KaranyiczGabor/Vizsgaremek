@@ -22,13 +22,13 @@ export default function Home() {
 
     
     <div className="categories text-center mt-5">
-      <h2>Kvízkategóriák</h2>
+      <h2>Elérhető Kvízkategóriák</h2>
       <div className="d-flex flex-wrap justify-content-center gap-3">
           {categories.map((category, index) => (
             <button
               key={index}
               className="btn btn-secondary"
-              onClick={() => navigate(`/quiz?${category}`)}
+              onClick={() => navigate(`/quiz?`)}
             >
               {category}
             </button>

@@ -20,26 +20,31 @@ export default function Login({ setIsLoggedIn }) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, password }),
       });
-    
-      if (!response.ok) {
-        const errorText = await response.text();
-        throw new Error(`Error ${response.status}: ${errorText}`);
-      }
-    
+      
+      
       const data = await response.json();
       console.log("Parsed Data:", data);
-    
+      
+      
+      if (!response.ok || data.error || !data.token) {
+        throw new Error(`Login failed: ${data.message || 'Invalid credentials'}`);
+      }
+      
+      if (!data.token?.token || !data.token?.result?.id) {
+        throw new Error("Incomplete login data received");
+      }
       localStorage.setItem("token", data.token?.token);
       localStorage.setItem("userId", data.token?.result.id);
-    
-      <Login setIsLoggedIn={setIsLoggedIn} />
+      
+      if (typeof setIsLoggedIn === 'function') {
+        setIsLoggedIn(true);
+      }
       navigate("/");
-      window.location.reload();
+      setTimeout(() => window.location.reload(), 1000); 
     } catch (err) {
       console.error("Login Error:", err);
-      setError("Login failed. Check your credentials.");
-    }
-  };    
+      setError("Hibás felhasználónév vagy jelszó.");
+    }}
 
   return (
     <div className="login-container">
