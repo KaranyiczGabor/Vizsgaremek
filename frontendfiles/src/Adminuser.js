@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import './AdminUser.css';
-
 
 const AdminUser = () => {
   const [users, setUsers] = useState([]);
@@ -40,18 +40,13 @@ const AdminUser = () => {
     setLoading(true);
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/admin/GetUsers`, {
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/admin/GetUsers`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
       });
 
-      if (!response.ok) {
-        throw new Error('Felhasználók betöltése sikertelen');
-      }
-
-      const data = await response.json();
-      setUsers(data);
+      setUsers(response.data);
       setError(null);
     } catch (err) {
       setError(err.message || 'Hiba történt a felhasználók betöltésekor');
@@ -64,18 +59,13 @@ const AdminUser = () => {
   const getUserById = async (userId) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/admin/GetUsersbyId?Id=${userId}`, {
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/admin/GetUsersbyId?Id=${userId}`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
       });
 
-      if (!response.ok) {
-        throw new Error('Felhasználó adatainak betöltése sikertelen');
-      }
-
-      const userData = await response.json();
-      setSelectedUser(userData);
+      setSelectedUser(response.data);
     } catch (err) {
       console.error('Error fetching user details:', err);
       setError('Hiba a felhasználó adatainak betöltésekor');
@@ -101,16 +91,11 @@ const AdminUser = () => {
     
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/admin/DeleteUser?id=${userId}`, {
-        method: 'DELETE',
+      const response = await axios.delete(`${process.env.REACT_APP_API_URL}/admin/DeleteUser?id=${userId}`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
       });
-
-      if (!response.ok) {
-        throw new Error('Felhasználó törlése sikertelen');
-      }
 
       // Remove user from the list and reset selection if needed
       setUsers(users.filter(user => user.id !== userId));
