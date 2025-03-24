@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 
 export default function Leaderboard() {
@@ -13,13 +14,11 @@ export default function Leaderboard() {
     
     function fetchLeaderboard() {
         // Use GET method as shown in the updated API example
-        fetch(`${process.env.REACT_APP_API_URL}/users/Leaderboard`, {  
+        axios.get(`${process.env.REACT_APP_API_URL}/users/Leaderboard`, {  
         })
         .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-            return response.json();
+            
+            return response.data;
         })
         .then(data => {
             setLeaders(data);

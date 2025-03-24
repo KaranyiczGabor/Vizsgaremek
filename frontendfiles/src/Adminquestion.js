@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 export default function Adminquestion() {
   const [questions, setQuestions] = useState([]);
@@ -46,18 +47,14 @@ export default function Adminquestion() {
     setLoading(true);
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/admin/getAllQuestionsWAnswers`, {
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/admin/getAllQuestionsWAnswers`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
       });
 
-      if (!response.ok) {
-        throw new Error('Kérdések betöltése sikertelen');
-      }
-
-      const data = await response.json();
-      setQuestions(data);
+      // No need to check response.ok with axios
+      setQuestions(response.data);
       setError(null);
     } catch (err) {
       setError(err.message || 'Hiba történt a kérdések betöltésekor');
@@ -70,17 +67,14 @@ export default function Adminquestion() {
   const getQuestionById = async (questionId) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/admin/getAllQuestionsWAnswersById?id=${questionId}`, {
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/admin/getAllQuestionsWAnswersById?id=${questionId}`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
       });
   
-      if (!response.ok) {
-        throw new Error('Kérdés adatainak betöltése sikertelen');
-      }
-  
-      const questionData = await response.json();
+      // No need to check response.ok with axios
+      const questionData = response.data;
       
       // Check if the response is an array and extract the first item
       if (Array.isArray(questionData) && questionData.length > 0) {
@@ -93,10 +87,9 @@ export default function Adminquestion() {
       setError('Hiba a kérdés adatainak betöltésekor');
     }
   };
+  
   const handleQuestionSelect = (questionId) => {
     getQuestionById(questionId);
-    
-    
   };
 
   const handleSearchChange = (e) => {
@@ -169,22 +162,19 @@ export default function Adminquestion() {
     });
   };
   
- 
   const putquestionbyid = async (questionId) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/admin/EditQuestion?id=${editFormData.id}`, {
-        method: 'PUT',
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(editFormData)
-      });
-
-      if (!response.ok) {
-        throw new Error('Kérdés módosítása sikertelen');
-      }
+      const response = await axios.put(
+        `${process.env.REACT_APP_API_URL}/admin/EditQuestion?id=${editFormData.id}`,
+        editFormData,
+        {
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          }
+        }
+      );
       
       // Update the question in the list
       setQuestions(questions.map(q => 
@@ -205,7 +195,6 @@ export default function Adminquestion() {
     }
   }
   
-  
   const handleQuestionDelete = async (questionId) => {
     if (!window.confirm('Biztosan törölni szeretné ezt a kérdést?')) {
       return;
@@ -213,17 +202,13 @@ export default function Adminquestion() {
     
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/admin/DeleteQuestionWithAnswer?id=${questionId}`, {
-        method: 'DELETE',
+      const response = await axios.delete(`${process.env.REACT_APP_API_URL}/admin/DeleteQuestionWithAnswer?id=${questionId}`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
       });
 
-      if (!response.ok) {
-        throw new Error('Kérdés törlése sikertelen');
-      }
-
+      // No need to check response.ok with axios
       // Remove question from the list and reset selection if needed
       setQuestions(questions.filter(question => question.id !== questionId));
       if (selectedQuestion && selectedQuestion.id === questionId) {
@@ -243,9 +228,9 @@ export default function Adminquestion() {
       answer.answerText?.toLowerCase().includes(searchTerm.toLowerCase())
     ) ||
     question.category?.toLowerCase().includes(searchTerm.toLowerCase()) 
-    
-    
   );
+
+  
 
   if (loading) {
     return (

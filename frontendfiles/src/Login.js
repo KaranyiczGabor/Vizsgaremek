@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import './Login.css'
 import { useNavigate } from 'react-router-dom'
+import axios from 'axios';
 
 
 export default function Login({ setIsLoggedIn }) {
@@ -15,18 +16,20 @@ export default function Login({ setIsLoggedIn }) {
     setError("");
 
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/users/login`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, password }),
-      });
+      const response = await axios.post(
+        `${process.env.REACT_APP_API_URL}/users/login`, 
+        { username, password },
+        { 
+          headers: { "Content-Type": "application/json" }
+        }
+      );
       
       
-      const data = await response.json();
+      const data = await response.data;
       console.log("Parsed Data:", data);
       
       
-      if (!response.ok || data.error || !data.token) {
+      if (data.error || !data.token) {
         throw new Error(`Login failed: ${data.message || 'Invalid credentials'}`);
       }
       
