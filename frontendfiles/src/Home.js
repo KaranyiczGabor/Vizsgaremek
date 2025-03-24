@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import Footer from './Footer';
 export default function Home() {
   const navigate = useNavigate();
-  const categories = ["Sport", "Történelem", "Földrajz", "Matematika", "Irodalom"];
+  const categories = ["Történelem", "Földrajz", "Matematika", "Sport", "Irodalom"];
 
   return (
     <div>
