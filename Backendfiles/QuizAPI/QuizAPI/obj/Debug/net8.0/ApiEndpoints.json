@@ -189,6 +189,22 @@
   },
   {
     "ContainingType": "QuizAPI.Controllers.UserController",
+    "Method": "ChangePassword",
+    "RelativePath": "api/users/ChangePassword",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "QuizAPI.Services.Dtos.ChangePasswordDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "QuizAPI.Controllers.UserController",
     "Method": "CheckAnswers",
     "RelativePath": "api/users/checkanswer",
     "HttpMethod": "POST",
