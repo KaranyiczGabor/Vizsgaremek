@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './Login.css'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios';
 
 
@@ -51,23 +51,33 @@ export default function Login({ setIsLoggedIn }) {
 
   return (
     <div className="login-container">
-    <h2>Login</h2>
+    <img src="/logo.png" alt="IQInfinity Logo" className="logo" />
+    <h2>Üdvözöljük</h2>
     {error && <p className="error">{error}</p>}
     <form onSubmit={handleLogin}>
-      <input
-        type="text"
-        placeholder="Username"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <button type="submit">Log in</button>
+      <div className="input-group">
+        <label>Felhasználó név</label>
+        <input
+          type="text"
+          placeholder="Példa1"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+      </div>
+      <div className="input-group" style={{position: 'relative'}}>
+        <label>Jelszó</label>
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+  
+      </div>
+      <button className="bejelentkezese" type="submit">BEJELENTKEZÉS</button>
     </form>
+    <p className="signup-text">Nincs még profilod <Link to={"/register"} className="signup-link">regisztráció</Link></p>
+    
   </div>
   )
 }
