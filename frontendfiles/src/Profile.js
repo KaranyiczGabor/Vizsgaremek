@@ -74,6 +74,10 @@ export default function Profile() {
                         <button onClick={handleLogout} className="logout">Logout</button>
 
                     </div>
+                    <div className="d-flex mt-2">
+                    <Link to={"/changepw"} className="signup-link">jelszó változtatás</Link>
+                    </div>
+
 
                     {isAdmin && (
 
