@@ -1,6 +1,6 @@
 import React from 'react'
 import './Register.css';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 
@@ -36,31 +36,32 @@ export default function Register() {
     
     return (
         <div className='register'>
-            <form onSubmit={function(event) {
-                event.preventDefault()
-                Post()
-            }}>
-            <label className='bejelentkezes'>Regisztráció</label>
-            <label>
-                Email:
-                <input
-                type="email" id='email'/>
-            </label>
-            <br />
-            <label>
-                Felhasználónév:
-                <input
-                type="text" id='nickname'/>
-            </label>
-            <br />
-            <label>
-                Jelszó:
-                <input type="password" id='password'/>
-            </label>
-            <br />
-            
-            <button type="submit">Regisztráció</button>
-            </form>
-        </div>
+    <img src="/logo.png" alt="IQInfinity Logo" className="logo" />
+    <form onSubmit={function(event) {
+        event.preventDefault()
+        Post()
+    }}>
+        <label className='bejelentkezes'>Regisztráció</label>
+        
+        <label>
+            Email:
+            <input type="email" id='email' placeholder="johndoe@example.com"/>
+        </label>
+        
+        <label>
+            Felhasználónév:
+            <input type="text" id='nickname' placeholder="felhasználónév"/>
+        </label>
+        
+        <label>
+            Jelszó:
+            <input type="password" id='password' placeholder="jelszó"/>
+        </label>
+        
+        <button type="submit">Regisztráció</button>
+    </form>
+    
+    <p className="signin-text">Már van fiókod? <Link to={"/login"} className="signin-link">Bejelentkezés</Link></p>
+</div>
     )
 }
