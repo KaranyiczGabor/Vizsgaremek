@@ -24,16 +24,13 @@ export default function Quiz() {
     const [offline, setOffline] = useState(!navigator.onLine);
     const userId = localStorage.getItem("userId");
 
-    // Add debug effect for userAnswers
     useEffect(() => {
         console.log("userAnswers updated:", userAnswers);
-        // Only finish the quiz when all questions have been answered
         if (userAnswers.length === questions.length && questions.length > 0) {
             finishQuiz()
         }
     }, [userAnswers, questions]);
 
-    // Check login status and network status
     useEffect(() => {
         setIsLoggedIn(!!localStorage.getItem("token"));
         window.addEventListener("online", () => setOffline(false));
@@ -44,7 +41,6 @@ export default function Quiz() {
         };
     }, []);
 
-    // Fetch questions when category and difficulty are selected
     useEffect(() => {
         if (selectedCategory && selectedDifficulty) {
             fetchQuestions();
@@ -63,7 +59,7 @@ export default function Quiz() {
             console.log("📢 API válasz:", response.data);
             if (Array.isArray(response.data) && response.data.length > 0) {
                 setQuestions(response.data);
-                setUserAnswers([]); // IMPORTANT: Reset userAnswers when loading new questions
+                setUserAnswers([]); 
                 setAnswerTracking([]);
                 setScore(0);
                 setCurrentQuestion(0);
@@ -91,19 +87,14 @@ export default function Quiz() {
         setTimeout(() => setShowFeedback(false), 1000);
 
         if (isCorrect) setScore(prev => prev + 1);
-
-        // Track locally for UI
         setAnswerTracking(prev => [
             ...prev.filter(a => a.questionId !== questionId), 
             { questionId, answerText: selectedAnswer, isCorrect }
         ]);
         
-        // Format for backend - use consistent property names
-        // IMPORTANT FIX: Using questionId consistently
         setUserAnswers(prev => {
             console.log("Previous answers:", prev);
-            
-            // Filter using the same property name that we're storing
+        
             const newArray = prev.filter(a => a.questionId !== questionId);
             
             const updatedAnswers = [...newArray, {
@@ -134,8 +125,7 @@ export default function Quiz() {
 
         setSavingScore(true);
         setSaveError(null);
-        
-        // Check if userAnswers is empty
+    
         if (!userAnswers || userAnswers.length === 0) {
             setSaveError("Nincsenek válaszok elmentve");
             setSavingScore(false);

@@ -19,7 +19,6 @@ export default function Adminquestion() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Check if user is admin before fetching data
     const token = localStorage.getItem('token');
     if (!token) {
       navigate('/login');
@@ -53,7 +52,6 @@ export default function Adminquestion() {
         }
       });
 
-      // No need to check response.ok with axios
       setQuestions(response.data);
       setError(null);
     } catch (err) {
@@ -73,10 +71,8 @@ export default function Adminquestion() {
         }
       });
   
-      // No need to check response.ok with axios
       const questionData = response.data;
       
-      // Check if the response is an array and extract the first item
       if (Array.isArray(questionData) && questionData.length > 0) {
         setSelectedQuestion(questionData[0]);
       } else {
@@ -141,7 +137,7 @@ export default function Adminquestion() {
   
   const addAnswer = () => {
     const newAnswer = {
-      answerId: `temp-${Date.now()}`, // Temporary ID until saved
+      answerId: `temp-${Date.now()}`, 
       answerText: '',
       questionId: editFormData.id,
       correct: false
@@ -176,12 +172,12 @@ export default function Adminquestion() {
         }
       );
       
-      // Update the question in the list
+    
       setQuestions(questions.map(q => 
         q.id === editFormData.id ? {...q, ...editFormData} : q
       ));
       
-      // Update selected question if viewing it
+    
       if (selectedQuestion && selectedQuestion.id === editFormData.id) {
         setSelectedQuestion({...selectedQuestion, ...editFormData});
         console.log(selectedQuestion);
@@ -208,8 +204,7 @@ export default function Adminquestion() {
         }
       });
 
-      // No need to check response.ok with axios
-      // Remove question from the list and reset selection if needed
+   
       setQuestions(questions.filter(question => question.id !== questionId));
       if (selectedQuestion && selectedQuestion.id === questionId) {
         setSelectedQuestion(null);
@@ -264,7 +259,7 @@ export default function Adminquestion() {
         <div className="col-12">
           <h2 className="mb-4">Kérdések kezelése</h2>
           
-          {/* Search bar */}
+          
           <div className="mb-4">
             <div className="input-group">
               <span className="input-group-text">
@@ -289,7 +284,7 @@ export default function Adminquestion() {
             </div>
           </div>
 
-          {/* Question detail view */}
+        
           {selectedQuestion && !isEditing && (
             <div className="card mb-4">
               <div className="card-header d-flex justify-content-between align-items-center">
@@ -363,7 +358,7 @@ export default function Adminquestion() {
             </div>
           )}
           
-          {/* Question edit form */}
+          
           {isEditing && (
             <div className="card mb-4">
               <div className="card-header d-flex justify-content-between align-items-center">
@@ -485,7 +480,6 @@ export default function Adminquestion() {
             </div>
           )}
 
-          {/* Questions table */}
           {!selectedQuestion && (
             <>
               <div className="table-responsive">

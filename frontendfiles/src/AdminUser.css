@@ -1,12 +1,9 @@
-/* AdminUser.css */
-
-/* Main container styling */
 .container {
     max-width: 1200px;
     margin: 0 auto;
   }
   
-  /* Card styling */
+
   .card {
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -36,7 +33,6 @@
     padding: 20px;
   }
   
-  /* User list styling */
   .user-list {
     max-height: 550px;
     overflow-y: auto;
@@ -82,7 +78,6 @@
     font-weight: 600;
   }
   
-  /* Search bar styling */
   .input-group {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
     border-radius: 4px;
@@ -99,7 +94,6 @@
     border-color: #4e73df;
   }
   
-  /* User details styling */
   .rounded-circle {
     border: 3px solid #f8f9fa;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -133,7 +127,6 @@
     color: #5a5c69;
   }
   
-  /* Button styling */
   .btn {
     border-radius: 4px;
     padding: 8px 15px;
@@ -186,12 +179,10 @@
     font-size: 0.85rem;
   }
   
-  /* Empty state styling */
   .text-muted {
     color: #858796 !important;
   }
   
-  /* Alert styling */
   .alert {
     border-radius: 4px;
   }
@@ -208,14 +199,12 @@
     color: #4e73df;
   }
   
-  /* Loading spinner */
   .spinner-border {
     width: 3rem;
     height: 3rem;
     border-width: 0.25em;
   }
   
-  /* Responsive adjustments */
   @media (max-width: 767px) {
     .col-md-5, .col-md-7 {
       padding: 0;

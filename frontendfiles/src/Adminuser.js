@@ -12,7 +12,7 @@ const AdminUser = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Check if user is admin before fetching data
+    
     const token = localStorage.getItem('token');
     if (!token) {
       navigate('/login');
@@ -97,7 +97,7 @@ const AdminUser = () => {
         }
       });
 
-      // Remove user from the list and reset selection if needed
+      
       setUsers(users.filter(user => user.id !== userId));
       if (selectedUser && selectedUser.id === userId) {
         setSelectedUser(null);

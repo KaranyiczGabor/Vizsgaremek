@@ -13,7 +13,7 @@ export default function Leaderboard() {
     }, [])
     
     function fetchLeaderboard() {
-        // Use GET method as shown in the updated API example
+       
         axios.get(`${process.env.REACT_APP_API_URL}/users/Leaderboard`, {  
         })
         .then(response => {
