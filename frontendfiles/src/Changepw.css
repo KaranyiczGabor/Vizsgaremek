@@ -1,0 +1,74 @@
+.password-change-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .submit-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  
+  .submit-button:hover {
+    background-color: #3a80d2;
+  }
+  
+  .submit-button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+  }
+  
+  .error-message {
+    color: #d9534f;
+    padding: 10px;
+    background-color: #f9eaea;
+    border-radius: 4px;
+    margin-bottom: 15px;
+  }
+  
+  .success-message {
+    color: #5cb85c;
+    padding: 10px;
+    background-color: #eaf9ea;
+    border-radius: 4px;
+    margin-bottom: 15px;
+  }
+  
+  .password-requirements {
+    margin-top: 20px;
+    font-size: 0.9em;
+    color: #666;
+  }
+  
+  .password-requirements ul {
+    padding-left: 20px;
+  }
