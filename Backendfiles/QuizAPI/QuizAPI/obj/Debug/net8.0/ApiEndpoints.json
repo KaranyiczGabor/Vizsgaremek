@@ -195,6 +195,22 @@
   },
   {
     "ContainingType": "QuizAPI.Controllers.UserController",
+    "Method": "ForgotPassword",
+    "RelativePath": "api/users/ForgotPassword",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "QuizAPI.Services.Dtos.ForgotPasswordDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "QuizAPI.Controllers.UserController",
     "Method": "GetQuestions",
     "RelativePath": "api/users/getquestions",
     "HttpMethod": "GET",

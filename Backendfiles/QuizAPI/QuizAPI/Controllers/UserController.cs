@@ -99,32 +99,6 @@ namespace QuizAPI.Controllers
             return BadRequest();
         }
 
-        [HttpPost("ChangePassword")]
-        public async Task<IActionResult> ChangePassword([FromBody] ChangePasswordDto model)
-        {
-            if (string.IsNullOrWhiteSpace(model.Uid) ||
-                string.IsNullOrWhiteSpace(model.CurrentPassword) ||
-                string.IsNullOrWhiteSpace(model.NewPassword))
-            {
-                return BadRequest(new {message = "Az egyik sor ures"});
-            }
-
-            var user = await _userManager.FindByIdAsync(model.Uid);
-
-            if (user == null)
-            {
-                return BadRequest(new {message = "A felhasznalo nem letezik"});
-            }
-
-            var result = await _userManager.ChangePasswordAsync(user, model.CurrentPassword, model.NewPassword);
-
-            if (result.Succeeded)
-            {
-                return Ok(new { message = "Sikeresen megvaltoztattad a jelszavadat" });
-            }
-
-            return BadRequest(new { message = "Nem sikerult megvaltoztatni a jelszavadat" });
-        }
 
         [HttpGet("GetUsersbyId")]
         public async Task<ActionResult<ApplicationUser>> GetUsersbyId(string Id)
@@ -154,6 +128,61 @@ namespace QuizAPI.Controllers
             };
 
             return Ok(returnData);
+        }
+
+        [HttpPost("ChangePassword")]
+        public async Task<IActionResult> ChangePassword([FromBody] ChangePasswordDto model)
+        {
+            if (string.IsNullOrWhiteSpace(model.Uid) ||
+                string.IsNullOrWhiteSpace(model.CurrentPassword) ||
+                string.IsNullOrWhiteSpace(model.NewPassword))
+            {
+                return BadRequest(new {message = "Az egyik sor ures"});
+            }
+
+            var user = await _userManager.FindByIdAsync(model.Uid);
+
+            if (user == null)
+            {
+                return BadRequest(new {message = "A felhasznalo nem letezik"});
+            }
+
+            var result = await _userManager.ChangePasswordAsync(user, model.CurrentPassword, model.NewPassword);
+
+            if (result.Succeeded)
+            {
+                return Ok(new { message = "Sikeresen megvaltoztattad a jelszavadat" });
+            }
+
+            return BadRequest(new { message = "Nem sikerult megvaltoztatni a jelszavadat" });
+        }
+
+        [HttpPost("ForgotPassword")]
+        public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordDto model)
+        {
+            if (string.IsNullOrWhiteSpace(model.UserName) ||
+                string.IsNullOrWhiteSpace(model.NewPassword))
+            {
+                return BadRequest(new { message = "Az egyik sor ures" });
+            }
+
+            var user = await _userManager.FindByNameAsync(model.UserName);
+
+            if (user == null)
+            {
+                return BadRequest(new { message = "A felhasznalo nem letezik" });
+            }
+
+            var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+
+            var result = await _userManager.ResetPasswordAsync(user, token, model.NewPassword);
+
+            if (result.Succeeded)
+            {
+                return Ok(new { message = "Sikeresen megvaltoztattad a jelszavadat" });
+            }
+
+            return BadRequest(new { message = "Nem sikerult megvaltoztatni a jelszavadat" });
         }
     }
 }
