@@ -77,6 +77,7 @@ export default function Login({ setIsLoggedIn }) {
       <button className="bejelentkezese" type="submit">BEJELENTKEZÉS</button>
     </form>
     <p className="signup-text">Nincs még profilod <Link to={"/register"} className="signup-link">regisztráció</Link></p>
+    <p className="signup-text">Elfelejtetted a jelszavadat? <Link to={"/forgotpw"} className="signup-link">elfelejtett jelszó</Link></p>
     
   </div>
   )

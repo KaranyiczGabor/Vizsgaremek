@@ -10,6 +10,7 @@ import Adminquestion from './Adminquestion';
 import Adminuser from './Adminuser';
 import Leaderboard from './Leaderboard';
 import Changepw from './Changepw';
+import Forgotpw from './Forgotpw';
 
 
 
@@ -31,6 +32,7 @@ function App() {
         <Route path="/admin/User" element={<Adminuser/>}/>
         <Route path="/leaderboard" element={<Leaderboard/>}/>
         <Route path="/changepw" element={<Changepw/>}/>
+        <Route path="/forgotpw" element={<Forgotpw/>}/>
       </Routes>
        
       
