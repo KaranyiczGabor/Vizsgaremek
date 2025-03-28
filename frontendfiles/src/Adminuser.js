@@ -59,7 +59,7 @@ const AdminUser = () => {
   const getUserById = async (userId) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get(`${process.env.REACT_APP_API_URL}/admin/GetUsersbyId?Id=${userId}`, {
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/users/GetUsersbyId?Id=${userId}`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
