@@ -142,32 +142,6 @@
   },
   {
     "ContainingType": "QuizAPI.Controllers.AdminController",
-    "Method": "GetUsersbyId",
-    "RelativePath": "api/admin/GetUsersbyId",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "Id",
-        "Type": "System.String",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "QuizAPI.Models.ApplicationUser",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "QuizAPI.Controllers.AdminController",
     "Method": "UpdateUser",
     "RelativePath": "api/admin/UpdateUser",
     "HttpMethod": "PUT",
@@ -239,6 +213,32 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "QuizAPI.Controllers.UserController",
+    "Method": "GetUsersbyId",
+    "RelativePath": "api/users/GetUsersbyId",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Id",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "QuizAPI.Models.ApplicationUser",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "QuizAPI.Controllers.UserController",

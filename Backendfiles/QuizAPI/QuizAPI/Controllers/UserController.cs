@@ -24,13 +24,15 @@ namespace QuizAPI.Controllers
         private readonly IAuthService _auth;
         private readonly IQuestionService _questionService;
         private readonly ILeaderboardService _leaderboardService;
+        private readonly QuizdbContext _context;
 
-        public UserController(IAuthService auth, IQuestionService questionService,ILeaderboardService leaderboardService, UserManager<ApplicationUser> userManager)
+        public UserController(IAuthService auth, IQuestionService questionService,ILeaderboardService leaderboardService, UserManager<ApplicationUser> userManager, QuizdbContext context)
         {
             _auth = auth;
             _questionService = questionService;
             _leaderboardService = leaderboardService;
             _userManager = userManager;
+            _context = context;
         }
 
         [HttpPost("register")]
@@ -122,6 +124,36 @@ namespace QuizAPI.Controllers
             }
 
             return BadRequest(new { message = "Nem sikerult megvaltoztatni a jelszavadat" });
+        }
+
+        [HttpGet("GetUsersbyId")]
+        public async Task<ActionResult<ApplicationUser>> GetUsersbyId(string Id)
+        {
+            var user = await _userManager.FindByIdAsync(Id);
+
+            if (user == null)
+            {
+                return NotFound("A keresett felhasznalo nem letezik");
+            }
+
+            var quizAmount = await _context.Attempts
+                .Where(a => a.Uid.ToString() == Id)
+                .CountAsync();
+
+            var totalPoints = await _context.Attempts
+                .Where(a => a.Uid.ToString() == Id)
+                .SumAsync(s => s.Score);
+
+            var returnData = new ProfileDto
+            {
+                UserName = user.UserName,
+                Email = user.Email,
+                Id = user.Id,
+                quizAmount = quizAmount,
+                TotalPoints = totalPoints
+            };
+
+            return Ok(returnData);
         }
     }
 }
