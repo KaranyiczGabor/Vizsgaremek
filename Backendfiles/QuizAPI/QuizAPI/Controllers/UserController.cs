@@ -40,7 +40,9 @@ namespace QuizAPI.Controllers
         {
             var user = await _auth.Register(registerRequestDto);
 
-            if (user != null)
+            var x = user.GetType().GetProperty("result").GetValue(user, null);
+
+            if (x != "")
             {
                 return StatusCode(201, user);
             }
@@ -52,11 +54,15 @@ namespace QuizAPI.Controllers
         public async Task<ActionResult> LoginUser(LoginRequestDto loginRequestDto)
         {
             var user = await _auth.Login(loginRequestDto);
-            if (user != null)
-            {
+
+            var x = user.GetType().GetProperty("result").GetValue(user,null);
+
+            if (x != "")
+            { 
                 return Ok(new { token = user });
             }
-            return Unauthorized(new { result = "", message = "Hibas felhasznalonev/jelszo" });
+
+            return NotFound(new { result = "", message = "Hibas felhasznalonev/jelszo" });
         }
         
         [HttpGet("getquestions")]

@@ -50,6 +50,11 @@ public class Auth : IAuthService
     {
         var user = await _userManager.FindByNameAsync(loginRequestDto.UserName.ToUpper());
 
+        if (user == null)
+        {
+            return new { result = "", message = "Hibas felhasznalonev/jelszo.", token = "" };
+        }
+
         bool isValid = await _userManager.CheckPasswordAsync(user, loginRequestDto.Password);
 
         if (isValid)
