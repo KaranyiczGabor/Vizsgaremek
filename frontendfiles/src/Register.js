@@ -25,7 +25,6 @@ export default function Register() {
     async function handleSubmit(event) {
         event.preventDefault();
         
-        // Reset errors
         setUsernameError('');
         setPasswordError('');
         
@@ -53,26 +52,28 @@ export default function Register() {
             );
             
             console.log(response.data);
-            
-            // Check if the response contains an error message, even though status is 200/201
-            if (response.data && response.data.message && 
-                (response.data.message.includes("already taken") || 
-                 response.data.message.includes("Username"))) {
-                
-                // Handle username already exists error, even though API returns 201
-                setUsernameError('Ez a felhasználónév már foglalt');
-            } else {
-                // Only navigate if there's no error message
-                navigate("/login");
-            }
+        
+            navigate("/login");
             
         } catch (error) {
             console.error("Registration error:", error);
             
-            // Handle any actual errors (network errors, etc)
-            if (error.response && error.response.data && error.response.data.message) {
-                setUsernameError(error.response.data.message);
+            if (error.response) {
+
+                if (error.response.status === 404) {
+                    
+                    setUsernameError('Ez a felhasználónév már foglalt');
+                } else if (error.response.data && error.response.data.message) {
+                    
+                    setUsernameError(error.response.data.message);
+                } else {
+                    setUsernameError('Hiba történt a regisztráció során');
+                }
+            } else if (error.request) {
+            
+                setUsernameError('Nem sikerült kapcsolódni a szerverhez');
             } else {
+                
                 setUsernameError('Hiba történt a regisztráció során');
             }
         } finally {
