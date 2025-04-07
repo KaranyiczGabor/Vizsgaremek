@@ -45,7 +45,7 @@ export default function Profile() {
             }
 
             const token = localStorage.getItem("token");
-            const response = await axios.get(`http://192.168.144.240:5248/api/users/GetUsersbyId?Id=${userId}`, {
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/users/GetUsersbyId?Id=${userId}`, {
                 headers: {
                     'accept': 'text/plain',
                     'Authorization': `Bearer ${token}`
