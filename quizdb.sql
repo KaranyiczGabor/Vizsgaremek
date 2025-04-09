@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2025. Már 12. 14:08
+-- Létrehozás ideje: 2025. Ápr 07. 10:39
 -- Kiszolgáló verziója: 10.4.20-MariaDB
 -- PHP verzió: 7.3.29
 
@@ -41,10 +41,6 @@ CREATE TABLE `answers` (
 --
 
 INSERT INTO `answers` (`id`, `question_id`, `answer_text`, `correct`) VALUES
-('aae68251-ff42-11ef-8924-b42e999b1679', 'a08e7844-ff28-11ef-a048-0a0027000004', '1956', 1),
-('aae7a2f3-ff42-11ef-8924-b42e999b1679', 'a08e7844-ff28-11ef-a048-0a0027000004', '1945', 0),
-('aae7a59b-ff42-11ef-8924-b42e999b1679', 'a08e7844-ff28-11ef-a048-0a0027000004', '1968', 0),
-('aae7a5ee-ff42-11ef-8924-b42e999b1679', 'a08e7844-ff28-11ef-a048-0a0027000004', '1973', 0),
 ('aae7a631-ff42-11ef-8924-b42e999b1679', 'a08e79ed-ff28-11ef-a048-0a0027000004', 'George Washington', 1),
 ('aae7a681-ff42-11ef-8924-b42e999b1679', 'a08e79ed-ff28-11ef-a048-0a0027000004', 'Abraham Lincoln', 0),
 ('aae7a6c2-ff42-11ef-8924-b42e999b1679', 'a08e79ed-ff28-11ef-a048-0a0027000004', 'Theodore Roosevelt', 0),
@@ -567,12 +563,12 @@ INSERT INTO `answers` (`id`, `question_id`, `answer_text`, `correct`) VALUES
 ('aae95847-ff42-11ef-8924-b42e999b1679', 'b1b2482a-ff28-11ef-a048-0a0027000004', 'Kosztolányi Dezső', 0),
 ('aae9588c-ff42-11ef-8924-b42e999b1679', 'b1b2484f-ff28-11ef-a048-0a0027000004', 'A per', 1),
 ('aae958cb-ff42-11ef-8924-b42e999b1679', 'b1b2484f-ff28-11ef-a048-0a0027000004', 'Az átváltozás', 0),
-('aae9590b-ff42-11ef-8924-b42e999b1679', 'b1b2484f-ff28-11ef-a048-0a0027000004', 'A kastély', 0);
-INSERT INTO `answers` (`id`, `question_id`, `answer_text`, `correct`) VALUES
+('aae9590b-ff42-11ef-8924-b42e999b1679', 'b1b2484f-ff28-11ef-a048-0a0027000004', 'A kastély', 0),
 ('aae95949-ff42-11ef-8924-b42e999b1679', 'b1b2484f-ff28-11ef-a048-0a0027000004', 'Az éhezőművész', 0),
 ('aae95997-ff42-11ef-8924-b42e999b1679', 'b1b2486e-ff28-11ef-a048-0a0027000004', 'Johann Wolfgang von Goethe', 1),
 ('aae959d8-ff42-11ef-8924-b42e999b1679', 'b1b2486e-ff28-11ef-a048-0a0027000004', 'Friedrich Schiller', 0),
-('aae95a1a-ff42-11ef-8924-b42e999b1679', 'b1b2486e-ff28-11ef-a048-0a0027000004', 'Immanuel Kant', 0),
+('aae95a1a-ff42-11ef-8924-b42e999b1679', 'b1b2486e-ff28-11ef-a048-0a0027000004', 'Immanuel Kant', 0);
+INSERT INTO `answers` (`id`, `question_id`, `answer_text`, `correct`) VALUES
 ('aae95a58-ff42-11ef-8924-b42e999b1679', 'b1b2486e-ff28-11ef-a048-0a0027000004', 'Gotthold Ephraim Lessing', 0),
 ('aae95a9f-ff42-11ef-8924-b42e999b1679', 'b1b2488e-ff28-11ef-a048-0a0027000004', 'Madách Imre', 1),
 ('aae95ad9-ff42-11ef-8924-b42e999b1679', 'b1b2488e-ff28-11ef-a048-0a0027000004', 'Katona József', 0),
@@ -719,8 +715,19 @@ CREATE TABLE `aspnetuserroles` (
 --
 
 INSERT INTO `aspnetuserroles` (`UserId`, `RoleId`) VALUES
+('079598d7-0d44-4b34-8d67-a7f0ca548ce9', '9552b070-3f93-4921-bebd-ee5d8c8317b8'),
+('0aba1fc5-b18b-426e-8b39-c314fd9f92a8', '9552b070-3f93-4921-bebd-ee5d8c8317b8'),
+('31759307-9074-4c61-8006-697eae04f8c6', '9552b070-3f93-4921-bebd-ee5d8c8317b8'),
+('3d0c0d46-4d1c-40ba-9213-a4ddcb113e59', '9552b070-3f93-4921-bebd-ee5d8c8317b8'),
 ('4e728bb3-329b-48cc-b1b2-3ec0b701b344', 'a480dbc4-6bab-4bdf-9c99-87bcd7d4b4d8'),
-('5fe3921d-c391-4843-8305-72ed6b9d86c7', 'a480dbc4-6bab-4bdf-9c99-87bcd7d4b4d8');
+('5fe3921d-c391-4843-8305-72ed6b9d86c7', 'a480dbc4-6bab-4bdf-9c99-87bcd7d4b4d8'),
+('75443ec5-f462-4355-bc46-7622589c9e39', '9552b070-3f93-4921-bebd-ee5d8c8317b8'),
+('7cb886b1-537b-4998-a386-27979733fbf3', '9552b070-3f93-4921-bebd-ee5d8c8317b8'),
+('9152a7d8-f665-4721-872e-1ab7de9941c1', '9552b070-3f93-4921-bebd-ee5d8c8317b8'),
+('969471d9-f571-4862-bb6a-d7c5569af23b', '9552b070-3f93-4921-bebd-ee5d8c8317b8'),
+('be4a2cb1-5c23-44ec-ae67-7640978b347c', '9552b070-3f93-4921-bebd-ee5d8c8317b8'),
+('e4862912-87e5-4a08-821c-b51b6f4b69e1', '9552b070-3f93-4921-bebd-ee5d8c8317b8'),
+('e9a5d335-21e0-4368-b045-b84f3debc913', '9552b070-3f93-4921-bebd-ee5d8c8317b8');
 
 -- --------------------------------------------------------
 
@@ -753,8 +760,19 @@ CREATE TABLE `aspnetusers` (
 --
 
 INSERT INTO `aspnetusers` (`Id`, `FullName`, `BirthDate`, `UserName`, `NormalizedUserName`, `Email`, `NormalizedEmail`, `EmailConfirmed`, `PasswordHash`, `SecurityStamp`, `ConcurrencyStamp`, `PhoneNumber`, `PhoneNumberConfirmed`, `TwoFactorEnabled`, `LockoutEnd`, `LockoutEnabled`, `AccessFailedCount`) VALUES
+('079598d7-0d44-4b34-8d67-a7f0ca548ce9', NULL, '0000-00-00 00:00:00.000000', 'asdasd', 'ASDASD', 'asds@gmail.com', 'ASDS@GMAIL.COM', 0, 'AQAAAAIAAYagAAAAECe+Iexhzih8VbmtaYNzfI3L99GMB12VvUH31Pxl4PQFPmYuMKCaN7IW3feSQgHn8g==', 'VG6O3IKEY6O46RNJKANQSB2HRVBIRQZW', 'e3a34363-a571-4821-9651-cc24771496cd', NULL, 0, 0, NULL, 1, 0),
+('0aba1fc5-b18b-426e-8b39-c314fd9f92a8', NULL, '0000-00-00 00:00:00.000000', 'faszkalap', 'FASZKALAP', 'asda@akjsdjsa.com', 'ASDA@AKJSDJSA.COM', 0, 'AQAAAAIAAYagAAAAEDCvLvoic1KxGVaQ8OY+WOG8zJJUxON923ExHcwlJxuOWt5BFuJzHBgSay6looQI1w==', 'ZG7MKZV3PT3DTRBZAOWDULTOHD7I7EQZ', 'c40042bc-b11a-4902-a587-f85914f7f2a7', NULL, 0, 0, NULL, 1, 0),
+('31759307-9074-4c61-8006-697eae04f8c6', NULL, '0000-00-00 00:00:00.000000', 'test1', 'TEST1', 'test1@citromail.com', 'TEST1@CITROMAIL.COM', 0, 'AQAAAAIAAYagAAAAEMGFNLcxLIe449xMLy8TgUZub1UBKFbCWxkqbaZ3UE6wJDows1yWNipb38FIkGfxhQ==', 'VGA3BO7LSII2DHHSS72BIZY3BBLSUAPT', 'f421c1f9-21e7-4bd6-87ba-cc7d3a57a394', NULL, 0, 0, NULL, 1, 0),
+('3d0c0d46-4d1c-40ba-9213-a4ddcb113e59', NULL, '0000-00-00 00:00:00.000000', 'test7', 'TEST7', 'test7@citromail.com', 'TEST7@CITROMAIL.COM', 0, 'AQAAAAIAAYagAAAAEFqhZ7/BGDwSJkqZQtqt/Ic7rn+OWDq4XuuVDpHNiMN8+gesAt5YcFg/DMLmxdoy2w==', '3BELHLBDIJ3TS6KST2Y5C3VYMKXWXBVX', 'bbb9ebe5-b8b3-4090-a8d0-1fdffc97820d', NULL, 0, 0, NULL, 1, 0),
 ('4e728bb3-329b-48cc-b1b2-3ec0b701b344', NULL, '0001-01-01 00:00:00.000000', 'famarko05', 'FAMARKO05', 'asd@gmail.com', 'ASD@GMAIL.COM', 0, 'AQAAAAIAAYagAAAAEG0EyNAPE2qdZTEPWiBlbw0EZWuEFicZKGvSKYNp7jys+CIXUqHKgySRZQECXUuIAg==', '5ES2HWGMIEAJME73UIBTOYA62TSZE3CH', '83228e98-297d-49a0-b1e1-e29e036b9c31', NULL, 0, 0, NULL, 1, 0),
-('5fe3921d-c391-4843-8305-72ed6b9d86c7', NULL, '0001-01-01 00:00:00.000000', 'admin', 'ADMIN', 'admin@gmail.com', 'ADMIN@GMAIL.COM', 0, 'AQAAAAIAAYagAAAAEJsg21RGklN2wePzME+IZ7nz3wXktvvHawsZl1YOR+PlMqqqymmkAG0UnNh1IQng/w==', '6NRFGQDNDYLCMEQWOMNR3YFE45TCJZJG', '4a418373-f10d-44d5-857b-16a589aedfce', NULL, 0, 0, NULL, 1, 0);
+('5fe3921d-c391-4843-8305-72ed6b9d86c7', NULL, '0001-01-01 00:00:00.000000', 'admin', 'ADMIN', 'admin@gmail.com', 'ADMIN@GMAIL.COM', 0, 'AQAAAAIAAYagAAAAEJsg21RGklN2wePzME+IZ7nz3wXktvvHawsZl1YOR+PlMqqqymmkAG0UnNh1IQng/w==', '6NRFGQDNDYLCMEQWOMNR3YFE45TCJZJG', '4a418373-f10d-44d5-857b-16a589aedfce', NULL, 0, 0, NULL, 1, 0),
+('75443ec5-f462-4355-bc46-7622589c9e39', NULL, '0000-00-00 00:00:00.000000', 'nyenye', 'NYENYE', 'nyenyestyanb@kkszki.hu', 'NYENYESTYANB@KKSZKI.HU', 0, 'AQAAAAIAAYagAAAAEESxkibYH0+BCWDsC4VOwcpejxSZ9iUE1Me3r7C7edliR7oKb+EI1AiI8Y1ZkjV9Cg==', 'DMM5QSPCL5V6NT3GXVHXGT6K24BQW4MC', '5c341372-32b9-46b2-9d40-631db144f8bc', NULL, 0, 0, NULL, 1, 0),
+('7cb886b1-537b-4998-a386-27979733fbf3', NULL, '0000-00-00 00:00:00.000000', 'test5', 'TEST5', 'test5@citromail.com', 'TEST5@CITROMAIL.COM', 0, 'AQAAAAIAAYagAAAAEBvFC3xBw9xhghYzgiFARNMYVnYB73iCVv1PHSwT4C4HteXRv1iPrMZLpew+9hoH8w==', 'AHIW7FWUFT4MDNDROATSERYVGFTEK5G6', 'fe47a603-0ebf-40ca-a909-bd87c790528a', NULL, 0, 0, NULL, 1, 0),
+('9152a7d8-f665-4721-872e-1ab7de9941c1', NULL, '0000-00-00 00:00:00.000000', 'test6', 'TEST6', 'test6@citromail.com', 'TEST6@CITROMAIL.COM', 0, 'AQAAAAIAAYagAAAAEGSMBly6hlnBfE/4h+CcoPW03PWde9/lBFjJMbZvaG14ynMycZQyGCgJOkCfU5TcnQ==', 'CYXVWXF3CAR2BYC47WMD2NCQ3WIX5XNE', '6bb1751c-00f5-4126-8451-3e9b33e46cfc', NULL, 0, 0, NULL, 1, 0),
+('969471d9-f571-4862-bb6a-d7c5569af23b', NULL, '0000-00-00 00:00:00.000000', 'test2', 'TEST2', 'test2@citromail.com', 'TEST2@CITROMAIL.COM', 0, 'AQAAAAIAAYagAAAAEDVxorcQgXc/ThAIP7m/OIPDoZYKhPz6q7XVoV/qQZlPFCSGddh0Y6IFU75luwndPg==', '2YJ2DMFMLPXBCICQLDH6P7J46SEYD75G', 'afef0768-3ab1-4d3e-8c3c-0879dc2190f8', NULL, 0, 0, NULL, 1, 0),
+('be4a2cb1-5c23-44ec-ae67-7640978b347c', NULL, '0000-00-00 00:00:00.000000', 'test3', 'TEST3', 'test3@citromail.com', 'TEST3@CITROMAIL.COM', 0, 'AQAAAAIAAYagAAAAEAtim2ILEjApdnIXN2qw871GPRZ8NqgRBPFBmeFu3VC4q9x4bab6l32gK24+6yZGFg==', 'DZQJJXKLTUS2HF7OS6BXJEN6IKZCZLLR', '937e8858-0970-4f57-bb07-1be2570e8fb1', NULL, 0, 0, NULL, 1, 0),
+('e4862912-87e5-4a08-821c-b51b6f4b69e1', NULL, '0000-00-00 00:00:00.000000', 'buzesz', 'BUZESZ', 'asda@akjsdjsa.com', 'ASDA@AKJSDJSA.COM', 0, 'AQAAAAIAAYagAAAAEC14OxeLZx5+U04t+MJUX0BIVmCAZ4r/IsUFeuviLl8AvZ27KfFXM/kmJY7EvLwK2Q==', 'S7ENRO6D56V4A2IOY2BRHYH67MBDLQDI', 'aaa777ff-8ce3-41f1-a36d-0bbdbf27b35d', NULL, 0, 0, NULL, 1, 0),
+('e9a5d335-21e0-4368-b045-b84f3debc913', NULL, '0000-00-00 00:00:00.000000', 'test4', 'TEST4', 'test4@citromail.com', 'TEST4@CITROMAIL.COM', 0, 'AQAAAAIAAYagAAAAEJkQLd6Q5LHuMW3///dMTutCFoKim/OcsXcrQdA6HW4+xeL39k5uV/6bLb0LN6A+6g==', 'L7AOORKSAKLFQWPSC7X5FKXZIXDMVFBS', 'e7545287-eeba-4644-a871-4a472e146700', NULL, 0, 0, NULL, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -787,19 +805,43 @@ CREATE TABLE `attempts` (
 --
 
 INSERT INTO `attempts` (`id`, `uid`, `score`, `time`) VALUES
+('026b0dab-313a-47ce-84b5-16e8f1941079', '9152a7d8-f665-4721-872e-1ab7de9941c1', 2, '2025-04-07 10:14:26'),
+('0c62666a-5aa3-4f50-8e16-d1756349cdb5', '5fe3921d-c391-4843-8305-72ed6b9d86c7', 12, '2025-03-17 10:30:09'),
+('0e3f583b-8600-48ce-ad7a-593ddca7767a', '3d0c0d46-4d1c-40ba-9213-a4ddcb113e59', 1, '2025-04-07 10:16:24'),
 ('173371f5-905d-485e-9587-be2e1a5d2ad9', '5fe3921d-c391-4843-8305-72ed6b9d86c7', 1, '2025-03-06 11:28:10'),
+('1c1ed852-65f2-4f1d-8980-c8062d7bc2d7', '969471d9-f571-4862-bb6a-d7c5569af23b', 6, '2025-04-07 10:06:46'),
 ('1c22d453-b2ca-4c34-9ad1-3f97a5ad774a', '5fe3921d-c391-4843-8305-72ed6b9d86c7', 1, '2025-03-06 10:59:17'),
 ('1cd8a2cd-33ab-4cc6-bec8-abc097ef109f', '5fe3921d-c391-4843-8305-72ed6b9d86c7', 2, '2025-03-06 11:28:02'),
 ('2526f4c8-29b8-4f9f-9d27-41186a48c4af', '5fe3921d-c391-4843-8305-72ed6b9d86c7', 1, '2025-03-06 10:59:40'),
+('25b925b9-9cfc-41cd-8fef-0b9a054492d6', '7cb886b1-537b-4998-a386-27979733fbf3', 1, '2025-04-07 10:12:48'),
 ('276dd1f0-0e1d-496f-a5e1-d6c57a292f4f', '5fe3921d-c391-4843-8305-72ed6b9d86c7', 1, '2025-03-06 11:27:13'),
+('27d03c16-f84a-4096-84d9-6ba2c3a3cca3', 'e9a5d335-21e0-4368-b045-b84f3debc913', 6, '2025-04-07 10:10:41'),
 ('2fe6c21d-cf3c-422c-af21-e0536e9c722c', '5fe3921d-c391-4843-8305-72ed6b9d86c7', 1, '2025-03-06 11:27:20'),
 ('31207733-666f-4ec8-a435-0712c62f961c', '5fe3921d-c391-4843-8305-72ed6b9d86c7', 0, '2025-03-06 11:11:06'),
+('31d1af79-55f8-40c7-a831-2bf9d54c2722', 'be4a2cb1-5c23-44ec-ae67-7640978b347c', 4, '2025-04-07 10:09:11'),
+('46e1aea1-79a8-4efe-bd08-104130b6eed7', 'be4a2cb1-5c23-44ec-ae67-7640978b347c', 3, '2025-04-07 10:09:33'),
+('4c40f3e1-71a4-40d3-9163-c7cf6891c56e', '5fe3921d-c391-4843-8305-72ed6b9d86c7', 15, '2025-03-17 10:27:16'),
 ('50fbf887-8498-4f53-80fc-f4fd8e1e4b09', '5fe3921d-c391-4843-8305-72ed6b9d86c7', 1, '2025-03-06 11:23:46'),
+('56256125-7734-48eb-a549-93663723ebdf', '9152a7d8-f665-4721-872e-1ab7de9941c1', 1, '2025-04-07 10:14:06'),
+('56691b74-8768-4c7e-811a-080b12d65b9d', '5fe3921d-c391-4843-8305-72ed6b9d86c7', 2, '2025-03-24 12:32:04'),
+('5e427b46-bdba-4fd8-91c9-dffc2ed2e759', '5fe3921d-c391-4843-8305-72ed6b9d86c7', 12, '2025-03-17 10:29:54'),
 ('7a18bb41-9b57-4e14-91b0-280ce6a2f173', '5fe3921d-c391-4843-8305-72ed6b9d86c7', 1, '2025-03-06 11:11:00'),
+('8bfefea2-b06f-4e84-89f6-117a5480d84a', '75443ec5-f462-4355-bc46-7622589c9e39', 8, '2025-04-07 10:20:39'),
+('97217912-bc84-4745-ab47-42f11ff77379', '3d0c0d46-4d1c-40ba-9213-a4ddcb113e59', 9, '2025-04-07 10:16:11'),
+('9e51ef27-89fc-40ee-802f-3b8b84ebb02e', '31759307-9074-4c61-8006-697eae04f8c6', 9, '2025-04-07 10:04:22'),
+('a0d0082a-a66c-4cf0-8c79-846a07be08b4', '75443ec5-f462-4355-bc46-7622589c9e39', 12, '2025-04-07 10:30:10'),
 ('bc8f3ed7-b55d-4d3f-83d1-57d6cf2c891a', '5fe3921d-c391-4843-8305-72ed6b9d86c7', 1, '2025-03-06 11:23:00'),
 ('c11df2da-c478-4102-bf5c-acd13b40fc24', '5fe3921d-c391-4843-8305-72ed6b9d86c7', 2, '2025-03-06 11:27:48'),
+('caedd108-c6ab-4432-a7b0-8da10fb51847', '75443ec5-f462-4355-bc46-7622589c9e39', 7, '2025-04-07 10:18:52'),
 ('cfccae3a-77ce-4676-a39b-32c585b93488', '5fe3921d-c391-4843-8305-72ed6b9d86c7', 1, '2025-03-06 11:23:22'),
+('d0eb535d-c9eb-4a38-9816-d4784db0932b', '75443ec5-f462-4355-bc46-7622589c9e39', 9, '2025-04-07 10:23:53'),
+('dfde9916-36e9-4139-8836-d2b97acabe72', '31759307-9074-4c61-8006-697eae04f8c6', 12, '2025-04-07 10:03:53'),
+('e4c29ff8-a1e9-4631-bed9-2c820c335a7e', 'e9a5d335-21e0-4368-b045-b84f3debc913', 4, '2025-04-07 10:11:19'),
+('e8759c03-0c4e-44b8-a839-62a27199cf1f', '7cb886b1-537b-4998-a386-27979733fbf3', 6, '2025-04-07 10:13:04'),
+('ebada6db-5ff7-4790-95ff-4c65e652d04c', '75443ec5-f462-4355-bc46-7622589c9e39', 1, '2025-04-07 10:27:33'),
 ('ef898eab-f1d4-4ead-a4b1-6dd848017400', '5fe3921d-c391-4843-8305-72ed6b9d86c7', 1, '2025-03-06 10:58:53'),
+('f0164b4a-ea80-43f0-a35d-2942ea54bc98', '75443ec5-f462-4355-bc46-7622589c9e39', 1, '2025-04-07 10:25:38'),
+('f64b9388-6ba5-48b8-97d8-03dfb0dc211c', '5fe3921d-c391-4843-8305-72ed6b9d86c7', 15, '2025-03-17 10:25:42'),
 ('fc5712fc-4546-402c-96c2-a38585c7c07f', '5fe3921d-c391-4843-8305-72ed6b9d86c7', 1, '2025-03-06 10:56:24');
 
 -- --------------------------------------------------------
@@ -820,7 +862,6 @@ CREATE TABLE `questions` (
 --
 
 INSERT INTO `questions` (`id`, `question`, `category`, `difficulty`) VALUES
-('a08e7844-ff28-11ef-a048-0a0027000004', 'Melyik évben történt az 1956-os magyar forradalom?', 'Történelem', 1),
 ('a08e79ed-ff28-11ef-a048-0a0027000004', 'Ki volt az első amerikai elnök?', 'Történelem', 1),
 ('a08e7a5c-ff28-11ef-a048-0a0027000004', 'Mikor kezdődött a második világháború?', 'Történelem', 1),
 ('a08e7a80-ff28-11ef-a048-0a0027000004', 'Mikor volt az 1848-as forradalom Magyarországon?', 'Történelem', 1),
