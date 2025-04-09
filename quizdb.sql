@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2025. Ápr 07. 10:39
+-- Létrehozás ideje: 2025. Ápr 09. 13:30
 -- Kiszolgáló verziója: 10.4.20-MariaDB
 -- PHP verzió: 7.3.29
 
@@ -716,7 +716,6 @@ CREATE TABLE `aspnetuserroles` (
 
 INSERT INTO `aspnetuserroles` (`UserId`, `RoleId`) VALUES
 ('079598d7-0d44-4b34-8d67-a7f0ca548ce9', '9552b070-3f93-4921-bebd-ee5d8c8317b8'),
-('0aba1fc5-b18b-426e-8b39-c314fd9f92a8', '9552b070-3f93-4921-bebd-ee5d8c8317b8'),
 ('31759307-9074-4c61-8006-697eae04f8c6', '9552b070-3f93-4921-bebd-ee5d8c8317b8'),
 ('3d0c0d46-4d1c-40ba-9213-a4ddcb113e59', '9552b070-3f93-4921-bebd-ee5d8c8317b8'),
 ('4e728bb3-329b-48cc-b1b2-3ec0b701b344', 'a480dbc4-6bab-4bdf-9c99-87bcd7d4b4d8'),
@@ -726,7 +725,6 @@ INSERT INTO `aspnetuserroles` (`UserId`, `RoleId`) VALUES
 ('9152a7d8-f665-4721-872e-1ab7de9941c1', '9552b070-3f93-4921-bebd-ee5d8c8317b8'),
 ('969471d9-f571-4862-bb6a-d7c5569af23b', '9552b070-3f93-4921-bebd-ee5d8c8317b8'),
 ('be4a2cb1-5c23-44ec-ae67-7640978b347c', '9552b070-3f93-4921-bebd-ee5d8c8317b8'),
-('e4862912-87e5-4a08-821c-b51b6f4b69e1', '9552b070-3f93-4921-bebd-ee5d8c8317b8'),
 ('e9a5d335-21e0-4368-b045-b84f3debc913', '9552b070-3f93-4921-bebd-ee5d8c8317b8');
 
 -- --------------------------------------------------------
@@ -761,7 +759,6 @@ CREATE TABLE `aspnetusers` (
 
 INSERT INTO `aspnetusers` (`Id`, `FullName`, `BirthDate`, `UserName`, `NormalizedUserName`, `Email`, `NormalizedEmail`, `EmailConfirmed`, `PasswordHash`, `SecurityStamp`, `ConcurrencyStamp`, `PhoneNumber`, `PhoneNumberConfirmed`, `TwoFactorEnabled`, `LockoutEnd`, `LockoutEnabled`, `AccessFailedCount`) VALUES
 ('079598d7-0d44-4b34-8d67-a7f0ca548ce9', NULL, '0000-00-00 00:00:00.000000', 'asdasd', 'ASDASD', 'asds@gmail.com', 'ASDS@GMAIL.COM', 0, 'AQAAAAIAAYagAAAAECe+Iexhzih8VbmtaYNzfI3L99GMB12VvUH31Pxl4PQFPmYuMKCaN7IW3feSQgHn8g==', 'VG6O3IKEY6O46RNJKANQSB2HRVBIRQZW', 'e3a34363-a571-4821-9651-cc24771496cd', NULL, 0, 0, NULL, 1, 0),
-('0aba1fc5-b18b-426e-8b39-c314fd9f92a8', NULL, '0000-00-00 00:00:00.000000', 'faszkalap', 'FASZKALAP', 'asda@akjsdjsa.com', 'ASDA@AKJSDJSA.COM', 0, 'AQAAAAIAAYagAAAAEDCvLvoic1KxGVaQ8OY+WOG8zJJUxON923ExHcwlJxuOWt5BFuJzHBgSay6looQI1w==', 'ZG7MKZV3PT3DTRBZAOWDULTOHD7I7EQZ', 'c40042bc-b11a-4902-a587-f85914f7f2a7', NULL, 0, 0, NULL, 1, 0),
 ('31759307-9074-4c61-8006-697eae04f8c6', NULL, '0000-00-00 00:00:00.000000', 'test1', 'TEST1', 'test1@citromail.com', 'TEST1@CITROMAIL.COM', 0, 'AQAAAAIAAYagAAAAEMGFNLcxLIe449xMLy8TgUZub1UBKFbCWxkqbaZ3UE6wJDows1yWNipb38FIkGfxhQ==', 'VGA3BO7LSII2DHHSS72BIZY3BBLSUAPT', 'f421c1f9-21e7-4bd6-87ba-cc7d3a57a394', NULL, 0, 0, NULL, 1, 0),
 ('3d0c0d46-4d1c-40ba-9213-a4ddcb113e59', NULL, '0000-00-00 00:00:00.000000', 'test7', 'TEST7', 'test7@citromail.com', 'TEST7@CITROMAIL.COM', 0, 'AQAAAAIAAYagAAAAEFqhZ7/BGDwSJkqZQtqt/Ic7rn+OWDq4XuuVDpHNiMN8+gesAt5YcFg/DMLmxdoy2w==', '3BELHLBDIJ3TS6KST2Y5C3VYMKXWXBVX', 'bbb9ebe5-b8b3-4090-a8d0-1fdffc97820d', NULL, 0, 0, NULL, 1, 0),
 ('4e728bb3-329b-48cc-b1b2-3ec0b701b344', NULL, '0001-01-01 00:00:00.000000', 'famarko05', 'FAMARKO05', 'asd@gmail.com', 'ASD@GMAIL.COM', 0, 'AQAAAAIAAYagAAAAEG0EyNAPE2qdZTEPWiBlbw0EZWuEFicZKGvSKYNp7jys+CIXUqHKgySRZQECXUuIAg==', '5ES2HWGMIEAJME73UIBTOYA62TSZE3CH', '83228e98-297d-49a0-b1e1-e29e036b9c31', NULL, 0, 0, NULL, 1, 0),
@@ -771,7 +768,6 @@ INSERT INTO `aspnetusers` (`Id`, `FullName`, `BirthDate`, `UserName`, `Normalize
 ('9152a7d8-f665-4721-872e-1ab7de9941c1', NULL, '0000-00-00 00:00:00.000000', 'test6', 'TEST6', 'test6@citromail.com', 'TEST6@CITROMAIL.COM', 0, 'AQAAAAIAAYagAAAAEGSMBly6hlnBfE/4h+CcoPW03PWde9/lBFjJMbZvaG14ynMycZQyGCgJOkCfU5TcnQ==', 'CYXVWXF3CAR2BYC47WMD2NCQ3WIX5XNE', '6bb1751c-00f5-4126-8451-3e9b33e46cfc', NULL, 0, 0, NULL, 1, 0),
 ('969471d9-f571-4862-bb6a-d7c5569af23b', NULL, '0000-00-00 00:00:00.000000', 'test2', 'TEST2', 'test2@citromail.com', 'TEST2@CITROMAIL.COM', 0, 'AQAAAAIAAYagAAAAEDVxorcQgXc/ThAIP7m/OIPDoZYKhPz6q7XVoV/qQZlPFCSGddh0Y6IFU75luwndPg==', '2YJ2DMFMLPXBCICQLDH6P7J46SEYD75G', 'afef0768-3ab1-4d3e-8c3c-0879dc2190f8', NULL, 0, 0, NULL, 1, 0),
 ('be4a2cb1-5c23-44ec-ae67-7640978b347c', NULL, '0000-00-00 00:00:00.000000', 'test3', 'TEST3', 'test3@citromail.com', 'TEST3@CITROMAIL.COM', 0, 'AQAAAAIAAYagAAAAEAtim2ILEjApdnIXN2qw871GPRZ8NqgRBPFBmeFu3VC4q9x4bab6l32gK24+6yZGFg==', 'DZQJJXKLTUS2HF7OS6BXJEN6IKZCZLLR', '937e8858-0970-4f57-bb07-1be2570e8fb1', NULL, 0, 0, NULL, 1, 0),
-('e4862912-87e5-4a08-821c-b51b6f4b69e1', NULL, '0000-00-00 00:00:00.000000', 'buzesz', 'BUZESZ', 'asda@akjsdjsa.com', 'ASDA@AKJSDJSA.COM', 0, 'AQAAAAIAAYagAAAAEC14OxeLZx5+U04t+MJUX0BIVmCAZ4r/IsUFeuviLl8AvZ27KfFXM/kmJY7EvLwK2Q==', 'S7ENRO6D56V4A2IOY2BRHYH67MBDLQDI', 'aaa777ff-8ce3-41f1-a36d-0bbdbf27b35d', NULL, 0, 0, NULL, 1, 0),
 ('e9a5d335-21e0-4368-b045-b84f3debc913', NULL, '0000-00-00 00:00:00.000000', 'test4', 'TEST4', 'test4@citromail.com', 'TEST4@CITROMAIL.COM', 0, 'AQAAAAIAAYagAAAAEJkQLd6Q5LHuMW3///dMTutCFoKim/OcsXcrQdA6HW4+xeL39k5uV/6bLb0LN6A+6g==', 'L7AOORKSAKLFQWPSC7X5FKXZIXDMVFBS', 'e7545287-eeba-4644-a871-4a472e146700', NULL, 0, 0, NULL, 1, 0);
 
 -- --------------------------------------------------------
