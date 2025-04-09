@@ -50,8 +50,7 @@ export default function Forgotpw() {
       });
       
       setIsSuccess(true);
-      setMessage('Password has been reset successfully!');
-      // Clear form
+      setMessage('új jelszó létrehozva');
       setUserName('');
       setNewPassword('');
       setConfirmPassword('');
