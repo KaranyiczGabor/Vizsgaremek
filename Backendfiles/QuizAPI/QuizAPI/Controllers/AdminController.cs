@@ -11,7 +11,7 @@ using static QuizAPI.Services.Dtos.QuestionsDto;
 
 namespace QuizAPI.Controllers
 {
-    // AdminController útvonal beállítása, amely csak az "Admin" szerepkörben lévő felhasználók számára elérhető
+    // Az AdminController útvonal beállítása, amely csak az "Admin" szerepkörben lévő felhasználók számára elérhető
     [Route("api/admin")]
     [ApiController]
     [Authorize(Roles = "Admin")]
